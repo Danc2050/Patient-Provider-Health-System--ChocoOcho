@@ -3,8 +3,14 @@ import java.util.Scanner;
 /*
  	Main.java is designed to allow providers to interact with the ChocAn data processing software
 	system. 
+	
+	This is a temporary Main. NOT all functions are present. This commit is for illustrative purposes and team discussion.
 */
 public class Main extends Utility {//Extend Utility class so input/output is global.
+
+/*********************************PUBLIC MAIN STATIC FUNCTIONS -- A TEMPORARY PROTOTYPE SOLUTION****************************************/
+
+/*Lets a terminal user choose between Interactive Mode and a Provider/Manager mode.*/
 	public static int mainMode()
 	{
 		System.out.println("\nChoose a mode.");
@@ -13,7 +19,7 @@ public class Main extends Utility {//Extend Utility class so input/output is glo
 		input.nextLine();//Cin.ignore
 		return x;
 	}
-	
+/*Lets a user choose what they want to do in intMode. Note: the action (add, remove, update) is not used in this prototype*/
 	public static int intMode() {//Implement a use... Example: call an add function with string "member" or "provider". Or create Member or Provider object and pass in to use Dynamic binding.
 	System.out.println("What do you want to access?");
 	System.out.println("[1] - Member mode." + "\n[2] - Provider mode." + "\n[3] - Manager mode.");
@@ -25,12 +31,12 @@ public class Main extends Utility {//Extend Utility class so input/output is glo
 	input.nextLine();
 	return mode;
 	}
-	
+/*The Provider Menu.*/
 	public static int providerMenu() {
 		System.out.println("Choose from the options below." + "\n[1] - Provider Directory." + "\n[2] - Create Member Report." + "\n[3] - Access ChocAn Billing Services.");
 		return input.nextInt();
 	}
-	
+/*Verifies a user is in the system (print statements and if conditionals only).*/
 	public static boolean verifyW() {
 		System.out.println("Slide member card into terminal (enter I.D. #).");
 		int id = input.nextInt();
@@ -53,9 +59,10 @@ public class Main extends Utility {//Extend Utility class so input/output is glo
 		 */
 		return true;
 	}
-	
+/*MAIN*/
 	public static void main(String[] args) {
 int x = mainMode();
+//Switch #1 -- main mode.
 switch(x)
 {
 	case 0: x = mainMode(); System.out.println("\nX: " + x); break;
