@@ -1,0 +1,6 @@
+import java.io.*;
+import java.util.Scanner;
+//Global scanner.
+public class Utility{
+	static Scanner input = new Scanner(System.in);//Creates a "global" scanner.
+}
