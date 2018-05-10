@@ -1,0 +1,37 @@
+//create a string for the path of the file
+        String file_name = "/Users/Marko/IdeaProjects/Program4/src/com/company/order.txt";
+
+        //try block to check if the file will throw an exception
+        //for either the file not being found or, there is
+        //some error when trying to read in from the file.
+        try {
+            FileReader file = new FileReader(file_name);
+            BufferedReader in = new BufferedReader(file);
+            String line = in.readLine();
+
+            //reads until the end of the file has been reached
+            while (line != null)
+            {
+                String[] columns = line.split("\\|");
+                String temp_name = columns[0];
+                String temp_restaurant = columns[1];
+                String temp_entree = columns[2];
+                float temp_cost = Float.parseFloat(columns[3]);
+                //System.out.println(temp_name + " " + temp_restaurant + " " + temp_entree + " " + temp_cost + "\n");
+                new_order.load_table(temp_name, temp_restaurant, temp_entree, temp_cost);
+
+                line = in.readLine();
+            }
+        }
+        //throws file not found exception if the
+        //file is not found
+        catch (FileNotFoundException e)
+        {
+            System.out.println("File Not Found");
+        }
+        //throws a error reading the file if
+        //the file is read incorrectly for some reason
+        catch (IOException ex)
+        {
+            System.out.println("Error Reading File");
+        }
