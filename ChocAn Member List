@@ -1,4 +1,5 @@
-//Member list: members have 9-digit numbers that starts with an odd number
+//Member list: members have (9-digit id that starts with an odd number, status, name, address)
+//Need address
 123456786;Active;Jared Langraver;
 123456789;Active;Daniel Connelly;
 123456788;Active;Lisa Smith;
