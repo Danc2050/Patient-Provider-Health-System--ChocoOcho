@@ -1,5 +1,6 @@
-//Provider list: (9-digit id starting with an even number, name, week fee, number of consultations)
-//Did not yet add the week fee or # of consultations bc depends on their history
+//Provider list: (9-digit id starting with an even number, name,address, week fee, number of consultations)
+//Need address
+//Did not yet add the week fee or # of consultations bc these numbers depends on their history
 212345684;Barbara Jackson;
 212345683;Amanda Smith;
 212345682;Kevin Pham;
