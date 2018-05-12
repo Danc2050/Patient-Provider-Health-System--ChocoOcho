@@ -1,0 +1,21 @@
+//Provider list: (9-digit id starting with an even number, name, week fee, number of consultations)
+//Did not yet add the week fee or # of consultations bc depends on their history
+212345684;Barbara Jackson;
+212345683;Amanda Smith;
+212345682;Kevin Pham;
+212345681;Felicia Gonzales;
+212345680;Marty Maddison;
+212345679;Greg Dettmer;
+212345678;Catherine Anderson;
+212345677;Daren Crossgrove;
+212345676;Rick Matthews;
+212345675;Caroline Anderson;
+212345674;Rosa Johnson;
+212345673;Marie Courtez;
+212345672;Tina Nguyen;
+212345671;Frank Templeton;
+212345670;David Wu;
+212345669;Wil Washington;
+212345668;Otis James;
+212345667;Chris Lee;
+212345666;Ralph Bartlett;
