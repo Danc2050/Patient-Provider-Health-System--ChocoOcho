@@ -15,10 +15,17 @@ public class ChocAn {
             object.intMode();
         else
             object.providerMenu();
+
+        //Marko's and Angelic's
+        Scanner input = new Scanner(System.in);
+
+        ServiceList test = new ServiceList();
+        test.read_from_file();
+        test.display_all();
     }
 }
 
-    /*MAIN*/
+/*
     public static void main(String[] args) {
         int x = mainMode();
 //Switch #1 -- main mode.
@@ -48,5 +55,6 @@ public class ChocAn {
                 break;
         };
     }
-}
+*/
+
 

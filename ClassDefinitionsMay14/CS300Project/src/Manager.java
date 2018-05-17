@@ -1,7 +1,7 @@
 public class Manager {
      protected int id;
-     protected summary_report report;
-     protected MemberList mObj;
+     //protected summary_report report;
+     /*protected MemberList mObj;
      protected ProviderList pObj;
      protected ServiceList sObj;
 
@@ -15,5 +15,5 @@ public class Manager {
      public int generateSummaryReport(){}
      public int generateMemberReport(){}
      public int generateProviderReport(){}
-     public int addAddress(){}
+     public int addAddress(){}*/
 }

@@ -1,5 +1,5 @@
 public class ServiceHistory {
-    protected Node s_root;
+    /*protected Node s_root;
     protected String comments;
     protected String service_date;
     protected String p_name;
@@ -9,5 +9,5 @@ public class ServiceHistory {
 
     public int read_from_file(){}
     public int write_to_file(){}
-    public int add_service_history();
+    public int add_service_history();*/
 }

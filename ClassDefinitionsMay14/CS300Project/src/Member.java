@@ -13,5 +13,25 @@ public class Member extends Node{
         this.id = id;
     }
 
+    public String get_service_name()
+    {
+        return null;
+    }
+
+    public int get_service_code()
+    {
+        return 0;
+    }
+
+    public float get_service_fee()
+    {
+        return 0;
+    }
+
+    public void DisplayAll()
+    {
+        return;
+    }
+
 
 }
