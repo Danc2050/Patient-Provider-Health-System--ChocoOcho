@@ -12,7 +12,7 @@ public class Menu extends Utility {
         System.out.println("\nChoose a mode.");
         System.out.println("\n[1] - Interactive/Manager Mode" + "\n[2] - Provider Mode.");
 
-        while (response > 2 || response < 1)
+        while (response < 1 || response > 2)
         {
             response = input.nextInt();
             input.nextLine();
@@ -25,17 +25,41 @@ public class Menu extends Utility {
     {
         //Implement a use... Example: call an add function with string "member" or "provider". Or create Member or Provider object and pass in to use Dynamic binding.
         Scanner input = new Scanner(System.in);
+        int response = 0;
+
         System.out.println("What do you want to access?");
-        System.out.println("[1] - Member mode." + "\n[2] - Provider mode." + "\n[3] - Manager mode.");
-        int mode = input.nextInt();
-        input.nextLine();
-        //Interactive mode.
-        System.out.println("Choose from the options below.");
-        System.out.println("[1] - Add." + "\n[2] - Remove." + "\n[3] - Update");
-        int job = input.nextInt();
-        input.nextLine();
-        return mode;
+        System.out.println("[1] - Member." + "\n[2] - Provider." + "\n[3] - Manager.");
+
+        while (response < 1 || response > 3)
+        {
+            response = input.nextInt();
+            input.nextLine();
+        }
+
+        if (response == 1)
+        {
+            //Member options.
+            System.out.println("What would you like to do?");
+            System.out.println("[1] - Add." + "\n[2] - Remove." + "\n[3] - Update");
+        }
+
+        if (response == 2)
+        {
+            //Provider options.
+        }
+
+        else {
+            //Manager options.
+
+            System.out.println("Choose from the options below.");
+            System.out.println("[1] - Add." + "\n[2] - Remove." + "\n[3] - Update");
+            int job = input.nextInt();
+            input.nextLine();
+        }
+
+        return 0;
     }
+
     /*The Provider Menu.*/
     public static int providerMenu()
     {
