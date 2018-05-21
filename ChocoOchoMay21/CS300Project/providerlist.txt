@@ -1,0 +1,21 @@
+//Provider list: (9-digit id starting with an even number, name,address, services offered, week fee, number of consultations)
+//Did not yet add the week fee or # of consultations bc these numbers depends on their history
+212345684;Barbara Jackson;7239 North Sutor Street Park;Ridge;IL;60068;Dietitian;0.0;0;
+212345674;Rosa Johnson;512 Ohio Lane;Ooltewah;TN;37363;Weight Trainer;0.0;0;
+212345676;Rick Matthews;443 Edgemont Court;Cantonment;FL;32533;Yoga Trainer;0.0;0;
+212345667;Chris Lee;94 SE. Pumpkin Hill Dr.;Kingston;NY;12401;Therapist;0.0;0;
+212345672;Tina Nguyen;9852 Silver Spear St.;Dorchester;MA;02125;Meditation, Hypnotist;0.0;0;
+212345668;Otis James;34 Vernon Ave.;Williamsport;PA;17701;Zumba;0.0;0;
+212345682;Kevin Pham;9689 S. Armstrong Rd.;Arlington;MA;02474;Pilates, Yoga Trainer;0.0;0;
+212345678;Catherine Anderson;8084 Pennsylvania St.;Woodhaven;NY;11421;Aerobics Exercise;0.0;0;
+212345677;Daren Crossgrove;8315 W. Glenridge Ave.;Teaneck;NJ;07666;Internist;0.0;0;
+212345680;Marty Maddison;664 Poplar Dr.;Hillsboro;OR;97124;Dietitian;0.0;0;
+212345679;Greg Dettmer;790 Church Rd.;Ashtabula;OH;44004;Weight Trainer;0.0;0;
+212345666;Ralph Bartlett;9979 Liberty Lane;Lawrence Township;NJ;08648;Pilates, Aerobics Exercise;0.0;0;
+212345675;Caroline Anderson;3 Sage Drive;Cottage Grove;MN;55016;Dietitian, Internist;0.0;0;
+212345671;Frank Templeton;491 Philmont Ave.;Lynnwood;WA;98037;Meditation, Yoga Trainer, Pilates;0.0;0;
+212345670;David Wu;669 Valley Farms Lane;North Attleboro;MA;02760;Weight Trainer, Aerobics Exercise;0.0;0;
+212345669;Wil Washington;502 Deerfield Ave.;Emporia;KS;66801;Dietitian;0.0;0;
+212345683;Amanda Smith;7636 Johnson Dr.;Alexandria;VA;22304;Internist;0.0;0;
+212345673;Marie Courtez;45 Santa Clara St.;Asheboro;NC;27205;Dietitian, Zumba;0.0;0;
+212345681;Felicia Gonzales;712 Edgewater Lane;Mc Lean;VA;22101;Therapist;0.0;0;
