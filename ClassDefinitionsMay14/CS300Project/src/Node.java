@@ -11,4 +11,8 @@ abstract public class Node extends Utility {
   abstract public int get_service_code();
   abstract public float get_service_fee();
   abstract public void DisplayAll();
+
+  //Functions for Member class
+  abstract public int get_member_id();
+  abstract public String get_status();
 }
