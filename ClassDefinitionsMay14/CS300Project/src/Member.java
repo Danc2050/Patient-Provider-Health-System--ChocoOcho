@@ -32,6 +32,12 @@ public class Member extends Node{
     {
         return;
     }
+    
+    public int get_member_id()
+    {
+        return id;
+    }
 
+    public String get_status() {return status;}
 
 }
