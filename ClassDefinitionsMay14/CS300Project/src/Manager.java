@@ -3,7 +3,7 @@
 
 public class Manager extends Utility {
     protected int id;
-    protected summary_report report;
+    //protected summary_report report;
     protected MemberList mObj;
     protected ProviderList pObj;
 
@@ -17,6 +17,11 @@ public class Manager extends Utility {
         System.out.println("\nAdd to member(0) or provider(1)?");
         int res = input.nextInt();
         input.nextLine();
+        if (res == 0)
+            mObj.add();
+        if (res == 1)
+            pObj.add();
+        return 0;
         //TODO Thong's memberList and providerList functions can request the variables or the variables can be garnered here.
         //TODO The benefit of variables not in here are: Less code, less arguments in add() functions.
         /*System.out.println("\nEnter name.");
@@ -37,10 +42,6 @@ public class Manager extends Utility {
         int zip = input.nextInt();
         input.nextLine();*/
         //TODO Send in variables to write out to a file OR let MemberList and ProviderList do these.
-        if(res == 0)
-          mObj.add();
-        if(res == 1)
-          pObj.add();
     }
 
     public int delete() {
@@ -51,6 +52,7 @@ public class Manager extends Utility {
           mObj.remove();
         if(res == 1)
           pObj.remove();
+        return 0;
     }
 
     public int updateInfo() {
@@ -61,6 +63,7 @@ public class Manager extends Utility {
           mObj.update();
         if(res == 1)
           pObj.update();
+        return 0;
     }
 
     public int generateReport()
@@ -73,6 +76,6 @@ public class Manager extends Utility {
         if(res == 1)
           pObj.read_fromFile();
         //NOTE: Summary report has moved to provider class (i.e., manager no longer has a summary report object).
+        return 0;
     }
-     public int addAddress(){}//TODO What is this function?
 }

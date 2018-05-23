@@ -15,6 +15,10 @@ public class Provider extends Node {
         this.num_consultations = 0;
     }
 
+    public void set_service_name(String new_name) { return; }
+    public void set_service_code(int new_code) { return; }
+    public void set_service_fee(float new_fee) { return; }
+
     public String get_service_name()
     {
         return null;
@@ -29,6 +33,8 @@ public class Provider extends Node {
     {
         return 0;
     }
+    public String get_status(){return this.Name;}
+    public int get_member_id(){return 0;}
 
     public void DisplayAll()
     {
