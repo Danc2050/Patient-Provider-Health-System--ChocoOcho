@@ -22,6 +22,8 @@ public class ChocAn {
         ServiceList test = new ServiceList();
         test.read_from_file();
         test.display_all();
+        //test.add_service();
+        //test.display_all();
     }
 }
 
