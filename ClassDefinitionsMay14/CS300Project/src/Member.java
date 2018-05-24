@@ -56,7 +56,7 @@ public class Member extends Node{
     public int get_member_id() {return id; }
 
     public String get_status() {return m_status;}
-
+    public String get_provider_name(){return null);
     public String get_member_name() {return Name;}
 
     public void DisplayAll(){
