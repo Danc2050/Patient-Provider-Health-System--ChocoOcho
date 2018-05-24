@@ -35,7 +35,10 @@ public class Provider extends Node {
     }
     public String get_status(){return this.Name;}
     public int get_member_id(){return 0;}
-
+    protected String get_provider_name()
+    {
+        return this.Name;
+    }
     public void DisplayAll()
     {
         return;
