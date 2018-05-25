@@ -31,6 +31,16 @@ public class Provider extends Node {
     }
     public String get_status(){return this.Name;}
     public int get_member_id(){return 0;}
+    public String get_pname(){
+        return this.Name;
+    }
+    public int get_pnum(){
+        return this.id;
+    }
+    public String get_mname(){return null;}
+    public String get_sdate(){return null;}
+    public String get_ldate(){return null;}
+    public String get_comments(){return null;}
 
     public void DisplayAll()
     {

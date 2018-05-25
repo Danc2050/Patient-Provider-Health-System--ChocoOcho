@@ -15,4 +15,12 @@ abstract public class Node extends Utility {
   //Functions for Member class
   abstract public int get_member_id();
   abstract public String get_status();
+
+  //More for Service history tree class
+  abstract public String get_pname();
+  abstract public int get_pnum();
+  abstract public String get_mname();
+  abstract public String get_sdate();
+  abstract public String get_ldate();
+  abstract public String get_comments();
 }
