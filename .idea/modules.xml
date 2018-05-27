@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ClassDefinitionsMay14/CS300Project/CS300Project.iml" filepath="$PROJECT_DIR$/ClassDefinitionsMay14/CS300Project/CS300Project.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ChocoOchoMay21/CS300Project/CS300Project1.iml" filepath="$PROJECT_DIR$/ChocoOchoMay21/CS300Project/CS300Project1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/May21v2/CS300Project/CS300Project2.iml" filepath="$PROJECT_DIR$/May21v2/CS300Project/CS300Project2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ChocoOchoMay21/CS300Project/CS300Project.iml" filepath="$PROJECT_DIR$/ChocoOchoMay21/CS300Project/CS300Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/May21v2/CS300Project/CS300Project1.iml" filepath="$PROJECT_DIR$/May21v2/CS300Project/CS300Project1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ClassDefinitionsMay14/CS300Project/CS300Project2.iml" filepath="$PROJECT_DIR$/ClassDefinitionsMay14/CS300Project/CS300Project2.iml" />
     </modules>
   </component>
 </project>
