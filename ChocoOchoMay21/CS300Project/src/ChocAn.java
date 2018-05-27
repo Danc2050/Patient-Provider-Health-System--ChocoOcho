@@ -6,15 +6,40 @@ public class ChocAn {
     public static void main(String[] args) {
         //Main.java is designed to allow providers to interact with the ChocAn data processing software system.
         //System.out.println(/**/);
-        int response = 0;
+        int response = 0; //Catch user's response.
+        int intMode_response = 0;
+        int catcher = 0;
 
-        Menu object = new Menu();
-        response = object.mainMode();
+        MemberList list_of_members = new MemberList(); //Object for MemberList
+        ProviderList list_of_providers = new ProviderList(); //Object for ProviderList
+        Menu object = new Menu(); //Object for the Main Menu (Provider/Manager Mode)
+
+        response = object.mainMode(); //Essentially ask if Manager (IntMode) or Provider
 
         if (response == 1)
-            object.intMode();
+        {
+            intMode_response = object.intMode(); //Ask Manager what to do
+
+            if (intMode_response == 1)
+                catcher = object.intMode_Member(list_of_members); //Mess with members
+
+            else if (intMode_response == 2)
+                catcher = object.intMode_Provider(list_of_providers); //Mess with providers
+
+            else
+                catcher = object.intMode_Report(); //Do reports
+
+            if (catcher == -1)
+                System.out.println("Error.");
+        }
+
         else
-            object.providerMenu();
+        {
+            intMode_response = object.providerMenu(); //Ask Provider what to do
+
+            if (intMode_response == 1)
+                catcher = object.
+        }
 
         //Marko's and Angelic's
         Scanner input = new Scanner(System.in);

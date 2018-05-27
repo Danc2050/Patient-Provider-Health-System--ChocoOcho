@@ -29,9 +29,9 @@ public class Menu extends Utility {
         Scanner input = new Scanner(System.in);
 
         System.out.println("\n\nWhat do you want to access?");
-        System.out.println("[1] - Member." + "\n[2] - Provider.");
+        System.out.println("[1] - Member." + "\n[2] - Provider." + "\n[3] - Report");
 
-        while (response < 1 || response > 2) {
+        while (response < 1 || response > 3) {
             System.out.println("\nEnter response: ");
             response = input.nextInt();
             input.nextLine();
@@ -39,7 +39,7 @@ public class Menu extends Utility {
         return response;
     }
 
-    public static int intMode_Member(MemberList list_of_members)
+    public int intMode_Member(MemberList list_of_members)
     {
         int member_response = 0;
         Scanner input = new Scanner(System.in);
@@ -54,7 +54,7 @@ public class Menu extends Utility {
             input.nextLine();
         }
 
-        if (member_response == 1) //Add Member
+        /*if (member_response == 1) //Add Member
         {
             if (list_of_members.add_member())
             {
@@ -76,11 +76,11 @@ public class Menu extends Utility {
             {
                 //Success/Fail
             }
-        }
+        }*/
         return 0;
     }
 
-    public static int intMode_Provider(ProviderList list_of_providers)
+    public int intMode_Provider(ProviderList list_of_providers)
     {
         int provider_response = 0;
         Scanner input = new Scanner(System.in);
@@ -95,7 +95,7 @@ public class Menu extends Utility {
             input.nextLine();
         }
 
-        if (provider_response == 1) //Add Provider
+        /*if (provider_response == 1) //Add Provider
         {
             if (list_of_providers.add_provider())
                 //Success/Fail
@@ -109,8 +109,33 @@ public class Menu extends Utility {
         else
         {
             if (list_of_providers.update_provider())
-        }
+        }*/
         return 0;
+    }
+
+    public int intMode_Report()
+    {
+        int report_response = 0;
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("What would you like to do?");
+        System.out.println("[1] Print Provider Report." + "\n[2] Print Patient Report.");
+
+        while (report_response < 1 || report_response > 2)
+        {
+            System.out.println("\nEnter response:");
+            report_response = input.nextInt();
+            input.nextLine();
+        }
+
+        if (report_response == 1)
+        {
+            //TODO Print Provider Report
+        }
+        else if (report_response == 2)
+        {
+            //TODO Print Patient Report
+        }
     }
 
 
