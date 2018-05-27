@@ -25,110 +25,94 @@ public class Menu extends Utility {
     public static int intMode()
     {
         //Implement a use... Example: call an add function with string "member" or "provider". Or create Member or Provider object and pass in to use Dynamic binding.
-        Scanner input = new Scanner(System.in);
         int response = 0;
+        Scanner input = new Scanner(System.in);
 
-        System.out.println("What do you want to access?");
-        System.out.println("[1] - Member." + "\n[2] - Provider." + "\n[3] - Manager.");
+        System.out.println("\n\nWhat do you want to access?");
+        System.out.println("[1] - Member." + "\n[2] - Provider.");
 
-        while (response < 1 || response > 3)
-        {
+        while (response < 1 || response > 2) {
             System.out.println("\nEnter response: ");
             response = input.nextInt();
             input.nextLine();
         }
+        return response;
+    }
 
-        if (response == 1)
+    public static int intMode_Member(MemberList list_of_members)
+    {
+        int member_response = 0;
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("\n\nWhat would you like to do?");
+        System.out.println("[1] - Add Member." + "\n[2] - Remove Member." + "\n[3] - Update Member");
+
+        while (member_response < 1 || member_response > 3)
         {
-            int member_response = 0;
-            //Member options.
-            System.out.println("What would you like to do?");
-            System.out.println("[1] - Add Member." + "\n[2] - Remove Member." + "\n[3] - Update Member");
-
-            while (member_response < 1 || member_response > 3)
-            {
-                System.out.println("\nEnter response: ");
-                member_response = input.nextInt();
-                input.nextLine();
-            }
-
-            if (member_response == 1)
-            {
-                //TODO Add member
-            }
-
-            else if (member_response == 2)
-            {
-                //TODO Remove member
-            }
-
-            else
-            {
-                //TODO Update member
-            }
+            System.out.println("\nEnter response: ");
+            member_response = input.nextInt();
+            input.nextLine();
         }
 
-        else if (response == 2)
+        if (member_response == 1) //Add Member
         {
-            int provider_response = 0;
-            //Provider options.
-            System.out.println("What would you like to do?");
-            System.out.println("[1] - Add Provider." + "\n[2] - Remove Provider." + "\n[3] - Update Provider");
-
-            while (provider_response < 1 || provider_response > 3)
+            if (list_of_members.add_member())
             {
-                System.out.println("\nEnter response: ");
-                provider_response = input.nextInt();
-                input.nextLine();
-            }
-
-            if (provider_response == 1)
-            {
-                //TODO Add provider
-            }
-
-            else if (provider_response == 2)
-            {
-                //TODO Remove provider
-            }
-
-            else
-            {
-                //TODO Update provider
+                //Success/Fail
             }
         }
 
-        else {
-            //Manager options.
-            int manager_response = 0;
-            System.out.println("What would you like to do?");
-            System.out.println("[1] - Add Manager." + "\n[2] - Remove Manager." + "\n[3] - Update Manager");
-
-            while (manager_response < 1 || manager_response > 3)
+        else if (member_response == 2) //Remove Member
+        {
+            if (list_of_members.remove_member())
             {
-                System.out.println("\nEnter response: ");
-                manager_response = input.nextInt();
-                input.nextLine();
-            }
-
-            if (manager_response == 1)
-            {
-                //TODO Add manager
-            }
-
-            else if (manager_response == 2)
-            {
-                //TODO Remove manager
-            }
-
-            else
-            {
-                //TODO Update manager
+                //Success/Fail
             }
         }
 
+        else
+        {
+            if (list_of_members.update_member())
+            {
+                //Success/Fail
+            }
+        }
         return 0;
     }
+
+    public static int intMode_Provider(ProviderList list_of_providers)
+    {
+        int provider_response = 0;
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("What would you like to do?");
+        System.out.println("[1] - Add Provider." + "\n[2] - Remove Provider." + "\n[3] - Update Provider");
+
+        while (provider_response < 1 || provider_response > 3)
+        {
+            System.out.println("\nEnter response: ");
+            provider_response = input.nextInt();
+            input.nextLine();
+        }
+
+        if (provider_response == 1) //Add Provider
+        {
+            if (list_of_providers.add_provider())
+                //Success/Fail
+        }
+
+        else if (provider_response == 2)
+        {
+            if (list_of_providers.remove_provider())
+        }
+
+        else
+        {
+            if (list_of_providers.update_provider())
+        }
+        return 0;
+    }
+
 
     /*The Provider Menu.*/
     public static int providerMenu()

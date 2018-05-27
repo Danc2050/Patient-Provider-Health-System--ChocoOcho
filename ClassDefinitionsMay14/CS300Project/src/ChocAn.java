@@ -8,11 +8,22 @@ public class ChocAn {
         //System.out.println(/**/);
         int response = 0;
 
-        Menu object = new Menu();
+        MemberList list_of_members = new MemberList(); //Object for MemberList
+        ProviderList list_of_providers = new ProviderList(); //Object for ProviderList
+        Menu object = new Menu(); //Object for the Main Menu (Provider/Manager Mode)
+
         response = object.mainMode();
 
         if (response == 1)
-            object.intMode();
+        {
+            int intMode_response = object.intMode();
+
+            if (intMode_response == 1)
+                object.intMode_Member(list_of_members);
+
+            else if (intMode_response == 2)
+                object.intMode_Provider(list_of_providers);
+        }
         else
             object.providerMenu();
 
