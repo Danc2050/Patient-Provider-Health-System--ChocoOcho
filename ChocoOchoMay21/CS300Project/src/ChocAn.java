@@ -35,10 +35,7 @@ public class ChocAn {
 
         else
         {
-            intMode_response = object.providerMenu(); //Ask Provider what to do
-
-            if (intMode_response == 1)
-                catcher = object.
+            object.providerMenu(); //Ask Provider what to do
         }
 
         //Marko's and Angelic's

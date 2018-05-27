@@ -140,13 +140,13 @@ public class Menu extends Utility {
 
 
     /*The Provider Menu.*/
-    public static int providerMenu()
+    public int providerMenu()
     {
         int response = 0;
         Scanner input = new Scanner(System.in);
 
         System.out.println("\n\nChoose from the options below." +
-                "\n[1] - Provider Directory." + "\n[2] - Create Member Report." +
+                "\n[1] - Provider Directory." + "\n[2] - Create New Service." +
                 "\n[3] - Access ChocAn Billing Services.");
 
         while (response < 1 || response > 3)
@@ -158,12 +158,12 @@ public class Menu extends Utility {
 
         if (response == 1)
         {
-            //TODO Write Provider Directory to file
+            //TODO Access Provider Directory on file
         }
 
         else if (response == 2)
         {
-            //TODO Create member report
+            //TODO Create new service
         }
 
         else
