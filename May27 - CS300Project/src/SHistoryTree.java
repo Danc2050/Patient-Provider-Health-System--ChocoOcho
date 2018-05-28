@@ -20,7 +20,7 @@ public class SHistoryTree extends Utility {
 
             //FileReader file = new FileReader(file_name);
             //BufferedReader in = new BufferedReader(file);
-            BufferedReader in = new BufferedReader(new FileReader("ServiceList.txt"));
+            BufferedReader in = new BufferedReader(new FileReader("src/ServiceList.txt"));
 
             String line = in.readLine();
 
