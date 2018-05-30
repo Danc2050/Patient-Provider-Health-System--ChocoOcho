@@ -16,6 +16,7 @@ public class Menu extends Utility {
             System.out.println("\nCould not read from Service List file.");
         return 0;
     }
+
     /*Lets a terminal user choose between Interactive Mode and a Provider/Manager mode.*/
     public int mainMode()
     {
@@ -23,9 +24,10 @@ public class Menu extends Utility {
         Scanner input = new Scanner(System.in);
 
         System.out.println("\n\nChoose a mode.");
-        System.out.println("\n[1] - Interactive/Manager Mode" + "\n[2] - Provider Mode.");
+        System.out.println("\n[1] - Interactive/Manager Mode" +
+                "\n[2] - Provider Mode." + "\n[3] - Exit");
 
-        while (response < 1 || response > 2)
+        while (response < 1 || response > 3)
         {
             System.out.println("\nEnter response: ");
             response = input.nextInt();
@@ -42,11 +44,11 @@ public class Menu extends Utility {
         int response = 0;
         Scanner input = new Scanner(System.in);
 
-        System.out.println("\n\nWhat do you want to access?");
+        System.out.println("\n\nYou are in Manager Mode." + "\nWhat would you like to access?");
         System.out.println("[1] - Member." + "\n[2] - Provider." +
-                "\n[3] - Report" + "\n[4] - Services");
+                "\n[3] - Report" + "\n[4] - Services" + "\n[5] - Return to Main Menu");
 
-        while (response < 1 || response > 4) {
+        while (response < 1 || response > 5) {
             System.out.println("\nEnter response: ");
             response = input.nextInt();
             input.nextLine();
@@ -195,11 +197,11 @@ public class Menu extends Utility {
         int response = 0;
         Scanner input = new Scanner(System.in);
 
-        System.out.println("\n\nChoose from the options below." +
+        System.out.println("\n\nYou are in Provider Mode." + "\nWhat would you like to do?" +
                 "\n[1] - Provider Directory." + "\n[2] - Validate Member." +
-                "\n[3] - Create New Service.");
+                "\n[3] - Create New Service." + "\n[4] - Return to Main Menu.");
 
-        while (response < 1 || response > 3) {
+        while (response < 1 || response > 4) {
             System.out.println("\nEnter response: ");
             response = input.nextInt();
             input.nextLine();
