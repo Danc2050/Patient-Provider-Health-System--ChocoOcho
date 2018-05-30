@@ -27,7 +27,15 @@ public class Provider extends Node {
         this.p_address.to_copy(ad);
         this.Service = t_service;
     }
-
+    
+    public void toCopy(Provider ad){
+        this.Name = ad.Name;
+        this.id = ad.id;
+        this.week_fee = ad.week_fee;
+        this.num_consultations = ad.num_consultations;
+        this.Service = ad.Service;
+        this.p_address = ad.p_address;
+    }
 
     public void set_service_name(String new_name) { return; }
     public void set_m_name(String newName){return;}
