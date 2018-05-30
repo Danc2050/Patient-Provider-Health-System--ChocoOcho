@@ -9,7 +9,7 @@ public class ProviderList extends Utility {
     }
 
     public int read_from_file() {
-        String file_name = "C:\\Users\\Danc2\\IdeaProjects\\ChocoOcho5\\ClassDefinitionsMay14\\CS300Project\\src\\ProviderList.txt";
+        String file_name = "src/ProviderList.txt";
         int temp_id = 0;
         try {
 
