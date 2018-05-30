@@ -73,6 +73,8 @@ public class Provider extends Node {
     public Address get_address(){
         return this.p_address;
     }
+    public Address get_paddress(){return null;}
+    public Address get_maddress(){return null;}
 
     /*public void generateServiceReport(){}//TODO Implement
     public boolean generateServiceList(){};//Generates text file.
