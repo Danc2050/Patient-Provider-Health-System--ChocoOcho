@@ -1,6 +1,12 @@
 import junit.framework.TestCase;
 
 public class SHistoryTreeTest extends TestCase {
+    SHistoryTree SHTT = new SHistoryTree();
+
+    public SHistoryTree (String name)
+    {
+        super(name);
+    }
 
     public void testRead_from_file() {
     }

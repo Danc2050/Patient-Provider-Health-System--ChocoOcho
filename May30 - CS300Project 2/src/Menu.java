@@ -237,9 +237,7 @@ public class Menu extends Utility {
 
     public int validate_member(MemberList list_of_members)
     {
-        //TODO Correct parameters for validate member. Wrapper?
-        //return list_of_members.validate_member();todo uncomment
-        return 0;
+        return list_of_members.validate_member();
     }
 
     public int create_service()
