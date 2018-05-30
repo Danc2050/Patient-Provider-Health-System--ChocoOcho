@@ -62,9 +62,10 @@ public class Menu extends Utility {
         Scanner input = new Scanner(System.in);
 
         System.out.println("\n\nWhat would you like to do?");
-        System.out.println("[1] - Add Member." + "\n[2] - Remove Member." + "\n[3] - Update Member");
+        System.out.println("[1] - Add Member." + "\n[2] - Remove Member." +
+                "\n[3] - Update Member" + "\n[4] - Return to Manager Menu.");
 
-        while (member_response < 1 || member_response > 3)
+        while (member_response < 1 || member_response > 4)
         {
             System.out.println("\nEnter response: ");
             member_response = input.nextInt();
@@ -87,13 +88,17 @@ public class Menu extends Utility {
             }
         }
 
-        else
+        else if (member_response == 3) //Update Member
         {
             if (list_of_members.update_member())
             {
                 //Success/Fail
             }
-        }*/
+        }
+
+        else
+            return 0;
+        */
         return 0;
     }
 
@@ -103,9 +108,10 @@ public class Menu extends Utility {
         Scanner input = new Scanner(System.in);
 
         System.out.println("What would you like to do?");
-        System.out.println("[1] - Add Provider." + "\n[2] - Remove Provider." + "\n[3] - Update Provider");
+        System.out.println("[1] - Add Provider." + "\n[2] - Remove Provider." +
+                "\n[3] - Update Provider" + "\n[4] - Return to Manager Menu.");
 
-        while (provider_response < 1 || provider_response > 3)
+        while (provider_response < 1 || provider_response > 4)
         {
             System.out.println("\nEnter response: ");
             provider_response = input.nextInt();
@@ -123,10 +129,14 @@ public class Menu extends Utility {
             if (list_of_providers.remove_provider())
         }
 
-        else
+        else if (provider_response == 3)
         {
             if (list_of_providers.update_provider())
-        }*/
+        }
+
+        else
+            return 0;
+        */
         return 0;
     }
 
@@ -136,9 +146,10 @@ public class Menu extends Utility {
         Scanner input = new Scanner(System.in);
 
         System.out.println("What would you like to do?");
-        System.out.println("[1] Print Provider Report." + "\n[2] Print Patient Report.");
+        System.out.println("[1] Print Provider Report." + "\n[2] Print Patient Report." +
+                "\n[3] Return to Manager Menu.");
 
-        while (report_response < 1 || report_response > 2)
+        while (report_response < 1 || report_response > 3)
         {
             System.out.println("\nEnter response:");
             report_response = input.nextInt();
@@ -149,11 +160,15 @@ public class Menu extends Utility {
         {
             //TODO Print Provider Report
         }
+
         else if (report_response == 2)
         {
             //TODO Print Patient Report
         }
-        return 1;
+
+        else
+            return 0;
+        return 0;
     }
 
     public int intMode_Service(ServiceList list_of_all_services)
@@ -162,9 +177,10 @@ public class Menu extends Utility {
         Scanner input = new Scanner(System.in);
 
         System.out.println("\nWhat would you like to do?");
-        System.out.println("[1] - Add Service." + "\n[2] - Remove Service" + "\n[3] - Display Services");
+        System.out.println("[1] - Add Service." + "\n[2] - Remove Service" +
+                "\n[3] - Display Services" + "\n[4] - Return to Manager Menu.");
 
-        while (service_response < 1 || service_response > 3)
+        while (service_response < 1 || service_response > 4)
         {
             System.out.println("\nEnter response.");
             service_response = input.nextInt();
@@ -174,7 +190,7 @@ public class Menu extends Utility {
         if (service_response == 1)
         {
             list_of_all_services.add_service();
-                System.out.println("\nService added.");
+            System.out.println("\nService added.");
         }
 
         else if (service_response == 2)
@@ -183,8 +199,11 @@ public class Menu extends Utility {
                 System.out.println("\nService removed.");*/
         }
 
-        else
+        else if (service_response == 3)
             list_of_all_services.display_all();
+
+        else
+            return 0;
 
         return 0;
     }
