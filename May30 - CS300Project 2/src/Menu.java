@@ -237,7 +237,9 @@ public class Menu extends Utility {
 
     public int validate_member(MemberList list_of_members)
     {
-        return list_of_members.validate_member();
+        //TODO Validate Member.
+        // return list_of_members.validate_member();
+        return 0;
     }
 
     public int create_service()

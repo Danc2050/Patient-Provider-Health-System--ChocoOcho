@@ -1,4 +1,4 @@
-import junit.framework.TestCase;
+/*import junit.framework.TestCase;
 
 public class ServiceHistoryTest extends TestCase {
     ServiceHistory object = new ServiceHistory();
@@ -61,4 +61,4 @@ public class ServiceHistoryTest extends TestCase {
 
     public void testSet_m_name() {
     }
-}
+}*/

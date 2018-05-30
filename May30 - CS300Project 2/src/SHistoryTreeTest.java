@@ -1,4 +1,4 @@
-import junit.framework.TestCase;
+/*import junit.framework.TestCase;
 
 public class SHistoryTreeTest extends TestCase {
     SHistoryTree SHTT = new SHistoryTree();
@@ -73,4 +73,4 @@ public class SHistoryTreeTest extends TestCase {
 
     public void testEmail_summary_report3() {
     }
-}
+}*/
