@@ -71,5 +71,7 @@ public class Member extends Node{
     public Address get_address(){
         return this.m_address;
     }
+    public Address get_paddress(){return null;}
+    public Address get_maddress(){return null;}
 
 }
