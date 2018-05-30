@@ -68,7 +68,7 @@ public class SHistoryTree extends Utility {
 
             in.close();
         } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
+            System.out.println("Service History not found.");
         } catch (IOException ex) {
             System.out.println("Error reading file.");
         }
@@ -96,11 +96,20 @@ public class SHistoryTree extends Utility {
             file.write(h_root.get_pname() + ";");
             file.write(h_root.get_pnum() + ";");
             //Address file.write(h_root.get_address() + ";");
-
+            Address ad = new Address();
+            ad = h_root.get_paddress();
+            file.write(ad.street + ";");
+            file.write(ad.city + ";");
+            file.write(ad.state + ";");
+            file.write(ad.zip + ";");
             file.write(h_root.get_mname() + ";");
             file.write(h_root.get_member_id() + ";");
-            //Address file.write(h_root.get_address() + ";");
-
+            Address ad2 = new Address();
+            ad2 = h_root.get_maddress();
+            file.write(ad2.street + ";");
+            file.write(ad2.city + ";");
+            file.write(ad2.state + ";");
+            file.write(ad2.zip + ";");
             file.write(h_root.get_sdate() + ";");
             file.write(h_root.get_ldate() + ";");
 
@@ -175,7 +184,12 @@ public class SHistoryTree extends Utility {
             FileWriter writer = new FileWriter("ProviderHistory.txt");
             writer.write(h_root.get_pname() + ";");
             writer.write(h_root.get_pnum() + ";");
-            writer.write(h_root.get_paddress()+ ";");
+            Address ad = new Address();
+            ad = h_root.get_paddress();
+            writer.write(ad.street + ";");
+            writer.write(ad.city + ";");
+            writer.write(ad.state + ";");
+            writer.write(ad.zip + ";");
             SimpleDateFormat mdyhms = new SimpleDateFormat("MM-DD-YYYY HH:MM:SS");
             String week = mdyhms.format(new Date());
             email_p_history(this.h_root,writer, p_id,week);
@@ -195,7 +209,12 @@ public class SHistoryTree extends Utility {
             try{
                 file.write(h_root.get_mname() + ";");
                 file.write(h_root.get_member_id() + ";");
-                file.write(h_root.get_maddress() + ";");
+                Address ad = new Address();
+                ad = h_root.get_maddress();
+                file.write(ad.street + ";");
+                file.write(ad.city + ";");
+                file.write(ad.state + ";");
+                file.write(ad.zip + ";");
                 file.write(h_root.get_sdate() + ";");
                 file.write(h_root.get_ldate() + ";");
                 file.write(h_root.get_service_name() + ";");
