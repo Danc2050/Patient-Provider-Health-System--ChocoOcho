@@ -10,6 +10,12 @@ public class Service extends Node {
         this.s_fee = fee;
     }
 
+    public void toCopy(Service ad){
+        this.s_name = ad.s_name;
+        this.s_code = ad.s_code;
+        this.s_fee = ad.s_fee;
+    }
+    
     public void set_service_name(String new_name) { this.s_name = new_name; }
     public void set_service_code(int new_code) { this.s_code = new_code; }
     public void set_service_fee(float new_fee) { this.s_fee = new_fee; }
@@ -45,4 +51,6 @@ public class Service extends Node {
     public String get_sdate(){return null;}
     public String get_ldate(){return null;}
     public String get_comments(){return null;}
+    public Address get_paddress(){return null;}
+    public Address get_maddress(){return null;}
 }
