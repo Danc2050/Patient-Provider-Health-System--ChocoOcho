@@ -20,6 +20,12 @@ public class Member extends Node{
         this.m_address.to_copy(ad);
     }
 
+    public void toCopy(Member ad){
+        this.id = ad.id;
+        this.m_address = ad.m_address;
+        this.m_status = ad.m_status;
+        this.Name = ad.Name;
+    }
     public void set_service_name(String new_name) { return; }
     public void set_service_code(int new_code) { return; }
     public void set_service_fee(float new_fee) { return; }
