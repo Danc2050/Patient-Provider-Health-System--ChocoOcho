@@ -127,17 +127,17 @@ public class SHistoryTree extends Utility {
         System.out.print("What is the provider ID: ");
         int pnum = input.nextInt();
         //Get provider address
-        Address pad = new Address;
+        Address pad = new Address();
         pad.set_address();
-        Provider p = new Provider(pname,pnum,pad);
+        Provider p = new Provider(pname,pnum,pad, null, 0, 0);
         System.out.print("What is the member name: ");
         String mname = input.next();
         System.out.print("What is the member ID: ");
         int mnum = input.nextInt();
         //Get member address
-        Address mad = new Address;
+        Address mad = new Address();
         mad.set_address();
-        Member m = new Member(mname,mnum,mad);
+        Member m = new Member(mnum,null,mname,mad);
         System.out.print("What is the service date: ");
         String sdate = input.next();
         System.out.print("What is the service name: ");
@@ -157,7 +157,7 @@ public class SHistoryTree extends Utility {
 
     protected Node add_history(Node h_root,Provider p, Member m, Service s,String temp_sdate,String temp_ldate,String temp_comments){
         if(h_root == null) {
-            h_root = new ServiceHistory(temp_comments,temp_sdate,temp_ldate);
+            h_root = new ServiceHistory(p,m,s,temp_comments,temp_sdate,temp_ldate);
             return h_root;
         }
         else {
