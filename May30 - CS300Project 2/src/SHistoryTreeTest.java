@@ -34,4 +34,37 @@ public class SHistoryTreeTest extends TestCase {
 
     public void testEmail_summary_report1() {
     }
+
+    public void testRead_from_file1() {
+    }
+
+    public void testWrite_to_file2() {
+    }
+
+    public void testWrite_to_file3() {
+    }
+
+    public void testAdd_history2() {
+    }
+
+    public void testAdd_history3() {
+    }
+
+    public void testEmail_p_history2() {
+    }
+
+    public void testEmail_p_history3() {
+    }
+
+    public void testEmail_m_history2() {
+    }
+
+    public void testEmail_m_history3() {
+    }
+
+    public void testEmail_summary_report2() {
+    }
+
+    public void testEmail_summary_report3() {
+    }
 }
