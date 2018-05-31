@@ -3,6 +3,13 @@ public class Service extends Node {
     protected int s_code;
     protected float s_fee;
 
+    public Service()
+    {
+        this.s_name = null;
+        this.s_code = 0;
+        this.s_fee = 0;
+    }
+
     public Service(String service, int code, float fee)
     {
         this.s_name = service;

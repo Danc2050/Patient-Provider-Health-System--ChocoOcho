@@ -1,4 +1,4 @@
-/*import junit.framework.TestCase;
+import junit.framework.TestCase;
 
 public class SHistoryTreeTest extends TestCase {
     SHistoryTree SHTT = new SHistoryTree();
@@ -18,9 +18,12 @@ public class SHistoryTreeTest extends TestCase {
     }
 
     public void testAdd_history() {
+        testAdd_history1();
     }
 
     public void testAdd_history1() {
+        System.out.println("Adding new history.");
+        ServiceHistory root = new ServiceHistory("")
     }
 
     public void testEmail_p_history() {
@@ -73,4 +76,4 @@ public class SHistoryTreeTest extends TestCase {
 
     public void testEmail_summary_report3() {
     }
-}*/
+}

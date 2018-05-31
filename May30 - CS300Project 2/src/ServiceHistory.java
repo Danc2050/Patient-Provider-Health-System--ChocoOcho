@@ -40,11 +40,14 @@ public class ServiceHistory extends Node{
 
     public ServiceHistory(Provider p, Member m, Service s, String sdate, String ldate, String tcomments){
         if(this.provider == null)
-            this.provider.toCopy(p);
+            this.provider = new Provider();
+        this.provider.toCopy(p);
         if(this.member == null)
-            this.member.toCopy(m);
+            this.member = new Member();
+        this.member.toCopy(m);
         if(this.service == null)
-            this.service.toCopy(s);
+            this.service = new Service();
+        this.service.toCopy(s);
         this.service_date = sdate;
         this.log_date = ldate;
         this.comments = tcomments;
