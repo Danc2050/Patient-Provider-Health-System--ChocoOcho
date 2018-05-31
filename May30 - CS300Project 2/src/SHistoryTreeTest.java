@@ -8,9 +8,6 @@ public class SHistoryTreeTest extends TestCase {
         super(name);
     }
 
-    public void testRead_from_file() {
-    }
-
     public void testWrite_to_file() {
     }
 
