@@ -185,8 +185,7 @@ public class MemberList extends Utility {
         int [] validate_value = new int[1];
         validate_value[0] = -2;
         int return_value = validate_member(this.m_root, member_id, validate_value);
-
-        if(return_value == -1 && validate_value[0] == -2)
+        if(return_value == -1 && validate_value[0] == -2)//Both signs that member id is invalid.
             validate_value[0] = -1;
         return validate_value[0];
     }
@@ -203,55 +202,23 @@ public class MemberList extends Utility {
         root.DisplayAll();
         display_all(root.go_right());
     }
-        /*protected int validate_member(Member root, int member_id) {
-            if(root == null)
-                return -1;
-            if(root.get_member_id() == member_id) {
-                if(root.get_status().compareToIgnoreCase("Active") == 0)
-                    return 1;
-                else
-                    return 0;
-            }
-
-            if(root.get_member_id() < member_id)
-                return validate_member(root.go_left(), member_id);
-            else
-                return validate_member(root.go_right(), member_id);
-
-
-        }*/
-
+    
+     //This function checks the status of a member. If a user is active, the return value will be 1. If suspended, 0. If not in the system, -1.
     protected int validate_member(Node root,int member_id, int [] validate_value) {
         if (root == null)
             return -1;
+        //In order traversal.
+            int return_value = validate_member(root.go_left(), member_id, validate_value);//Go left...
+            if (root.get_member_id() == member_id) {
+                if (root.get_status().compareToIgnoreCase("Active") == 0)
+                    return validate_value[0] = 1;
+                else
+                    return validate_value[0] = 0;
+            }
+            return_value = validate_member(root.go_right(), member_id, validate_value);//Go right...
 
-        int return_value = validate_member(root.go_left(), member_id, validate_value);
-        if (root.get_member_id() == member_id) {
-            if(root.get_status().compareToIgnoreCase("Active") == 0)
-                validate_value[0] = 1;
-            else
-                validate_value[0] = 0;
-        }
-        return_value = validate_member(root.go_right(), member_id, validate_value);
         return return_value;
     }
-
-    //Use this block of code if member list is ordered by id numbers
-        /*protected int validate_member (Node root,int member_id){
-            if(root == null)
-                return -1;
-            if (root.get_member_id() == member_id)
-            {
-                if (root.get_status().compareToIgnoreCase("Active") == 0)
-                    return 1;
-                else
-                    return 0;
-            }
-            else if (root.get_member_id() < member_id)
-                return validate_member(root.go_left(), member_id);
-            else
-                return validate_member(root.go_right(), member_id);
-        }*/
 
     protected Node import_member_list(Node root, int m_id, String m_status, String m_name, Address m_address)
     {
