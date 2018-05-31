@@ -23,6 +23,8 @@ public class ChocAn {
 
         object.load_data(list_of_members, list_of_providers, tree_of_services, list_of_all_services); //Load data from files into tree data structures.
 
+        tree_of_services.write_to_file();
+
         while(main_menu != 1)
         {
             response = object.mainMode(); //Essentially ask if Manager (IntMode) or Provider

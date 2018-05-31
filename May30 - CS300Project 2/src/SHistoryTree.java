@@ -78,7 +78,7 @@ public class SHistoryTree extends Utility {
     public int write_to_file()
     {
         try{
-            FileWriter writer = new FileWriter("ServiceHistory.txt");
+            FileWriter writer = new FileWriter("ServiceHistorytest.txt");
             this.write_to_file(h_root, writer);
             writer.close();
         }
