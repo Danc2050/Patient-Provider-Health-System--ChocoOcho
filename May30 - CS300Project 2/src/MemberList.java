@@ -10,7 +10,7 @@ public class MemberList extends Utility {
         this.tId = 0;//Temporary I.D. This variable gets the last I.D. read in and subtracts it by 1 when add a new member, making their id = to the last members id - 1.
     }
     public int read_from_file () {
-        String file_name = "src/MemberList.txt";
+        String file_name = "/Users/thang3tron/IdeaProjects/ChocoOcho/May30 - CS300Project 2/src/MemberList.txt";
         int temp_id = 0;
         try {
 

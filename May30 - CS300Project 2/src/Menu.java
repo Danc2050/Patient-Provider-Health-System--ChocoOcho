@@ -218,7 +218,7 @@ public class Menu extends Utility {
 
         System.out.println("\n\nYou are in Provider Mode." + "\nWhat would you like to do?" +
                 "\n[1] - Provider Directory." + "\n[2] - Validate Member." +
-                "\n[3] - Create New Service." + "\n[4] - Return to Main Menu.");
+                "\n[3] - Provide a Service." + "\n[4] - Return to Main Menu.");
 
         while (response < 1 || response > 4) {
             System.out.println("\nEnter response: ");
