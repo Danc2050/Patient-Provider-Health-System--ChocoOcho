@@ -235,11 +235,12 @@ public class Menu extends Utility {
         list_of_all_services.display_all();
     }
 
-    public int validate_member(MemberList list_of_members)
+     public int validate_member(MemberList list_of_members)
     {
-        //TODO Validate Member.
-        // return list_of_members.validate_member();
-        return 0;
+        System.out.println("\nEnter a member # to check member status.");
+        int mem_num = input.nextInt();
+        input.nextLine();
+        return list_of_members.validate_member_wrapper(mem_num);
     }
 
     public int create_service()
@@ -247,31 +248,3 @@ public class Menu extends Utility {
         //TODO Provider add a service they have just provided to a member
         return 0;
     }
-
-
-
-    /*Verifies a user is in the system (print statements and if conditionals only).*/
-    /*public static boolean verifyW()
-    {
-        int id = 0;
-        Scanner input = new Scanner(System.in);
-
-        System.out.println("Slide member card into terminal (enter I.D. #).");
-        id = input.nextInt();
-        input.nextLine();
-
-        if (verify(id) == 1)
-        {
-            System.out.println("Validated.");
-            return true;
-        }
-
-        else if (verify(id) == -1)
-            System.out.println("Member suspended.");
-
-        else
-            System.out.println("Invalid ID number.");
-
-        return false;
-    }*/
-}
