@@ -13,6 +13,7 @@ public class ChocAn {
         int response = 0; //Catch user's response in main mode
         int intMode_response = 0; //Catch user's response in manager's mode
         int catcher = 0; //Catch return value
+        int provider_service = 0;
 
         Menu object = new Menu(); //Object for the Main Menu (Provider/Manager Mode)
 
@@ -67,14 +68,24 @@ public class ChocAn {
                         object.providerMenu_directory(list_of_all_services);
 
                     else if (intMode_response == 2) {
+                        System.out.println("\n\nFirst, let's validate your patient.");
+                        System.out.println("\nPlease enter the patient's ID.");
+
+                        
                         catcher = object.validate_member(list_of_members);
 
                         if (catcher == -1)
-                            System.out.println("Invalid Member ID.");
+                            System.out.println("\nInvalid Member ID.");
                         else if (catcher == 0)
-                            System.out.println("Member is suspended. Service withhold is advised. Send that sucker home.");
+                            System.out.println("\nMember is suspended. Service withhold is advised. Send that sucker home.");
                         else
-                            System.out.println("ID validated.");
+                        {
+                            System.out.println("\nID validated.");
+                            System.out.println("\nWould you like to provide service?");
+                            System.out.println("\n[1] - Yes." + "\n[2] - No.");
+
+
+                        }
                     }
 
                     else if (intMode_response == 3)

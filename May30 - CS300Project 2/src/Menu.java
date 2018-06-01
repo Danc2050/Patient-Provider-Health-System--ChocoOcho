@@ -217,10 +217,10 @@ public class Menu extends Utility {
         Scanner input = new Scanner(System.in);
 
         System.out.println("\n\nYou are in Provider Mode." + "\nWhat would you like to do?" +
-                "\n[1] - Provider Directory." + "\n[2] - Validate Member." +
-                "\n[3] - Provide a Service." + "\n[4] - Return to Main Menu.");
+                "\n[1] - Provider Directory." + "\n[2] - Provide a Service." +
+                "\n[3] - Return to Main Menu.");
 
-        while (response < 1 || response > 4) {
+        while (response < 1 || response > 3) {
             System.out.println("\nEnter response: ");
             response = input.nextInt();
             input.nextLine();
