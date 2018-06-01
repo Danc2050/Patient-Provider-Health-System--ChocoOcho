@@ -224,6 +224,7 @@ public class SHistoryTree extends Utility {
     protected void email_p_history(Node h_root,FileWriter file, int p_id, String week){
         if(h_root == null)
             return;
+        email_p_history(h_root.go_left(), file, p_id, week);
         if(h_root.get_pnum() == p_id && h_root.get_sdate() == week){
             try{
                 file.write("Service date: " + h_root.get_sdate() + "\n");
@@ -247,10 +248,7 @@ public class SHistoryTree extends Utility {
                 e.printStackTrace();
             }
         }
-        else {
-            email_p_history(h_root.go_right(), file, p_id, week);
-            email_p_history(h_root.go_left(), file, p_id, week);
-        }
+        email_p_history(h_root.go_right(), file, p_id, week);
     }
 
     //Wrapper
@@ -294,6 +292,7 @@ public class SHistoryTree extends Utility {
     protected void email_m_history(Node h_root, FileWriter file, int m_id){
         if(h_root == null)
             return;
+        email_m_history(h_root.go_left(), file, m_id);
         if(h_root.get_member_id() == m_id) {
             try {
 
@@ -319,10 +318,7 @@ public class SHistoryTree extends Utility {
                 e.printStackTrace();
             }
         }
-        else {
-            email_m_history(h_root.go_right(), file, m_id);
-            email_m_history(h_root.go_left(), file, m_id);
-        }
+        email_m_history(h_root.go_right(), file, m_id);
     }
 
     public int email_summary_report() {
