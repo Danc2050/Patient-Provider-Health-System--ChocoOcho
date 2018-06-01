@@ -198,6 +198,7 @@ public class SHistoryTree extends Utility {
             try {
                 SimpleDateFormat mdyhms = new SimpleDateFormat("MM-dd-YYYY HH:mm:ss");
                 String week = mdyhms.format(new Date());
+                String today = mdyhms.format(new Date());
                 writer.write("Name: " + h_root.get_pname() + "\n");
                 writer.write("ID: " + h_root.get_pnum() + "\n");
                 Address ad = new Address();
@@ -207,7 +208,7 @@ public class SHistoryTree extends Utility {
                 writer.write(ad.state + ", ");
                 writer.write(ad.zip + "\n");
                 writer.write("Provider History:\n\n");
-                email_p_history(h_root, writer, p_id, week);
+                email_p_history(h_root, writer, p_id, week, today);
                 writer.write("\n~END~\n");
             }
             catch(IOException e) {
@@ -221,11 +222,11 @@ public class SHistoryTree extends Utility {
         return 1;
     }
 
-    protected void email_p_history(Node h_root,FileWriter file, int p_id, String week){
+    protected void email_p_history(Node h_root,FileWriter file, int p_id, String week, String today){
         if(h_root == null)
             return;
-        email_p_history(h_root.go_left(), file, p_id, week);
-        if(h_root.get_pnum() == p_id && h_root.get_sdate() == week){
+        email_p_history(h_root.go_left(), file, p_id, week,today);
+        if(h_root.get_pnum() == p_id /*&& h_root.get_sdate() >= week but <= today*/){
             try{
                 file.write("Service date: " + h_root.get_sdate() + "\n");
                 file.write("Log date: " + h_root.get_ldate() + "\n");
@@ -248,7 +249,7 @@ public class SHistoryTree extends Utility {
                 e.printStackTrace();
             }
         }
-        email_p_history(h_root.go_right(), file, p_id, week);
+        email_p_history(h_root.go_right(), file, p_id, week,today);
     }
 
     //Wrapper
@@ -331,7 +332,7 @@ public class SHistoryTree extends Utility {
         try{
             FileWriter writer = new FileWriter("SummaryReport.txt");
             writer.write("Summary Report for " + week + " to " + today + "\n");
-            email_summary_report(this.h_root, week,writer);
+            email_summary_report(this.h_root, writer, week, today);
             writer.write("Total number of providers who provided services: " + "\n");
             writer.write("Overall fee total: " + "\n");
             writer.write("\n~END~\n");
@@ -341,11 +342,11 @@ public class SHistoryTree extends Utility {
         }
         return 1;
     }
-    public int email_summary_report(Node h_root, String week, FileWriter writer){
+    public int email_summary_report(Node h_root,FileWriter writer, String week, String today){
         if(h_root == null)
             return 1;
-        email_summary_report(h_root.go_left(), week,writer);
-        if(h_root.get_sdate() == week) {
+        email_summary_report(h_root.go_left(), writer,week, today);
+        if(h_root.get_sdate() == week/*h_root.get_sdate() >= week && h_root.get_sdate() >= today*/) {
             try{
                 writer.write("Provider: " + h_root.get_pname() + "\n");
                 writer.write("Provider ID: " + h_root.get_pnum() + "\n");
@@ -355,7 +356,7 @@ public class SHistoryTree extends Utility {
                 e.printStackTrace();
             }
         }
-        email_summary_report(h_root.go_right(), week, writer);
+        email_summary_report(h_root.go_right(), writer, week, today);
         return 1;
     }
 }
