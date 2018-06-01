@@ -252,3 +252,114 @@ public class SHistoryTree extends Utility {
             email_p_history(h_root.go_left(), file, p_id, week);
         }
     }
+
+    //Wrapper
+    public int email_m_history(int m_id){
+        try{
+            FileWriter writer = new FileWriter("MemberHistory.txt");
+            email_m_history(this.h_root, m_id, writer);
+            writer.close();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        return 1;
+    }
+    public int email_m_history(Node h_root, int m_id,FileWriter writer){
+        if(h_root == null)
+            return 1;
+        if(m_id == h_root.get_member_id()) {
+            try {
+                writer.write("Name: " + h_root.get_mname() + "\n");
+                writer.write("ID: " + h_root.get_member_id() + "\n");
+                Address ad = new Address();
+                ad = h_root.get_maddress();
+                writer.write("Address: " + ad.street + ", ");
+                writer.write(ad.city + ", ");
+                writer.write(ad.state + ", ");
+                writer.write(ad.zip + "\n");
+                writer.write("Member History:\n\n");
+                email_m_history(h_root, writer, m_id);
+                writer.write("\n~END~\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            email_m_history(h_root.go_left(), m_id,writer);
+            email_m_history(h_root.go_right(), m_id,writer);
+        }
+        return 1;
+    }
+    protected void email_m_history(Node h_root, FileWriter file, int m_id){
+        if(h_root == null)
+            return;
+        if(h_root.get_member_id() == m_id) {
+            try {
+
+                file.write("Service date: " + h_root.get_sdate() + "\n");
+                file.write("Log date: " + h_root.get_ldate() + "\n");
+
+                file.write("Provider: " + h_root.get_pname() + "\n");
+                file.write("Provider ID: " + h_root.get_pnum() + "\n");
+                Address ad = new Address();
+                ad = h_root.get_paddress();
+                file.write("Address: " + ad.street + ", ");
+                file.write(ad.city + ", ");
+                file.write(ad.state + ", ");
+                file.write(ad.zip + "\n");
+
+                file.write("Service: " + h_root.get_service_name() + "\n");
+                file.write("Serevice code: " + h_root.get_service_code() + "\n");
+                file.write("Service fee: " + h_root.get_service_fee() + "\n");
+                file.write("Comments: " + h_root.get_comments() + "\n");
+                file.write("\n");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            email_m_history(h_root.go_right(), file, m_id);
+            email_m_history(h_root.go_left(), file, m_id);
+        }
+    }
+
+    public int email_summary_report() {
+        if(this.h_root == null)
+            return 1;
+        SimpleDateFormat mdyhms = new SimpleDateFormat("MM-dd-YYYY hh:mm:ss");
+        long DAY = 1000 * 60 * 60 * 24;
+        String week = mdyhms.format(new Date(System.currentTimeMillis() - (7 * DAY)));
+        String today = mdyhms.format(new Date());
+        try{
+            FileWriter writer = new FileWriter("SummaryReport.txt");
+            writer.write("Summary Report for " + week + " to " + today + "\n");
+            email_summary_report(this.h_root, week,writer);
+            writer.write("Total number of providers who provided services: " + "\n");
+            writer.write("Overall fee total: " + "\n");
+            writer.write("\n~END~\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return 1;
+    }
+    public int email_summary_report(Node h_root, String week, FileWriter writer){
+        if(h_root == null)
+            return 1;
+        email_summary_report(h_root.go_left(), week,writer);
+        if(h_root.get_sdate() == week) {
+            try{
+                writer.write("Provider: " + h_root.get_pname() + "\n");
+                writer.write("Provider ID: " + h_root.get_pnum() + "\n");
+                writer.write("Total number of consultations: " + h_root.get_num_consultations() + "\n");
+                writer.write("Total fee for the week: " + h_root.get_week_fee() + "\n");
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+        email_summary_report(h_root.go_right(), week, writer);
+        return 1;
+    }
+}
