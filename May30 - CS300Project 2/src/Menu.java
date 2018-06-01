@@ -270,12 +270,10 @@ public class Menu extends Utility {
         return 0;
     }
 
-    public int create_service(SHistoryTree tree_of_services) {
+    public void create_service(SHistoryTree tree_of_services) {
         if (tree_of_services.add_history() == 1)
-        {
             System.out.println("\nService added to service history.");
-            return 0;
-        }
-        return -1;
+        else
+            System.out.println("\nCould not add service.");
     }
 }

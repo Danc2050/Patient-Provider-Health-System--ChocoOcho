@@ -66,18 +66,12 @@ public class ChocAn {
                     if (intMode_response == 1) //Display list of all services
                         object.providerMenu_directory(list_of_all_services);
 
-                    else if (intMode_response == 2) {
-                        catcher = object.validate_member(list_of_members);
-
-                        if (catcher == 1)
-                        {
-                            catcher = object.create_service(tree_of_services); //Provider wants to add a service he/she just provided
-
-                            if (catcher == -1)
-                                System.out.println("Could not add service.");
-                            else
-                                System.out.println("Service added successfully.");
-                        }
+                    //Provider wants to add a service he/she just provided
+                    else if (intMode_response == 2)
+                    {
+                        // First validate Member's ID. Then add service to service history.
+                        if (object.validate_member(list_of_members) == 1)
+                            object.create_service(tree_of_services);
                     }
 
                     else
