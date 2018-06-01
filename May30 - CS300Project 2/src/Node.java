@@ -30,4 +30,8 @@ abstract public class Node extends Utility {
   abstract public String get_comments();
   abstract public Address get_paddress();
   abstract public Address get_maddress();
+  
+  //More for provider
+  abstract public float get_week_fee();
+  abstract public int get_num_consultations();
 }
