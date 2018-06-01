@@ -1,10 +1,10 @@
-import java.io.*;
+//import java.io.*;
 import java.util.Scanner;
 
 public class Menu extends Utility {
 
     //Load in all data from Member, Provider, and Service files.
-    public int load_data(MemberList list_of_members, ProviderList list_of_providers, SHistoryTree tree_of_services, ServiceList list_of_all_services) {
+    public void load_data(MemberList list_of_members, ProviderList list_of_providers, SHistoryTree tree_of_services, ServiceList list_of_all_services) {
         if (list_of_members.read_from_file() == -1)
             System.out.println("\nCould not read from Member List file.");
         if (list_of_providers.read_from_file() == -1)
@@ -13,7 +13,6 @@ public class Menu extends Utility {
             System.out.println("\nCould not read from Service History file.");
         if (list_of_all_services.read_from_file() == -1)
             System.out.println("\nCould not read from Service List file.");
-        return 0;
     }
 
     /*Lets a terminal user choose between Interactive Mode and a Provider/Manager mode.*/
@@ -321,7 +320,7 @@ public class Menu extends Utility {
             else
                 return;
         }
-        
+
         System.out.println("\nService is in directory.");
 
         if (tree_of_services.add_history(service) == 1)
