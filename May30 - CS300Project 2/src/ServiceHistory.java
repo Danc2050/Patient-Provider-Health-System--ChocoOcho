@@ -97,5 +97,7 @@ public class ServiceHistory extends Node{
     public void set_service_code(int new_code){return;}
     public void set_service_fee(float new_fee){return;}
     public void set_m_name(String newName){return;}
+    public float get_week_fee(){return 0;}
+    public int get_num_consultations(){return 0;}
 
 }
