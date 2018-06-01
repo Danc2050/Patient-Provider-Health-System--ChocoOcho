@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -16,6 +15,7 @@ public class SHistoryTree extends Utility {
     {
       /*File directory = new File("./");
       System.out.println(directory.getAbsolutePath());
+
       File resource_file = new File("../ServiceList.txt");*/
 
         //String file_name = "ServiceList.txt";
@@ -23,7 +23,7 @@ public class SHistoryTree extends Utility {
 
             //FileReader file = new FileReader(file_name);
             //BufferedReader in = new BufferedReader(file);
-            BufferedReader in = new BufferedReader(new FileReader("/Users/thang3tron/IdeaProjects/ChocoOcho/May30 - CS300Project 2/src/ServiceHistory.txt"));
+            BufferedReader in = new BufferedReader(new FileReader("/Users/Angelic/IdeaProjects/May30/May30 - CS300Project 2/src/ServiceHistory.txt"));
 
             String line = in.readLine();
 
@@ -158,7 +158,7 @@ public class SHistoryTree extends Utility {
         Service s = new Service(sname,scode,sfee);
         System.out.print("Comments:");
         String comments = input.next();
-        SimpleDateFormat mdyhms = new SimpleDateFormat("MM-DD-YYYY HH:MM:SS");
+        SimpleDateFormat mdyhms = new SimpleDateFormat("MM-dd-YYYY HH:mm:ss");
         String ldate = mdyhms.format(new Date());
         h_root = add_history(h_root,p,m,s,sdate,ldate,comments);
         return 1;
@@ -166,7 +166,7 @@ public class SHistoryTree extends Utility {
 
     protected Node add_history(Node h_root,Provider p, Member m, Service s,String temp_sdate,String temp_ldate,String temp_comments){
         if(h_root == null) {
-            h_root = new ServiceHistory(p,m,s,temp_comments,temp_sdate,temp_ldate);
+            h_root = new ServiceHistory(p,m,s,temp_sdate,temp_ldate,temp_comments);
             return h_root;
         }
         else {
@@ -180,23 +180,43 @@ public class SHistoryTree extends Utility {
 
     //Wrapper
     public int email_p_history(int p_id){
-        try{
+        try {
             FileWriter writer = new FileWriter("ProviderHistory.txt");
-            writer.write(h_root.get_pname() + ";");
-            writer.write(h_root.get_pnum() + ";");
-            Address ad = new Address();
-            ad = h_root.get_paddress();
-            writer.write(ad.street + ";");
-            writer.write(ad.city + ";");
-            writer.write(ad.state + ";");
-            writer.write(ad.zip + ";");
-            SimpleDateFormat mdyhms = new SimpleDateFormat("MM-DD-YYYY HH:MM:SS");
-            String week = mdyhms.format(new Date());
-            email_p_history(this.h_root,writer, p_id,week);
+            email_p_history(this.h_root, p_id, writer);
             writer.close();
         }
-        catch(IOException e){
+        catch(IOException e) {
             e.printStackTrace();
+        }
+        return 1;
+    }
+    public int email_p_history(Node h_root, int p_id, FileWriter writer){
+        if(h_root == null) {
+            return 1;
+        }
+        if(p_id == h_root.get_pnum()) {
+            try {
+                SimpleDateFormat mdyhms = new SimpleDateFormat("MM-dd-YYYY HH:mm:ss");
+                String week = mdyhms.format(new Date());
+                writer.write("Name: " + h_root.get_pname() + "\n");
+                writer.write("ID: " + h_root.get_pnum() + "\n");
+                Address ad = new Address();
+                ad = h_root.get_paddress();
+                writer.write("Address: " + ad.street + ", ");
+                writer.write(ad.city + ", ");
+                writer.write(ad.state + ", ");
+                writer.write(ad.zip + "\n");
+                writer.write("Provider History:\n\n");
+                email_p_history(h_root, writer, p_id, week);
+                writer.write("\n~END~\n");
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            email_p_history(h_root.go_left(), p_id, writer);
+            email_p_history(h_root.go_right(), p_id,writer);
         }
         return 1;
     }
@@ -204,96 +224,31 @@ public class SHistoryTree extends Utility {
     protected void email_p_history(Node h_root,FileWriter file, int p_id, String week){
         if(h_root == null)
             return;
-        email_p_history(h_root.go_left(),file, p_id,week);
-        if(this.h_root.get_pnum() == p_id && this.h_root.get_sdate() == week){
+        if(h_root.get_pnum() == p_id && h_root.get_sdate() == week){
             try{
-                file.write(h_root.get_mname() + ";");
-                file.write(h_root.get_member_id() + ";");
+                file.write("Service date: " + h_root.get_sdate() + "\n");
+                file.write("Log date: " + h_root.get_ldate() + "\n");
+
+                file.write("Member: " + h_root.get_mname() + "\n");
+                file.write("Member ID: " + h_root.get_member_id() + "\n");
                 Address ad = new Address();
                 ad = h_root.get_maddress();
-                file.write(ad.street + ";");
-                file.write(ad.city + ";");
-                file.write(ad.state + ";");
-                file.write(ad.zip + ";");
-                file.write(h_root.get_sdate() + ";");
-                file.write(h_root.get_ldate() + ";");
-                file.write(h_root.get_service_name() + ";");
-                file.write(h_root.get_service_code() + ";");
-                file.write(h_root.get_service_fee() + ";");
-                file.write(h_root.get_comments() + ";");
+                file.write("Address: " + ad.street + ", ");
+                file.write(ad.city + ", ");
+                file.write(ad.state + ", ");
+                file.write(ad.zip + "\n");
+
+                file.write("Service: " + h_root.get_service_name() + "\n");
+                file.write("Service code: " + h_root.get_service_code() + "\n");
+                file.write("Service fee: " + h_root.get_service_fee() + "\n");
+                file.write("Comments: " + h_root.get_comments() + "\n");
                 file.write("\n");
             }catch(IOException e){
                 e.printStackTrace();
             }
         }
-        email_p_history(h_root.go_right(),file, p_id,week);
-    }
-    //Wrapper
-    public int email_m_history(int m_id){
-        try{
-            FileWriter writer = new FileWriter("MemberHistory.txt");
-            writer.write(h_root.get_mname() + ";");
-            writer.write(h_root.get_member_id() + ";");
-            Address ad = new Address();
-            ad = h_root.get_maddress();
-            writer.write(ad.street + ";");
-            writer.write(ad.city + ";");
-            writer.write(ad.state + ";");
-            writer.write(ad.zip + ";");
-            email_m_history(this.h_root,writer, m_id);
-            writer.close();
+        else {
+            email_p_history(h_root.go_right(), file, p_id, week);
+            email_p_history(h_root.go_left(), file, p_id, week);
         }
-        catch(IOException e){
-            e.printStackTrace();
-        }
-        return 1;
     }
-
-    protected void email_m_history(Node h_root, FileWriter file, int m_id){
-        if(h_root == null)
-            return;
-        email_m_history(h_root.go_left(),file, m_id);
-        if(this.h_root.get_member_id() == m_id){
-            try{
-                file.write(h_root.get_pname() + ";");
-                file.write(h_root.get_pnum() + ";");
-                Address ad = new Address();
-                ad = h_root.get_paddress();
-                file.write(ad.street + ";");
-                file.write(ad.city + ";");
-                file.write(ad.state + ";");
-                file.write(ad.zip + ";");
-                file.write(h_root.get_sdate() + ";");
-                file.write(h_root.get_ldate() + ";");
-                file.write(h_root.get_service_name() + ";");
-                file.write(h_root.get_service_code() + ";");
-                file.write(h_root.get_service_fee() + ";");
-                file.write(h_root.get_comments() + ";");
-                file.write("\n");
-            }catch(IOException e){
-                e.printStackTrace();
-            }
-        }
-        email_m_history(h_root.go_right(),file, m_id);
-    }
-
-    public int email_summary_report() {
-        SimpleDateFormat mdyhms = new SimpleDateFormat("MM-DD-YYYY HH:MM:SS");
-        long DAY = 1000 * 60 * 60 * 24;
-        String week = mdyhms.format(new Date(System.currentTimeMillis() - (7 * DAY)));
-        email_summary_report(week);
-        return 1;
-    }
-    public int email_summary_report(String week){
-        if(this.h_root.get_sdate() == week) {
-            try {
-                FileWriter writer = new FileWriter("SummaryReport.txt");
-                this.write_to_file(h_root, writer);
-                writer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return 1;
-    }
-}
