@@ -81,8 +81,8 @@ public class Provider extends Node {
     public String verifyService(){}
     public String validateMember(){}
     public void get_history(){};//Return service history?
-    public void get_address(){};
-    public float get_week_fee(){};
-    public int get_num_consultations(){};*/
+    public void get_address(){};*/
+    public float get_week_fee(){return this.week_fee;}
+    public int get_num_consultations(){return this.num_consultations;}
 }
 // }
