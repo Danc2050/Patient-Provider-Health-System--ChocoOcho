@@ -9,11 +9,11 @@ public class ChocAn {
         Scanner input = new Scanner(System.in);
         int main_menu = 0;
         int manager_menu = 0;
-        int provider_menu = 0;
         int response = 0; //Catch user's response in main mode
         int intMode_response = 0; //Catch user's response in manager's mode
-        int catcher = 0; //Catch return value
-        int provider_service = 0;
+        int provider_menu = 0; //Catch user's response in provider's mode
+        int catcher = 0; //Catch return value in provider's menu.
+        int provide_service = 0;
 
         Menu object = new Menu(); //Object for the Main Menu (Provider/Manager Mode)
 
@@ -68,34 +68,48 @@ public class ChocAn {
                         object.providerMenu_directory(list_of_all_services);
 
                     else if (intMode_response == 2) {
-                        System.out.println("\n\nFirst, let's validate your patient.");
-                        System.out.println("\nPlease enter the patient's ID.");
-
-                        
                         catcher = object.validate_member(list_of_members);
 
                         if (catcher == -1)
                             System.out.println("\nInvalid Member ID.");
+
                         else if (catcher == 0)
-                            System.out.println("\nMember is suspended. Service withhold is advised. Send that sucker home.");
+                        {
+                            System.out.println("\nMember is suspended.");
+                            System.out.println("\nProvide service anyway?");
+                            System.out.println("\n[1] - Yes." + "\n[2] - No.");
+
+                            while (provide_service < 1 || provide_service > 2)
+                            {
+                                System.out.println("\nEnter response: ");
+                                provide_service = input.nextInt();
+                                input.nextLine();
+                            }
+                        }
+
                         else
                         {
                             System.out.println("\nID validated.");
-                            System.out.println("\nWould you like to provide service?");
+                            System.out.println("\nWould you like to proceed with the service?");
                             System.out.println("\n[1] - Yes." + "\n[2] - No.");
 
-
+                            while (provide_service < 1 || provide_service > 2)
+                            {
+                                System.out.println("\nEnter response: ");
+                                provide_service = input.nextInt();
+                                input.nextLine();
+                            }
                         }
-                    }
 
-                    else if (intMode_response == 3)
-                    {
-                        catcher = object.create_service(); //Provider wants to add a service he/she just provided
+                        if (provide_service == 1)
+                        {
+                            catcher = object.create_service(); //Provider wants to add a service he/she just provided
 
-                        if (catcher == -1)
-                            System.out.println("Could not add service.");
-                        else
-                            System.out.println("Service added successfully.");
+                            if (catcher == -1)
+                                System.out.println("Could not add service.");
+                            else
+                                System.out.println("Service added successfully.");
+                        }
                     }
 
                     else
