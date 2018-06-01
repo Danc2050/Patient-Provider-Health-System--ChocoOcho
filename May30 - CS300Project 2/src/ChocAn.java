@@ -71,7 +71,7 @@ public class ChocAn {
 
                         if (catcher == 1)
                         {
-                            catcher = object.create_service(); //Provider wants to add a service he/she just provided
+                            catcher = object.create_service(tree_of_services); //Provider wants to add a service he/she just provided
 
                             if (catcher == -1)
                                 System.out.println("Could not add service.");

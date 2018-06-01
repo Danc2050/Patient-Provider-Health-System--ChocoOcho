@@ -270,8 +270,12 @@ public class Menu extends Utility {
         return 0;
     }
 
-    public int create_service() {
-        //TODO Provider add a service they have just provided to a member
-        return 0;
+    public int create_service(SHistoryTree tree_of_services) {
+        if (tree_of_services.add_history() == 1)
+        {
+            System.out.println("\nService added to service history.");
+            return 0;
+        }
+        return -1;
     }
 }
