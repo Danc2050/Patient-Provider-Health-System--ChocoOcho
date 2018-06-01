@@ -13,7 +13,6 @@ public class ChocAn {
         int intMode_response = 0; //Catch user's response in manager's mode
         int provider_menu = 0; //Catch user's response in provider's mode
         int catcher = 0; //Catch return value in provider's menu.
-        int provide_service = 0;
 
         Menu object = new Menu(); //Object for the Main Menu (Provider/Manager Mode)
 
@@ -70,38 +69,7 @@ public class ChocAn {
                     else if (intMode_response == 2) {
                         catcher = object.validate_member(list_of_members);
 
-                        if (catcher == -1)
-                            System.out.println("\nInvalid Member ID.");
-
-                        else if (catcher == 0)
-                        {
-                            System.out.println("\nMember is suspended.");
-                            System.out.println("\nProvide service anyway?");
-                            System.out.println("\n[1] - Yes." + "\n[2] - No.");
-
-                            while (provide_service < 1 || provide_service > 2)
-                            {
-                                System.out.println("\nEnter response: ");
-                                provide_service = input.nextInt();
-                                input.nextLine();
-                            }
-                        }
-
-                        else
-                        {
-                            System.out.println("\nID validated.");
-                            System.out.println("\nWould you like to proceed with the service?");
-                            System.out.println("\n[1] - Yes." + "\n[2] - No.");
-
-                            while (provide_service < 1 || provide_service > 2)
-                            {
-                                System.out.println("\nEnter response: ");
-                                provide_service = input.nextInt();
-                                input.nextLine();
-                            }
-                        }
-
-                        if (provide_service == 1)
+                        if (catcher == 1)
                         {
                             catcher = object.create_service(); //Provider wants to add a service he/she just provided
 

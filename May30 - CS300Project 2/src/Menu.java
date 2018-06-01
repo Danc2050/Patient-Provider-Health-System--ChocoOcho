@@ -54,7 +54,6 @@ public class Menu extends Utility {
 
     public int intMode_Member(MemberList list_of_members) {
         int member_response = 0;
-        int catcher = 0; //Catch return value
         Scanner input = new Scanner(System.in);
 
         System.out.println("\n\nWhat would you like to do?");
@@ -69,11 +68,10 @@ public class Menu extends Utility {
 
         if (member_response == 1) //Add Member
         {
-            catcher = list_of_members.add_member_wrapper();
-            if (catcher == 1)
-            {
+            if (list_of_members.add_member_wrapper() == 1)
                 System.out.println("\nMember added successfully.");
-            }
+            else
+                System.out.println("\nCould not add member.");
         }
 
         else if (member_response == 2) //Remove Member
@@ -88,10 +86,9 @@ public class Menu extends Utility {
                 //Success/Fail
             }
         }
-
+*/
         else
             return 0;
-        */
         return 0;
     }
 
@@ -109,26 +106,26 @@ public class Menu extends Utility {
             input.nextLine();
         }
 
-        //TODO Provider Manipulation.
-        /*if (provider_response == 1) //Add Provider
+        if (provider_response == 1) //Add Provider
         {
-            if (list_of_providers.add_provider())
-                //Success/Fail
+            if (list_of_providers.add_provider() == 1)
+                System.out.println("\nProvider added successfully.");
+            else
+                System.out.println("\nCould not add provider.");
         }
 
-        else if (provider_response == 2)
-        {
-            if (list_of_providers.remove_provider())
-        }
+        else if (provider_response == 2) //Remove Provider
+            list_of_providers.delete();
 
+        //TODO Update Provider.
+/*
         else if (provider_response == 3)
         {
             if (list_of_providers.update_provider())
         }
-
+*/
         else
             return 0;
-        */
         return 0;
     }
 
@@ -209,12 +206,68 @@ public class Menu extends Utility {
     }
 
     public int validate_member(MemberList list_of_members) {
+        int catcher = 0;
+        int response = 0;
+        int mem_num = 0;
+        int provide_service = 0;
+
         System.out.println("\n\nFirst, let's validate the patient's ID.");
         System.out.println("Enter the patient's ID:");
 
-        int mem_num = input.nextInt();
+        mem_num = input.nextInt();
         input.nextLine();
-        return list_of_members.validate_member_wrapper(mem_num);
+
+        catcher = list_of_members.validate_member_wrapper(mem_num);
+
+        while (catcher == -1)
+        {
+            System.out.println("\nInvalid Member ID.");
+            System.out.println("\n[1] - Try again." + "\n[2] - Return to Provider Menu.");
+
+            while (response < 1 || response > 2)
+            {
+                System.out.println("\nEnter response: ");
+                response = input.nextInt();
+                input.nextLine();
+            }
+
+            if (response == 1)
+                catcher = list_of_members.validate_member_wrapper(mem_num);
+            else
+                return 0;
+        }
+
+        if (catcher == 0)
+        {
+            System.out.println("\nMember is suspended.");
+            System.out.println("\nProvide service anyway?");
+            System.out.println("\n[1] - Yes." + "\n[2] - No.");
+
+            while (provide_service < 1 || provide_service > 2)
+            {
+                System.out.println("\nEnter response: ");
+                provide_service = input.nextInt();
+                input.nextLine();
+            }
+        }
+
+        else if (catcher == 1)
+        {
+            System.out.println("\nID validated.");
+            System.out.println("\nWould you like to proceed with the service?");
+            System.out.println("\n[1] - Yes." + "\n[2] - No.");
+
+            while (provide_service < 1 || provide_service > 2)
+            {
+                System.out.println("\nEnter response: ");
+                provide_service = input.nextInt();
+                input.nextLine();
+            }
+        }
+
+        if (provide_service == 1)
+            return 1;
+        return 0;
     }
 
     public int create_service() {
