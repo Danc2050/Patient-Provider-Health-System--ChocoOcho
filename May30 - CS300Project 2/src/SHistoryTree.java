@@ -23,7 +23,7 @@ public class SHistoryTree extends Utility {
 
             //FileReader file = new FileReader(file_name);
             //BufferedReader in = new BufferedReader(file);
-            BufferedReader in = new BufferedReader(new FileReader("/Users/Angelic/IdeaProjects/May30/May30 - CS300Project 2/src/ServiceHistory.txt"));
+            BufferedReader in = new BufferedReader(new FileReader("C:\\Users\\phuon\\IdeaProjects\\ChocoOcho\\May30 - CS300Project 2\\src\\ServiceHistory.txt"));
 
             String line = in.readLine();
 

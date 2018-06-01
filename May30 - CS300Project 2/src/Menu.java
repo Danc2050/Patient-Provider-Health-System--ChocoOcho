@@ -54,6 +54,7 @@ public class Menu extends Utility {
 
     public int intMode_Member(MemberList list_of_members) {
         int member_response = 0;
+        int catcher = 0; //Catch return value
         Scanner input = new Scanner(System.in);
 
         System.out.println("\n\nWhat would you like to do?");
@@ -66,23 +67,20 @@ public class Menu extends Utility {
             input.nextLine();
         }
 
-        //TODO Member Manipulation.
-        /*if (member_response == 1) //Add Member
+        if (member_response == 1) //Add Member
         {
-            if (list_of_members.add_member())
+            catcher = list_of_members.add_member_wrapper();
+            if (catcher == 1)
             {
-                //Success/Fail
+                System.out.println("\nMember added successfully.");
             }
         }
 
         else if (member_response == 2) //Remove Member
-        {
-            if (list_of_members.remove_member())
-            {
-                //Success/Fail
-            }
-        }
+            list_of_members.delete();
 
+        //TODO Update Member.
+/*
         else if (member_response == 3) //Update Member
         {
             if (list_of_members.update_member())
@@ -193,7 +191,7 @@ public class Menu extends Utility {
         Scanner input = new Scanner(System.in);
 
         System.out.println("\n\nYou are in Provider Mode." + "\nWhat would you like to do?" +
-                "\n[1] - Provider Directory." + "\n[2] - Provide a Service." +
+                "\n[1] - Display Provider Directory." + "\n[2] - Provide a Service." +
                 "\n[3] - Return to Main Menu.");
 
         while (response < 1 || response > 3) {
@@ -211,8 +209,8 @@ public class Menu extends Utility {
     }
 
     public int validate_member(MemberList list_of_members) {
-        System.out.println("\n\nFirst, let's validate the patient's ID.")
-        System.out.println("\nEnter the patient's ID:");
+        System.out.println("\n\nFirst, let's validate the patient's ID.");
+        System.out.println("Enter the patient's ID:");
 
         int mem_num = input.nextInt();
         input.nextLine();

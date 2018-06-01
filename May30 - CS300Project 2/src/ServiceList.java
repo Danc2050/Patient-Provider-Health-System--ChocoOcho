@@ -20,7 +20,7 @@ public class ServiceList extends Utility{
 
          //FileReader file = new FileReader(file_name);
          //BufferedReader in = new BufferedReader(file);
-         BufferedReader in = new BufferedReader(new FileReader("/Users/thang3tron/IdeaProjects/ChocoOcho/May30 - CS300Project 2/src/ServiceList.txt"));
+         BufferedReader in = new BufferedReader(new FileReader("C:\\Users\\phuon\\IdeaProjects\\ChocoOcho\\May30 - CS300Project 2\\src\\ServiceList.txt"));
          String line = in.readLine();
 
          while (line != null) {
