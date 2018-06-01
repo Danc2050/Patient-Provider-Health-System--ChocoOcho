@@ -1,6 +1,3 @@
-//import java.io.*;
-//import java.util.Scanner;
-
 public class ChocAn {
 
     public static void main(String[] args) {
