@@ -291,6 +291,8 @@ public class Menu extends Utility {
     public void create_service(SHistoryTree tree_of_services, ServiceList list_of_all_services)
     {
         int service = 0;
+        int response = 0;
+        boolean catcher;
 
         System.out.println("\nLet's check if the service you're about to provide" +
                 "is in our directory.");
@@ -298,13 +300,33 @@ public class Menu extends Utility {
         service = input.nextInt();
         input.nextLine();
 
-        if (list_of_all_services.check_service_wrapper(service))
-            System.out.println("\nService is in directory.");
+        catcher = list_of_all_services.check_service_wrapper(service);
+
+        //while loop will keep trying until catcher becomes true (there is a service match) or
+        //Provider returns to main menu.
+        while (!catcher)
         {
-            if (tree_of_services.add_history(service) == 1)
-                System.out.println("\nService added to service history.");
+            System.out.println("\nService is NOT in directory.");
+            System.out.println("\n[1] - Try again." + "\n[2] - Return to Provider Menu.");
+
+            while (response < 1 || response > 2)
+            {
+                System.out.println("\nEnter response: ");
+                response = input.nextInt();
+                input.nextLine();
+            }
+
+            if (response == 1)
+                catcher = list_of_all_services.check_service_wrapper(service);
             else
-                System.out.println("\nCould not add service.");
+                return;
         }
+        
+        System.out.println("\nService is in directory.");
+
+        if (tree_of_services.add_history(service) == 1)
+            System.out.println("\nService added to service history.");
+        else
+            System.out.println("\nCould not add service.");
     }
 }
