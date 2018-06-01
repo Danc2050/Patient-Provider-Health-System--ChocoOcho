@@ -207,7 +207,7 @@ public class SHistoryTree extends Utility {
                 writer.write(ad.city + ", ");
                 writer.write(ad.state + ", ");
                 writer.write(ad.zip + "\n");
-                writer.write("Provider History:\n\n");
+                writer.write("\n~~~~Provider History (" + week + " to " + today + ")~~~~\n\n");
                 email_p_history(h_root, writer, p_id, week, today);
                 writer.write("\n~END~\n");
             }
@@ -277,7 +277,7 @@ public class SHistoryTree extends Utility {
                 writer.write(ad.city + ", ");
                 writer.write(ad.state + ", ");
                 writer.write(ad.zip + "\n");
-                writer.write("Member History:\n\n");
+                writer.write("\n~~~~Member History~~~~\n\n");
                 email_m_history(h_root, writer, m_id);
                 writer.write("\n~END~\n");
             } catch (IOException e) {
@@ -331,7 +331,7 @@ public class SHistoryTree extends Utility {
         String today = mdyhms.format(new Date());
         try{
             FileWriter writer = new FileWriter("SummaryReport.txt");
-            writer.write("Summary Report for " + week + " to " + today + "\n\n");
+            writer.write("~~~~Summary Report (" + week + " to " + today + ")~~~~\n\n");
             email_summary_report(this.h_root, writer, week, today);
             writer.write("Total number of providers who provided services: " + "\n");
             writer.write("Overall fee total: " + "\n");
