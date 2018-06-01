@@ -57,9 +57,10 @@ public class Menu extends Utility {
 
         System.out.println("\n\nWhat would you like to do?");
         System.out.println("[1] - Add Member." + "\n[2] - Remove Member." +
-                "\n[3] - Update Member" + "\n[4] - Return to Manager Menu.");
+                "\n[3] - Update Member" + "\n[4] - Display All Members." +
+                "\n[5] - Return to Manager Menu.");
 
-        while (member_response < 1 || member_response > 4) {
+        while (member_response < 1 || member_response > 5) {
             System.out.println("\nEnter response: ");
             member_response = input.nextInt();
             input.nextLine();
@@ -86,6 +87,10 @@ public class Menu extends Utility {
             }
         }
 */
+
+        else if (member_response == 4)
+            list_of_members.display_all_wrapper();
+
         else
             return 0;
         return 0;
@@ -97,9 +102,10 @@ public class Menu extends Utility {
 
         System.out.println("What would you like to do?");
         System.out.println("[1] - Add Provider." + "\n[2] - Remove Provider." +
-                "\n[3] - Update Provider" + "\n[4] - Return to Manager Menu.");
+                "\n[3] - Update Provider" + "\n[4] - Display All Providers." +
+                "\n[5] - Return to Manager Menu.");
 
-        while (provider_response < 1 || provider_response > 4) {
+        while (provider_response < 1 || provider_response > 5) {
             System.out.println("\nEnter response: ");
             provider_response = input.nextInt();
             input.nextLine();
@@ -123,6 +129,10 @@ public class Menu extends Utility {
             if (list_of_providers.update_provider())
         }
 */
+
+        else if (provider_response == 4)
+            list_of_providers.display_all();
+
         else
             return 0;
         return 0;
