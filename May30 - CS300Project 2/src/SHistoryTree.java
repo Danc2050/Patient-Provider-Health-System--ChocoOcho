@@ -331,7 +331,7 @@ public class SHistoryTree extends Utility {
         String today = mdyhms.format(new Date());
         try{
             FileWriter writer = new FileWriter("SummaryReport.txt");
-            writer.write("Summary Report for " + week + " to " + today + "\n");
+            writer.write("Summary Report for " + week + " to " + today + "\n\n");
             email_summary_report(this.h_root, writer, week, today);
             writer.write("Total number of providers who provided services: " + "\n");
             writer.write("Overall fee total: " + "\n");
