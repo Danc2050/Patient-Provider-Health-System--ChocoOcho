@@ -196,8 +196,9 @@ public class SHistoryTree extends Utility {
         }
         if(p_id == h_root.get_pnum()) {
             try {
-                SimpleDateFormat mdyhms = new SimpleDateFormat("MM-dd-YYYY HH:mm:ss");
-                String week = mdyhms.format(new Date());
+                SimpleDateFormat mdyhms = new SimpleDateFormat("MM-dd-YYYY");
+                long DAY = 1000 * 60 * 60 * 24;
+                String week = mdyhms.format(new Date(System.currentTimeMillis() - (7 * DAY)));
                 String today = mdyhms.format(new Date());
                 writer.write("Name: " + h_root.get_pname() + "\n");
                 writer.write("ID: " + h_root.get_pnum() + "\n");
@@ -226,7 +227,9 @@ public class SHistoryTree extends Utility {
         if(h_root == null)
             return;
         email_p_history(h_root.go_left(), file, p_id, week,today);
-        if(h_root.get_pnum() == p_id /*&& h_root.get_sdate() >= week but <= today*/){
+        SimpleDateFormat mdyhms = new SimpleDateFormat("MM-dd-YYYY");
+        String sdate = mdyhms.format(h_root.get_sdate());
+        if(h_root.get_pnum() == p_id && sdate.compareTo(week) < 0 && sdate.compareTo(today) > 0){
             try{
                 file.write("Service date: " + h_root.get_sdate() + "\n");
                 file.write("Log date: " + h_root.get_ldate() + "\n");
