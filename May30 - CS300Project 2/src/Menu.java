@@ -213,6 +213,7 @@ public class Menu extends Utility {
     public int validate_member(MemberList list_of_members) {
         System.out.println("\n\nFirst, let's validate the patient's ID.")
         System.out.println("\nEnter the patient's ID:");
+
         int mem_num = input.nextInt();
         input.nextLine();
         return list_of_members.validate_member_wrapper(mem_num);
