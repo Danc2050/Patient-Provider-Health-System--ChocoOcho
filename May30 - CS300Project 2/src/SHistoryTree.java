@@ -227,9 +227,9 @@ public class SHistoryTree extends Utility {
         if(h_root == null)
             return;
         email_p_history(h_root.go_left(), file, p_id, week,today);
-        SimpleDateFormat mdyhms = new SimpleDateFormat("MM-dd-YYYY");
-        String sdate = mdyhms.format(h_root.get_sdate());
-        if(h_root.get_pnum() == p_id && sdate.compareTo(week) < 0 && sdate.compareTo(today) > 0){
+        /*SimpleDateFormat mdyhms = new SimpleDateFormat("MM-dd-YYYY");
+        String sdate = mdyhms.format(h_root.get_sdate());*/
+        if(h_root.get_pnum() == p_id /*&& sdate.compareTo(week) < 0 && sdate.compareTo(today) > 0*/){
             try{
                 file.write("Service date: " + h_root.get_sdate() + "\n");
                 file.write("Log date: " + h_root.get_ldate() + "\n");
