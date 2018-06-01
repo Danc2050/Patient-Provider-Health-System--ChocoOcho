@@ -128,8 +128,8 @@ public class SHistoryTree extends Utility {
 
 
 
-    //Wrapper
-    public int add_history()
+    //Wrapper. Phuong added code to pass in to make sure service code is valid.
+    public int add_history(int service_code)
     {
         System.out.print("What is the provider name: ");
         String pname = input.next();
@@ -151,8 +151,9 @@ public class SHistoryTree extends Utility {
         String sdate = input.next();
         System.out.print("What is the service name: ");
         String sname = input.next();
-        System.out.print("\nWhat is the service code: ");
-        int scode = input.nextInt();
+        //System.out.print("\nWhat is the service code: ");
+        //int scode = input.nextInt();
+        int scode = service_code;
         System.out.print("\nWhat is the service fee: ");
         float sfee = input.nextFloat();
         Service s = new Service(sname,scode,sfee);

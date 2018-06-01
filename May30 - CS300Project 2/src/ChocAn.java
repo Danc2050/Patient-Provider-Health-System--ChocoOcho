@@ -1,16 +1,16 @@
-import java.io.*;
-import java.util.Scanner;
+//import java.io.*;
+//import java.util.Scanner;
 
 public class ChocAn {
 
     public static void main(String[] args) {
 
         //Main.java is designed to allow providers to interact with the ChocAn data processing software system.
-        Scanner input = new Scanner(System.in);
+        //Scanner input = new Scanner(System.in);
         int main_menu = 0;
         int manager_menu = 0;
-        int response = 0; //Catch user's response in main mode
-        int intMode_response = 0; //Catch user's response in manager's mode
+        int response; //Catch user's response in main mode
+        int intMode_response; //Catch user's response in manager's mode
         int provider_menu = 0; //Catch user's response in provider's mode
         int catcher = 0; //Catch return value in provider's menu.
 
@@ -71,7 +71,7 @@ public class ChocAn {
                     {
                         // First validate Member's ID. Then add service to service history.
                         if (object.validate_member(list_of_members) == 1)
-                            object.create_service(tree_of_services);
+                            object.create_service(tree_of_services, list_of_all_services);
                     }
 
                     else

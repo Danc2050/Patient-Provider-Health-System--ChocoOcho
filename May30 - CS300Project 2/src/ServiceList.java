@@ -87,6 +87,24 @@ public class ServiceList extends Utility{
       return s_root;
    }
 
+   //Phuong's Service ID's Verification
+   public boolean check_service_wrapper(int to_check)
+   {
+       return check_service(this.s_root, to_check);
+   }
+
+   protected boolean check_service(Node s_root, int to_check)
+   {
+      if (s_root == null)
+         return false;
+      if (s_root.get_service_code() == to_check)
+         return true;
+      check_service(s_root.go_left(), to_check);
+      check_service(s_root.go_right(), to_check);
+      return false;
+   }
+
+
    //Wrapper
    public void display_all(){
       display_all(this.s_root);
@@ -157,7 +175,6 @@ public class ServiceList extends Utility{
 
    public boolean updateService()
    {
-
       System.out.println("Press '1' to update the service code");
       System.out.println("Press '2' to update the service name");
       System.out.println("Press '3' to update the service fee");

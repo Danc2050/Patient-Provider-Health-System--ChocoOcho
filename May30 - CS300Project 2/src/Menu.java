@@ -158,22 +158,40 @@ public class Menu extends Utility {
 
         System.out.println("\nWhat would you like to do?");
         System.out.println("[1] - Add Service." + "\n[2] - Remove Service" +
-                "\n[3] - Display Services" + "\n[4] - Return to Manager Menu.");
+                "\n[3] - Display Services" + "\n[4] - Update Service" +
+                "\n[5] - Return to Manager Menu.");
 
-        while (service_response < 1 || service_response > 4) {
+        while (service_response < 1 || service_response > 5)
+        {
             System.out.println("\nEnter response.");
             service_response = input.nextInt();
             input.nextLine();
         }
 
-        if (service_response == 1) {
-            list_of_all_services.add_service();
-            System.out.println("\nService added.");
-        } else if (service_response == 2) {
-            /*if (list_of_all_services.remove_service())todo uncomment(test)
-                System.out.println("\nService removed.");*/
-        } else if (service_response == 3)
+        if (service_response == 1)
+        {
+            if (list_of_all_services.add_service() == 1)
+                System.out.println("\nService added.");
+            else
+                System.out.println("\nCould not add service.");
+        }
+
+        else if (service_response == 2)
+        {
+            list_of_all_services.delete();
+            System.out.println("\nService removed.");
+        }
+
+        else if (service_response == 3)
             list_of_all_services.display_all();
+
+        else if (service_response == 4)
+        {
+            if (list_of_all_services.updateService())
+                System.out.println("\nService updated.");
+            else
+                System.out.println("\nCould not update service.");
+        }
 
         else
             return 0;
@@ -270,10 +288,23 @@ public class Menu extends Utility {
         return 0;
     }
 
-    public void create_service(SHistoryTree tree_of_services) {
-        if (tree_of_services.add_history() == 1)
-            System.out.println("\nService added to service history.");
-        else
-            System.out.println("\nCould not add service.");
+    public void create_service(SHistoryTree tree_of_services, ServiceList list_of_all_services)
+    {
+        int service = 0;
+
+        System.out.println("\nLet's check if the service you're about to provide" +
+                "is in our directory.");
+        System.out.println("\nWhat is the service ID you'd like to enter into patient's history?");
+        service = input.nextInt();
+        input.nextLine();
+
+        if (list_of_all_services.check_service_wrapper(service))
+            System.out.println("\nService is in directory.");
+        {
+            if (tree_of_services.add_history(service) == 1)
+                System.out.println("\nService added to service history.");
+            else
+                System.out.println("\nCould not add service.");
+        }
     }
 }
