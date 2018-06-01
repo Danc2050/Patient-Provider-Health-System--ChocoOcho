@@ -60,4 +60,6 @@ public class Service extends Node {
     public String get_comments(){return null;}
     public Address get_paddress(){return null;}
     public Address get_maddress(){return null;}
+    public float get_week_fee(){return 0;}
+    public int get_num_consultations(){return 0;}
 }
