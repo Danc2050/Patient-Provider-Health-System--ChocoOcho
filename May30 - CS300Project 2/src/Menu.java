@@ -316,8 +316,14 @@ public class Menu extends Utility {
             }
 
             if (response == 1)
+            {
+                System.out.println("\nPlease enter the service ID again: ");
+                service = input.nextInt();
+                input.nextLine();
                 catcher = list_of_all_services.check_service_wrapper(service);
-            else
+            }
+
+            else if (response == 2)
                 return;
         }
 
