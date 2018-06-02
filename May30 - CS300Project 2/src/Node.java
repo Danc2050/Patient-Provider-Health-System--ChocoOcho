@@ -20,7 +20,13 @@ abstract public class Node extends Utility {
   //Functions for Member class
   abstract public int get_member_id();
   abstract public String get_status();
-  //abstract public String get_member_name();
+  abstract public String get_member_name();
+  abstract public Address get_address();
+  
+  abstract public void set_member_status(String status_to_set);
+  abstract public void set_member_name(String name_to_set);
+  abstract public void set_member_id(int id_to_change);
+  abstract public void set_member_address(Address address_to_set);
 
   //More for Service history tree class
   abstract public String get_pname();
