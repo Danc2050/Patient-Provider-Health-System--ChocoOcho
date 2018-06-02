@@ -1,4 +1,3 @@
-//import java.io.*;
 import java.util.Scanner;
 
 public class Menu extends Utility {
@@ -18,8 +17,6 @@ public class Menu extends Utility {
     /*Lets a terminal user choose between Interactive Mode and a Provider/Manager mode.*/
     public int mainMode() {
         int response = 0;
-        Scanner input = new Scanner(System.in);
-
         System.out.println("\n\nChoose a mode.");
         System.out.println("\n[1] - Interactive/Manager Mode" +
                 "\n[2] - Provider Mode." + "\n[3] - Exit");
@@ -37,8 +34,6 @@ public class Menu extends Utility {
     public int intMode() {
         //Implement a use... Example: call an add function with string "member" or "provider". Or create Member or Provider object and pass in to use Dynamic binding.
         int response = 0;
-        Scanner input = new Scanner(System.in);
-
         System.out.println("\n\nYou are in Manager Mode." + "\nWhat would you like to access?");
         System.out.println("[1] - Member." + "\n[2] - Provider." +
                 "\n[3] - Report" + "\n[4] - Services" + "\n[5] - Return to Main Menu");
@@ -53,19 +48,15 @@ public class Menu extends Utility {
 
     public int intMode_Member(MemberList list_of_members) {
         int member_response = 0;
-        Scanner input = new Scanner(System.in);
-
         System.out.println("\n\nWhat would you like to do?");
         System.out.println("[1] - Add Member." + "\n[2] - Remove Member." +
                 "\n[3] - Update Member" + "\n[4] - Display All Members." +
                 "\n[5] - Return to Manager Menu.");
-
         while (member_response < 1 || member_response > 5) {
             System.out.println("\nEnter response: ");
             member_response = input.nextInt();
             input.nextLine();
         }
-
         if (member_response == 1) //Add Member
         {
             if (list_of_members.add_member_wrapper() == 1)
@@ -87,7 +78,6 @@ public class Menu extends Utility {
             }
         }
 */
-
         else if (member_response == 4)
             list_of_members.display_all_wrapper();
 
@@ -98,52 +88,45 @@ public class Menu extends Utility {
 
     public int intMode_Provider(ProviderList list_of_providers) {
         int provider_response = 0;
-        Scanner input = new Scanner(System.in);
-
-        System.out.println("What would you like to do?");
-        System.out.println("[1] - Add Provider." + "\n[2] - Remove Provider." +
-                "\n[3] - Update Provider" + "\n[4] - Display All Providers." +
-                "\n[5] - Return to Manager Menu.");
 
         while (provider_response < 1 || provider_response > 5) {
-            System.out.println("\nEnter response: ");
+            System.out.println("What would you like to do?");
+            System.out.println("[1] - Add Provider." + "\n[2] - Remove Provider." +
+                    "\n[3] - Update Provider" + "\n[4] - Display All Providers." +
+                    "\n[5] - Return to Manager Menu.");
             provider_response = input.nextInt();
             input.nextLine();
-        }
 
-        if (provider_response == 1) //Add Provider
-        {
-            if (list_of_providers.add_provider() == 1)
-                System.out.println("\nProvider added successfully.");
-            else
-                System.out.println("\nCould not add provider.");
-        }
+            if (provider_response == 1) //Add Provider
+            {
+                if (list_of_providers.add_provider() == 1)
+                    System.out.println("\nProvider added successfully.");
+                else
+                    System.out.println("\nCould not add provider.");
+            } else if (provider_response == 2) //Remove Provider
+                list_of_providers.delete();
 
-        else if (provider_response == 2) //Remove Provider
-            list_of_providers.delete();
-
-        //TODO Update Provider.
+                //TODO Update Provider.
 /*
         else if (provider_response == 3)
         {
             if (list_of_providers.update_provider())
         }
 */
+            else if (provider_response == 4)
+                list_of_providers.display_all();
 
-        else if (provider_response == 4)
-            list_of_providers.display_all();
-
-        else
-            return 0;
+            else
+                return 0;
+        }
         return 0;
     }
+
 
     public int intMode_Report(SHistoryTree tree_of_services)
     {
         int report_response = 0;
         int provider_id, member_id;
-        Scanner input = new Scanner(System.in);
-
         System.out.println("\n\nWhat would you like to do?");
         System.out.println("\n[1] Print Provider Report." + "\n[2] Print Patient Report." +
                 "\n[3] - Print Summary Report." + "\n[4] Return to Manager Menu.");
@@ -193,8 +176,6 @@ public class Menu extends Utility {
 
     public int intMode_Service(ServiceList list_of_all_services) {
         int service_response = 0;
-        Scanner input = new Scanner(System.in);
-
         System.out.println("\nWhat would you like to do?");
         System.out.println("[1] - Add Service." + "\n[2] - Remove Service" +
                 "\n[3] - Display Services" + "\n[4] - Update Service" +
@@ -238,12 +219,9 @@ public class Menu extends Utility {
         return 0;
     }
 
-
     /**********The Provider Menu.**********/
     public int providerMenu() {
         int response = 0;
-        Scanner input = new Scanner(System.in);
-
         System.out.println("\n\nYou are in Provider Mode." + "\nWhat would you like to do?" +
                 "\n[1] - Display Provider Directory." + "\n[2] - Provide a Service." +
                 "\n[3] - Return to Main Menu.");
