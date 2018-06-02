@@ -122,10 +122,7 @@ public class Menu extends Utility {
         else if (provider_response == 2) //Remove Provider
             list_of_providers.delete();
 
-        else if (provider_response == 3)
-        {
-            list_of_providers.updateProviderInfo();
-        }
+        //TODO Update Provider.
 /*
         else if (provider_response == 3)
         {

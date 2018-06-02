@@ -166,8 +166,32 @@ public class ProviderList extends Utility {
         }
         return p_root.get_pname();
     }
-
-
+    //Verifies if a manger is in the system using the ManagerList.txt file.
+    public Boolean manager_Verification(){
+    String file_name = "C:\\Users\\Danc2\\IdeaProjects\\__01ChocoOcho\\May30 - CS300Project 2\\src\\ManagerList.txt";
+    System.out.println("\nEnter manager I.D. # to be verified: ");
+    int manager_ID = input.nextInt();
+    input.nextLine();
+    int temp_id = 0;//Parsed int.
+    Boolean stop = false;
+        try {
+        FileReader file = new FileReader(file_name);
+        BufferedReader in = new BufferedReader(file);
+        String line = in.readLine();
+        while (stop == false && line != null) {
+                temp_id = Integer.parseInt(line);
+                if (temp_id == manager_ID)
+                    stop = true;//Stop reading...we have a match.
+                line = in.readLine();
+        }
+    } catch (FileNotFoundException e) {
+        System.out.println("Provider file not found.");
+    } catch (IOException ex) {
+        System.out.println("Error reading file.");
+    }
+        return stop;
+    }
+   
     public void display_all(){
         display_all(this.p_root);
     }
