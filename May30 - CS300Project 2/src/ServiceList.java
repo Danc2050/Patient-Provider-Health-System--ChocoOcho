@@ -20,7 +20,7 @@ public class ServiceList extends Utility{
 
          //FileReader file = new FileReader(file_name);
          //BufferedReader in = new BufferedReader(file);
-         BufferedReader in = new BufferedReader(new FileReader("C:\\Users\\phuon\\IdeaProjects\\ChocoOcho\\May30 - CS300Project 2\\src\\ServiceList.txt"));
+         BufferedReader in = new BufferedReader(new FileReader("/Users/Marko/IdeaProjects/ChocoOcho/ChocoOchoJUNE/May30 - CS300Project 2/src/ServiceList.txt"));
          String line = in.readLine();
 
          while (line != null) {
@@ -73,9 +73,7 @@ public class ServiceList extends Utility{
 
    protected Node add_service(Node s_root, int t_code, String t_name, float t_fee){
       if(s_root == null) {
-         System.out.println("\nNow addding " + t_name + "to root");
          s_root = new Service(t_name, t_code, t_fee);
-         System.out.println("\nThis.s_root" + s_root.get_service_name());
          return s_root;
       }
       else {

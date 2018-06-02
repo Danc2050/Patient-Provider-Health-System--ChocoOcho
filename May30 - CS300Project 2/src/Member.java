@@ -32,6 +32,7 @@ public class Member extends Node{
     public void set_m_name(String newName){this.Name = newName; return;
     }
 
+    public void set_p_name(String newName) {return;}
     public String get_service_name()
     {
         return null;

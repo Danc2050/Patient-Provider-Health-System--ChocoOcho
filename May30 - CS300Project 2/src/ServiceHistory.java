@@ -99,5 +99,6 @@ public class ServiceHistory extends Node{
     public void set_m_name(String newName){return;}
     public float get_week_fee(){return 0;}
     public int get_num_consultations(){return 0;}
+    public void set_p_name(String newName){return;}
 
 }

@@ -12,6 +12,7 @@ abstract public class Node extends Utility {
   abstract public float get_service_fee();
   abstract public void set_service_name(String new_name);
   abstract public void set_m_name(String newName);
+  abstract public void set_p_name(String newName);
   abstract public void set_service_code(int new_code);
   abstract public void set_service_fee(float new_fee);
   abstract public void DisplayAll();

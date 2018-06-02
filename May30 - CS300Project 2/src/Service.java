@@ -50,6 +50,7 @@ public class Service extends Node {
     public String get_status(){return null;};
 
     public int get_member_id(){return 0;};
+    public void set_p_name(String newName) { return; }
 
     //More for Service history tree class
     public String get_pname(){return null;}

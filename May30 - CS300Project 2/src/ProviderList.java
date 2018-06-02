@@ -8,8 +8,9 @@ public class ProviderList extends Utility {
         this.p_root = null;
     }
 
+
     public int read_from_file() {
-        String file_name = "C:\\Users\\phuon\\IdeaProjects\\ChocoOcho\\May30 - CS300Project 2\\src\\ProviderList.txt";
+        String file_name = "/Users/Marko/IdeaProjects/ChocoOcho/ChocoOchoJUNE/May30 - CS300Project 2/src/ProviderList.txt";
         int temp_id = 0;
         try {
 
@@ -34,12 +35,13 @@ public class ProviderList extends Utility {
                 this.p_root = add_provider(this.p_root, temp_name, temp_id, ad, temp_service, temp_week_fee, temp_num_consultations);
                 line = in.readLine();
             }
-
+            in.close();
         } catch (FileNotFoundException e) {
             System.out.println("Provider file not found.");
         } catch (IOException ex) {
             System.out.println("Error reading file.");
         }
+        tId = temp_id++;
         return 1;
     }
 
@@ -104,7 +106,7 @@ public class ProviderList extends Utility {
             return p_root;
         }
         else {
-            if (p_root.get_pname().compareToIgnoreCase(t_name) < 1)
+            if (p_root.get_pname().compareToIgnoreCase(t_name) > 0)
                 p_root.connect_left(add_provider(p_root.go_left(), t_name, t_id, ad, t_service, t_week_fee, t_num_consultations));
             else
                 p_root.connect_right(add_provider(p_root.go_right(), t_name, t_id, ad, t_service, t_week_fee, t_num_consultations));
@@ -113,7 +115,7 @@ public class ProviderList extends Utility {
     }
     public void delete()
     {
-        System.out.println("What is the name of the member you wish to remove from the system?");
+        System.out.println("What is the name of the Provider you wish to remove from the system?");
         String to_delete = input.nextLine();
 
         this.p_root = delete(this.p_root, to_delete);
@@ -126,9 +128,9 @@ public class ProviderList extends Utility {
             return p_root;
         }
 
-        if (p_root.get_mname().compareTo(name) > 0)
+        if (p_root.get_pname().compareTo(name) > 0)
             p_root.connect_left(delete(p_root.go_left(), name));
-        else if (p_root.get_mname().compareTo(name) < 0)
+        else if (p_root.get_pname().compareTo(name) < 0)
             p_root.connect_right(delete(p_root.go_right(), name));
         else
         {
@@ -148,7 +150,7 @@ public class ProviderList extends Utility {
             else
             {
                 String minValue = minValue(p_root.go_right());
-                p_root.set_m_name(minValue);
+                p_root.set_p_name(minValue);
                 p_root.connect_right(delete(p_root.go_right(), minValue));
                 System.out.println("Deleting " + name);
             }
@@ -162,7 +164,7 @@ public class ProviderList extends Utility {
         {
             return minValue(p_root.go_left());
         }
-        return p_root.get_mname();
+        return p_root.get_pname();
     }
 
 

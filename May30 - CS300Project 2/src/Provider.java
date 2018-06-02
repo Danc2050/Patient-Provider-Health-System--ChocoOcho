@@ -37,9 +37,11 @@ public class Provider extends Node {
         this.p_address = ad.p_address;
     }
 
+
+
     public void set_service_name(String new_name) { return; }
     public void set_m_name(String newName){return;}
-
+    public void set_p_name(String newName) {this.Name = newName;}
     public void set_service_code(int new_code) { return; }
     public void set_service_fee(float new_fee) { return; }
     public String get_service_name()
@@ -68,6 +70,15 @@ public class Provider extends Node {
     public String get_comments(){return null;}
     public void DisplayAll()
     {
+        System.out.println("=====================================");
+        System.out.println("Provider Name: " + this.Name);
+        System.out.println("Provider's Services: " + this.Service);
+        System.out.println("Provider's ID: " + this.id);
+        System.out.println("Provider's Weekly Fee: " + this.week_fee);
+        System.out.println("Provider's Number of Consultations: " + this.num_consultations);
+        System.out.print("Provider's Address: ");
+        this.p_address.display_address();
+        System.out.println("=====================================");
         return;
     }
     public Address get_address(){
