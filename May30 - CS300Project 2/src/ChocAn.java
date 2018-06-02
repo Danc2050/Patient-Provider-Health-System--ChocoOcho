@@ -40,7 +40,7 @@ public class ChocAn {
                         catcher = object.intMode_Provider(list_of_providers); //Mess with providers
 
                     else if (intMode_response == 3)
-                        catcher = object.intMode_Report(); //Do reports
+                        catcher = object.intMode_Report(tree_of_services); //Do reports
 
                     else if (intMode_response == 4)
                         catcher = object.intMode_Service(list_of_all_services); //Mess with services in list of all services

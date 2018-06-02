@@ -138,25 +138,55 @@ public class Menu extends Utility {
         return 0;
     }
 
-    public int intMode_Report() {
+    public int intMode_Report(SHistoryTree tree_of_services)
+    {
         int report_response = 0;
+        int provider_id, member_id;
         Scanner input = new Scanner(System.in);
 
-        System.out.println("What would you like to do?");
-        System.out.println("[1] Print Provider Report." + "\n[2] Print Patient Report." +
-                "\n[3] Return to Manager Menu.");
+        System.out.println("\n\nWhat would you like to do?");
+        System.out.println("\n[1] Print Provider Report." + "\n[2] Print Patient Report." +
+                "\n[3] - Print Summary Report." + "\n[4] Return to Manager Menu.");
 
-        while (report_response < 1 || report_response > 3) {
+        while (report_response < 1 || report_response > 4) {
             System.out.println("\nEnter response:");
             report_response = input.nextInt();
             input.nextLine();
         }
 
-        if (report_response == 1) {
-            //TODO Print Provider Report
-        } else if (report_response == 2) {
-            //TODO Print Patient Report
-        } else
+        if (report_response == 1)
+        {
+            System.out.println("\n\nEnter the ID of the provider you'd like to email the report to: ");
+            provider_id = input.nextInt();
+            input.nextLine();
+
+            if (tree_of_services.email_p_history(provider_id) == 1)
+                System.out.println("\nProvider report has been sent.");
+            else
+                System.out.println("\nCould not send provider report.");
+        }
+
+        else if (report_response == 2)
+        {
+            System.out.println("\n\nEnter the ID of the member you'd like to email the report to.");
+            member_id = input.nextInt();
+            input.nextLine();
+
+            if (tree_of_services.email_m_history(member_id) == 1)
+                System.out.println("\nMember report has been sent.");
+            else
+                System.out.println("\nCould not send member report.");
+        }
+
+        else if (report_response == 3)
+        {
+            if (tree_of_services.email_summary_report() == 1)
+                System.out.println("\nSummary report was sent.");
+            else
+                System.out.println("\nCould not send summary report.");
+        }
+
+        else
             return 0;
         return 0;
     }
