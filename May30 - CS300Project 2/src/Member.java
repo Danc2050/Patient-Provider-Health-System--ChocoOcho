@@ -33,10 +33,15 @@ public class Member extends Node{
     }
 
     public void set_p_name(String newName) {return;}
+    public void set_provider_id(int newId) {return;}
+    public int get_provider_id() {return 0;}
     public String get_service_name()
     {
         return null;
     }
+    public void set_provider_services(String newServices) {return;}
+    public String get_provider_services() {return null;}
+    public void set_provider_address(Address new_address) {return;}
 
     public int get_service_code()
     {

@@ -89,7 +89,7 @@ public class ProviderList extends Utility {
         String city = input.nextLine();
         System.out.println("\nEnter State)");
         String state = input.nextLine();
-        System.out.println("\nEnter zip)");
+        System.out.println("\nEnter zip");
         int zip = input.nextInt();
         input.nextLine();
         System.out.println("\nAdd a single service in order to be added to the system.)");
@@ -178,4 +178,143 @@ public class ProviderList extends Utility {
         p_root.DisplayAll();
         display_all(p_root.go_right());
     }
+
+    /* Determines which piece of info the provider wants to edit */
+    public void updateProviderInfo() {
+        System.out.println("[1] - Update Provider Name." + "\n[2] - Update Provider ID" +
+                "\n[3] - Update Provider Services" + "\n[4] - Update Provider Address.");
+        int response = input.nextInt();
+        input.nextLine();
+        if (response == 1) {
+            updateProviderName();
+        } else if (response == 2) {
+            System.out.println("What is the name of the provider you wish to edit?");
+            String nameToFind = input.nextLine();
+            System.out.println("What is their *NEW* ID");
+            int newID = input.nextInt();
+            updateProviderId(p_root, nameToFind, newID);
+        } else if (response == 3) {
+            System.out.println("What is the name of the provider you wish to edit?");
+            String nameToFind = input.nextLine();
+            System.out.println("What are their *NEW* services?");
+            String newServices = input.nextLine();
+            updateProviderServices(p_root, nameToFind, newServices);
+        } else if (response == 4) {
+            System.out.println("What is the name of the provider you wish to edit?");
+            String nameToFind = input.nextLine();
+            System.out.println("\nEnter *NEW* Street Address (25 Characters)");
+            String street = input.nextLine();
+            System.out.println("\nEnter *NEW* city");
+            String city = input.nextLine();
+            System.out.println("\nEnter *NEW* State)");
+            String state = input.nextLine();
+            System.out.println("\nEnter *NEW* zip");
+            int zip = input.nextInt();
+            Address toUpdate = new Address(street, city, state, zip);
+            updateProviderAddress(p_root, nameToFind, toUpdate);
+        }
+    }
+
+    public Node updateProviderId(Node root, String provider_name_to_find, int new_id) {
+        if (root == null)
+            return root;
+        if (root.get_pname().compareToIgnoreCase(provider_name_to_find) > 0)
+            root.connect_left(updateProviderId(root.go_left(), provider_name_to_find, new_id));
+        else if (root.get_pname().compareToIgnoreCase(provider_name_to_find) < 0)
+            root.connect_right(updateProviderId(root.go_right(), provider_name_to_find, new_id));
+        else {
+            System.out.println("Old provider id was: " + root.get_provider_id());
+            root.set_provider_id(new_id);
+            System.out.println("New provider id is: " + root.get_provider_id());
+        }
+        return root;
+    }
+
+    public Node updateProviderServices(Node root, String provider_name_to_find, String new_services) {
+        if (root == null)
+            return root;
+        if (root.get_pname().compareToIgnoreCase(provider_name_to_find) > 0)
+            root.connect_left(updateProviderServices(root.go_left(), provider_name_to_find, new_services));
+        else if (root.get_pname().compareToIgnoreCase(provider_name_to_find) < 0)
+            root.connect_right(updateProviderServices(root.go_right(), provider_name_to_find, new_services));
+        else {
+            System.out.println("Provider's name: " + root.get_pname());
+            System.out.println("Old provider services was: " + root.get_provider_services());
+            root.set_provider_services(new_services);
+            System.out.println("New service is: " + root.get_provider_services());
+        }
+        return root;
+    }
+
+    public Node updateProviderAddress(Node root, String provider_name_to_find, Address new_address){
+        if(root == null)
+            return root;
+        if(root.get_pname().compareToIgnoreCase(provider_name_to_find) > 0)
+            root.connect_left(updateProviderAddress(root.go_left(), provider_name_to_find, new_address));
+        else if(root.get_pname().compareToIgnoreCase(provider_name_to_find) < 0)
+            root.connect_right(updateProviderAddress(root.go_right(), provider_name_to_find, new_address));
+        else{
+            System.out.println("Provider's new address is:\n");
+            System.out.println(new_address.street + " " + new_address.city + " " + new_address.state + " " + new_address.zip + "\n");
+            root.set_provider_address(new_address);
+        }
+        return root;
+    }
+
+    public int updateProviderName() {
+        //display_all_wrapper();
+        System.out.println("Enter the name of provider you wish to update: ");
+        String to_find = input.nextLine();
+
+        System.out.println("Enter new provider's name to replace: ");
+        String to_replace = input.nextLine();
+
+        System.out.println("Enter the provider's id you wish to update: ");
+        int provider_id = input.nextInt();
+
+        Node provider_to_change = new Provider();
+        this.p_root = find_provider(p_root, to_find, to_replace, provider_id, provider_to_change);
+        //System.out.println(m_root.get_pname() + " " + m_root.get_provider_id());
+        //remove_provider_wrapper(to_find, provider_id);
+        this.p_root = add_provider(p_root, to_replace, provider_to_change.get_provider_id(), provider_to_change.get_paddress(), provider_to_change.get_provider_services(), 0, 0);
+        display_all();
+        return 0;
+    }
+
+    public Node find_provider(Node root, String provider_name_to_find, String new_provider_name, int provider_id, Node provider_to_find) {
+        if (root == null)
+            return root;
+        if (root.get_pname().compareToIgnoreCase(provider_name_to_find) > 0) {
+            //System.out.println("Comparing " + root.get_pname() + " to " + provider_name_to_find);
+            root.connect_left(find_provider(root.go_left(), provider_name_to_find, new_provider_name, provider_id, provider_to_find));
+        }
+        else if(root.get_pname().compareToIgnoreCase(provider_name_to_find) < 0) {
+            //System.out.println("Comparing " + root.get_pname() + " to " + provider_name_to_find);
+            root.connect_right(find_provider(root.go_right(), provider_name_to_find, new_provider_name, provider_id, provider_to_find));
+        }
+        else {
+            //System.out.println"===================================");
+            //System.out.println(root.get_pname());
+            //System.out.println(root.get_provider_id());
+            if (root.get_provider_id() == provider_id) {
+                //System.out.println("Old provider name is " + root.get_pname() + " and current id is " + root.get_provider_id());
+                //root.set_provider_name(new_provider_name);
+                //root = remove_provider(root, new_provider_name, provider_id);
+                //provider_to_find.set_provider_name(root.get_pname());
+                provider_to_find.set_provider_id(root.get_provider_id());
+                provider_to_find.set_provider_services(root.get_provider_services());
+                provider_to_find.set_provider_address(root.get_paddress());
+                //provider_to_find.set_provider_history(root.get_serviceHistory());
+                root.set_p_name(new_provider_name);
+                root = delete(root, new_provider_name);
+                return root;
+            } else if (root.get_provider_id() != provider_id) {
+                System.out.print("Name found but id does not match.\n");
+                System.out.print("No change has been made.\n");
+            }
+        }
+        return root;
+    }
+
+
 }

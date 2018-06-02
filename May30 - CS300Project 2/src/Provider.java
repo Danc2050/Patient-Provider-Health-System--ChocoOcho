@@ -42,6 +42,11 @@ public class Provider extends Node {
     public void set_service_name(String new_name) { return; }
     public void set_m_name(String newName){return;}
     public void set_p_name(String newName) {this.Name = newName;}
+    public void set_provider_services(String newServices) {this.Service = newServices;}
+    public String get_provider_services() {return this.Service;}
+    public void set_provider_id(int newId) {this.id = newId;}
+    public int get_provider_id() {return this.id;}
+    public void set_provider_address(Address new_address) {this.p_address = new_address;}
     public void set_service_code(int new_code) { return; }
     public void set_service_fee(float new_fee) { return; }
     public String get_service_name()
@@ -84,7 +89,7 @@ public class Provider extends Node {
     public Address get_address(){
         return this.p_address;
     }
-    public Address get_paddress(){return null;}
+    public Address get_paddress(){return this.p_address;}
     public Address get_maddress(){return null;}
 
     /*public void generateServiceReport(){}//TODO Implement

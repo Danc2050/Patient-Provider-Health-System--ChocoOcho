@@ -35,4 +35,9 @@ abstract public class Node extends Utility {
   //More for provider
   abstract public float get_week_fee();
   abstract public int get_num_consultations();
+  abstract public void set_provider_id(int newId);
+  abstract public int get_provider_id();
+  abstract public void set_provider_services(String newServices);
+  abstract public String get_provider_services();
+  abstract public void set_provider_address(Address new_address);
 }
