@@ -234,7 +234,7 @@ public class MemberList extends Utility {
     public int add_member_wrapper(int id, String status, String name, Address address) {
 
         this.m_root = add_member(m_root, id, status, name, address);
-        return 0;
+        return 1;
     }
 
     public Node add_member(Node root, int m_id, String m_status, String m_name, Address m_address) {
