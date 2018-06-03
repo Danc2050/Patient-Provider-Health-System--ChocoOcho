@@ -10,7 +10,7 @@ public class ProviderList extends Utility {
 
 
     public int read_from_file() {
-        String file_name = "/Users/Marko/IdeaProjects/ChocoOcho/ChocoOchoJUNE/May30 - CS300Project 2/src/ProviderList.txt";
+        String file_name = "ProviderList.txt";
         int temp_id = 0;
         try {
 
@@ -28,11 +28,9 @@ public class ProviderList extends Utility {
                 String temp_state = columns[4];
                 int temp_zip = Integer.parseInt(columns[5]);
                 String temp_service = columns[6];
-                float temp_week_fee = Float.parseFloat(columns[7]);
-                int temp_num_consultations = Integer.parseInt(columns[8]);
 
                 Address ad = new Address(temp_street, temp_city, temp_state, temp_zip);
-                this.p_root = add_provider(this.p_root, temp_name, temp_id, ad, temp_service, temp_week_fee, temp_num_consultations);
+                this.p_root = add_provider(this.p_root, temp_name, temp_id, ad, temp_service);
                 line = in.readLine();
             }
             in.close();
@@ -96,20 +94,20 @@ public class ProviderList extends Utility {
         String service = input.nextLine();
         Address ad = new Address(street, city, state, zip);
 
-        this.p_root = add_provider(p_root, name, id, ad, service, 0, 0);
+        this.p_root = add_provider(p_root, name, id, ad, service);
         return 1;
     }
 
-    protected Node add_provider(Node p_root, String t_name, int t_id, Address ad, String t_service, float t_week_fee, int t_num_consultations){
+    protected Node add_provider(Node p_root, String t_name, int t_id, Address ad, String t_service){
         if(p_root == null) {
-            p_root = new Provider(t_name, t_id, ad, t_service, t_week_fee, t_num_consultations);
+            p_root = new Provider(t_name, t_id, ad, t_service);
             return p_root;
         }
         else {
             if (p_root.get_pname().compareToIgnoreCase(t_name) > 0)
-                p_root.connect_left(add_provider(p_root.go_left(), t_name, t_id, ad, t_service, t_week_fee, t_num_consultations));
+                p_root.connect_left(add_provider(p_root.go_left(), t_name, t_id, ad, t_service));
             else
-                p_root.connect_right(add_provider(p_root.go_right(), t_name, t_id, ad, t_service, t_week_fee, t_num_consultations));
+                p_root.connect_right(add_provider(p_root.go_right(), t_name, t_id, ad, t_service));
         }
         return p_root;
     }
@@ -168,7 +166,7 @@ public class ProviderList extends Utility {
     }
     //Verifies if a manger is in the system using the ManagerList.txt file.
     public Boolean manager_Verification(){
-    String file_name = "C:\\Users\\Danc2\\IdeaProjects\\__01ChocoOcho\\May30 - CS300Project 2\\src\\ManagerList.txt";
+    String file_name = "ManagerList.txt";
     System.out.println("\nEnter manager I.D. # to be verified: ");
     int manager_ID = input.nextInt();
     input.nextLine();
@@ -300,7 +298,7 @@ public class ProviderList extends Utility {
         this.p_root = find_provider(p_root, to_find, to_replace, provider_id, provider_to_change);
         //System.out.println(m_root.get_pname() + " " + m_root.get_provider_id());
         //remove_provider_wrapper(to_find, provider_id);
-        this.p_root = add_provider(p_root, to_replace, provider_to_change.get_provider_id(), provider_to_change.get_paddress(), provider_to_change.get_provider_services(), 0, 0);
+        this.p_root = add_provider(p_root, to_replace, provider_to_change.get_provider_id(), provider_to_change.get_paddress(), provider_to_change.get_provider_services());
         display_all();
         return 0;
     }
