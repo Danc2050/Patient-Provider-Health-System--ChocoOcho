@@ -28,8 +28,6 @@ public class Provider extends Node {
         this.p_address = ad.p_address;
     }
 
-
-
     public void set_service_name(String new_name) { return; }
     public void set_m_name(String newName){return;}
     public void set_p_name(String newName) {this.Name = newName;}
@@ -87,4 +85,3 @@ public class Provider extends Node {
     public void set_member_name(String name_to_set) {return;}
     public void set_member_id(int id_to_set) {return;}
 }
-// }
