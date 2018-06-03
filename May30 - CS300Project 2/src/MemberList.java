@@ -423,8 +423,6 @@ public class MemberList extends Utility {
             return return_value;
         }
 
-
-
         protected Node import_member_list(Node root, int m_id, String m_status, String m_name, Address m_address)
         {
             if(root == null)
@@ -440,4 +438,23 @@ public class MemberList extends Utility {
             }
             return root;
         }
+    
+        public String find_member(int mid){
+        return find_member(this.m_root, mid);
+    }
+    protected String find_member(Node m_root, int mid){
+        if(m_root == null)
+            return null;
+        String name = null;
+        if(m_root.get_member_id() == mid){
+            name = m_root.get_mname();
+            return name;
+        }
+        else {
+            name = find_member(m_root.go_left(), mid);
+            if(name == null)
+                name = find_member(m_root.go_right(), mid);
+        }
+        return name;
+    }
 }
