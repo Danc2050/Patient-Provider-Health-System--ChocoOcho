@@ -100,5 +100,10 @@ public class Provider extends Node {
     public void get_address(){};*/
     public float get_week_fee(){return this.week_fee;}
     public int get_num_consultations(){return this.num_consultations;}
+    public void set_member_address(Address address_to_set) {return;}
+    public String get_member_name() { return null; }
+    public void set_member_status(String status_to_set) {return;}
+    public void set_member_name(String name_to_set) {return;}
+    public void set_member_id(int id_to_set) {return;}
 }
 // }
