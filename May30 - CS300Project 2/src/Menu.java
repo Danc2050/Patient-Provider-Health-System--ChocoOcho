@@ -68,14 +68,41 @@ public class Menu extends Utility {
 
         if (member_response == 1) //Add Member
         {
-            if (list_of_members.add_member_wrapper() == 1)
+            System.out.println("\nEnter a name: ");
+            String name = input.nextLine();
+
+            System.out.println("\nEnter an id: ");
+            int id = input.nextInt();
+
+            System.out.println("\nEnter a status: ");
+            String m_status = input.nextLine();
+
+            System.out.println("\nEnter a street: ");
+            String street = input.nextLine();
+            System.out.println("\nEnter a city: ");
+            String city = input.nextLine();
+            System.out.println("\nEnter a state: ");
+            String state = input.nextLine();
+            System.out.println("\nEnter a zip: ");
+            int zip = input.nextInt();
+            Address m_address = new Address(street, city, state, zip);
+            
+            
+            if (list_of_members.add_member_wrapper(id, m_status, name, m_address) == 1)
                 System.out.println("\nMember added successfully.");
             else
                 System.out.println("\nCould not add member.");
         }
 
-        else if (member_response == 2) //Remove Member
-            list_of_members.delete();
+        else if (member_response == 2) {//Remove Member
+            System.out.println("\nEnter a name: ");
+            String name = input.nextLine();
+
+            System.out.println("\nEnter an id: ");
+            int id = input.nextInt();
+
+            list_of_members.remove_member_wrapper(name, id);
+        }
 
         //TODO Update Member.
 /*
