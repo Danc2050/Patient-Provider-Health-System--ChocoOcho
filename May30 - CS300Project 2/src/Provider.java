@@ -4,7 +4,6 @@ public class Provider extends Node {
     protected String Name;
     protected String Service;
     protected int id;
-    //protected ServiceList s_list;//History of services that a provider offers.//Replaced with service..[V]
     protected float week_fee;
     protected int num_consultations;
 
@@ -92,14 +91,6 @@ public class Provider extends Node {
     public Address get_paddress(){return this.p_address;}
     public Address get_maddress(){return null;}
 
-    /*public void generateServiceReport(){}//TODO Implement
-    public boolean generateServiceList(){};//Generates text file.
-    public String verifyService(){}
-    public String validateMember(){}
-    public void get_history(){};//Return service history?
-    public void get_address(){};*/
-    public float get_week_fee(){return this.week_fee;}
-    public int get_num_consultations(){return this.num_consultations;}
     public void set_member_address(Address address_to_set) {return;}
     public String get_member_name() { return null; }
     public void set_member_status(String status_to_set) {return;}
