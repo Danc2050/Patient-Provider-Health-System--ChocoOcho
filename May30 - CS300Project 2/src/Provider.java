@@ -4,23 +4,17 @@ public class Provider extends Node {
     protected String Name;
     protected String Service;
     protected int id;
-    protected float week_fee;
-    protected int num_consultations;
 
     public Provider() {
         this.Name = null;
         this.id = 0;
-        this.week_fee = 0;
-        this.num_consultations = 0;
         this.p_address = null;
         this.Service = null;
     }
-    public Provider(String t_name, int t_id, Address ad, String t_service, float t_week_fee, int t_num_consultations)
+    public Provider(String t_name, int t_id, Address ad, String t_service)
     {
         this.Name = t_name;
         this.id = t_id;
-        this.week_fee = t_week_fee;
-        this.num_consultations = t_num_consultations;
         if(this.p_address == null)
             this.p_address = new Address();
         this.p_address.to_copy(ad);
@@ -30,8 +24,6 @@ public class Provider extends Node {
     public void toCopy(Provider ad){
         this.Name = ad.Name;
         this.id = ad.id;
-        this.week_fee = ad.week_fee;
-        this.num_consultations = ad.num_consultations;
         this.Service = ad.Service;
         this.p_address = ad.p_address;
     }
@@ -78,8 +70,6 @@ public class Provider extends Node {
         System.out.println("Provider Name: " + this.Name);
         System.out.println("Provider's Services: " + this.Service);
         System.out.println("Provider's ID: " + this.id);
-        System.out.println("Provider's Weekly Fee: " + this.week_fee);
-        System.out.println("Provider's Number of Consultations: " + this.num_consultations);
         System.out.print("Provider's Address: ");
         this.p_address.display_address();
         System.out.println("=====================================");
