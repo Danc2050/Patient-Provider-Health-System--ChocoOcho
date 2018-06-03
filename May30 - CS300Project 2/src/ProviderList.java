@@ -339,6 +339,40 @@ public class ProviderList extends Utility {
         }
         return root;
     }
-
+    
+    
+    public String find_provider(int pid){
+        return find_provider(this.p_root, pid);
+    }
+    protected String find_provider(Node p_root, int pid){
+        if(p_root == null)
+            return null;
+        String name = null;
+        if(p_root.get_pnum() == pid){
+            name = p_root.get_pname();
+            return name;
+        }
+        else {
+            name = find_provider(p_root.go_left(), pid);
+            if(name == null)
+                name = find_provider(p_root.go_right(), pid);
+        }
+        return name;
+    }
+    
+    
+    public void get_ids(int [] plist, int i){
+        if(p_root == null)
+            return;
+        get_ids(this.p_root, plist, i);
+    }
+    public int get_ids(Node p_root, int [] plist, int i){
+        if(p_root == null)
+            return i;
+        i = get_ids(p_root.go_left(), plist, i);
+        plist[i++] = p_root.get_pnum();
+        i = get_ids(p_root.go_right(), plist, i);
+        return i;
+    }
 
 }
