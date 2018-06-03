@@ -106,6 +106,7 @@ public class ServiceHistory extends Node{
     public String get_provider_services() {return null;}
     public void set_provider_address(Address new_address) {return;}
     
+    public Address get_address(){ return null;}
     public void set_member_address(Address address_to_set) {return;}
     public String get_member_name() { return null; }
     public void set_member_status(String status_to_set) {return;}
