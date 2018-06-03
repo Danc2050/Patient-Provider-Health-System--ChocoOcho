@@ -24,7 +24,7 @@ public class SHistoryTree extends Utility {
 
             //FileReader file = new FileReader(file_name);
             //BufferedReader in = new BufferedReader(file);
-            BufferedReader in = new BufferedReader(new FileReader("/Users/Angelic/IdeaProjects/June2/May30 - CS300Project 2/src/ServiceHistory.txt"));
+            BufferedReader in = new BufferedReader(new FileReader("ServiceHistory.txt"));
 
             String line = in.readLine();
 
@@ -39,7 +39,7 @@ public class SHistoryTree extends Utility {
                 int t_zip = Integer.parseInt(columns[5]);
                 Address pad = new Address(t_street,t_city,t_state,t_zip);
 
-                Provider p = new Provider(temp_pname,temp_pnum,pad,null, 0, 0);
+                Provider p = new Provider(temp_pname,temp_pnum,pad,null);
 
                 String temp_mname = columns[6];
                 int temp_mnum = Integer.parseInt(columns[7]);
@@ -139,7 +139,7 @@ public class SHistoryTree extends Utility {
         //Get provider address
         Address pad = new Address();
         pad.set_address();
-        Provider p = new Provider(pname,pnum,pad, null, 0, 0);
+        Provider p = new Provider(pname,pnum,pad, null);
         System.out.print("What is the member name: ");
         String mname = input.next();
         System.out.print("What is the member ID: ");
