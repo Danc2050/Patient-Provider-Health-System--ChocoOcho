@@ -59,7 +59,18 @@ public class Member extends Node{
     {
         return id;
     }
+    
+    //Functions of Member
+    public void set_member_status(String status_to_set) {this.m_status = status_to_set;}
 
+    public void set_member_id(int id_to_change) {this.id = id_to_change;}
+
+    public void set_member_name(String name_to_set) {this.Name = name_to_set;}
+
+    public void set_member_address(Address address_to_set) {this.m_address = address_to_set;}
+
+    public String get_member_name() {return this.Name;}
+    
     //public String get_status() {return status;}
 
     public String get_status() {return m_status;}
