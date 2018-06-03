@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileWriter;
+import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
@@ -23,7 +24,7 @@ public class SHistoryTree extends Utility {
 
             //FileReader file = new FileReader(file_name);
             //BufferedReader in = new BufferedReader(file);
-            BufferedReader in = new BufferedReader(new FileReader("/Users/Marko/IdeaProjects/ChocoOcho/ChocoOchoJUNE/May30 - CS300Project 2/src/ServiceHistory.txt"));
+            BufferedReader in = new BufferedReader(new FileReader("/Users/Angelic/IdeaProjects/June2/May30 - CS300Project 2/src/ServiceHistory.txt"));
 
             String line = in.readLine();
 
@@ -182,7 +183,12 @@ public class SHistoryTree extends Utility {
     //Wrapper
     public int email_p_history(int p_id){
         try {
-            FileWriter writer = new FileWriter("ProviderHistory.txt");
+            ProviderList person = new ProviderList();
+            person.read_from_file();
+            String name = person.find_provider(p_id);
+            name.concat(".txt");
+
+            FileWriter writer = new FileWriter(name);
             email_p_history(this.h_root, p_id, writer);
             writer.close();
         }
@@ -197,10 +203,13 @@ public class SHistoryTree extends Utility {
         }
         if(p_id == h_root.get_pnum()) {
             try {
-                SimpleDateFormat mdyhms = new SimpleDateFormat("MM-dd-YYYY");
+                SimpleDateFormat mdy = new SimpleDateFormat("MM-dd-yyyy");
                 long DAY = 1000 * 60 * 60 * 24;
-                String week = mdyhms.format(new Date(System.currentTimeMillis() - (7 * DAY)));
-                String today = mdyhms.format(new Date());
+                String begin = mdy.format(new Date(System.currentTimeMillis() - (7 * DAY)));
+                String end = mdy.format(new Date());
+                Date week = mdy.parse(begin);
+                Date today = mdy.parse(end);
+
                 writer.write("Name: " + h_root.get_pname() + "\n");
                 writer.write("ID: " + h_root.get_pnum() + "\n");
                 Address ad = new Address();
@@ -209,11 +218,14 @@ public class SHistoryTree extends Utility {
                 writer.write(ad.city + ", ");
                 writer.write(ad.state + ", ");
                 writer.write(ad.zip + "\n");
-                writer.write("\n~~~~Provider History (" + week + " to " + today + ")~~~~\n\n");
+                writer.write("\n~~~~Provider History (" + begin + " to " + end + ")~~~~\n\n");
                 email_p_history(h_root, writer, p_id, week, today);
                 writer.write("\n~END~\n");
             }
             catch(IOException e) {
+                e.printStackTrace();
+            }
+            catch(ParseException e){
                 e.printStackTrace();
             }
         }
@@ -224,42 +236,52 @@ public class SHistoryTree extends Utility {
         return 1;
     }
 
-    protected void email_p_history(Node h_root,FileWriter file, int p_id, String week, String today){
+    protected void email_p_history(Node h_root,FileWriter file, int p_id, Date week, Date today){
         if(h_root == null)
             return;
-        email_p_history(h_root.go_left(), file, p_id, week,today);
-        /*SimpleDateFormat mdyhms = new SimpleDateFormat("MM-dd-YYYY");
-        String sdate = mdyhms.format(h_root.get_sdate());*/
-        if(h_root.get_pnum() == p_id /*&& sdate.compareTo(week) < 0 && sdate.compareTo(today) > 0*/){
-            try{
-                file.write("Service date: " + h_root.get_sdate() + "\n");
-                file.write("Log date: " + h_root.get_ldate() + "\n");
+        try {
+            SimpleDateFormat mdy = new SimpleDateFormat("MM-dd-yyyy");
+            Date sdate = mdy.parse(h_root.get_sdate());
 
-                file.write("Member: " + h_root.get_mname() + "\n");
-                file.write("Member ID: " + h_root.get_member_id() + "\n");
-                Address ad = new Address();
-                ad = h_root.get_maddress();
-                file.write("Address: " + ad.street + ", ");
-                file.write(ad.city + ", ");
-                file.write(ad.state + ", ");
-                file.write(ad.zip + "\n");
+            email_p_history(h_root.go_left(), file, p_id, week, today);
+            if (h_root.get_pnum() == p_id && sdate.compareTo(week) >= 0 && sdate.compareTo(today) <= 0) {
+                try {
+                    file.write("Service date: " + h_root.get_sdate() + "\n");
+                    file.write("Log date: " + h_root.get_ldate() + "\n");
 
-                file.write("Service: " + h_root.get_service_name() + "\n");
-                file.write("Service code: " + h_root.get_service_code() + "\n");
-                file.write("Service fee: " + h_root.get_service_fee() + "\n");
-                file.write("Comments: " + h_root.get_comments() + "\n");
-                file.write("\n");
-            }catch(IOException e){
-                e.printStackTrace();
+                    file.write("Member: " + h_root.get_mname() + "\n");
+                    file.write("Member ID: " + h_root.get_member_id() + "\n");
+                    Address ad = new Address();
+                    ad = h_root.get_maddress();
+                    file.write("Address: " + ad.street + ", ");
+                    file.write(ad.city + ", ");
+                    file.write(ad.state + ", ");
+                    file.write(ad.zip + "\n");
+
+                    file.write("Service: " + h_root.get_service_name() + "\n");
+                    file.write("Service code: " + h_root.get_service_code() + "\n");
+                    file.write("Service fee: " + h_root.get_service_fee() + "\n");
+                    file.write("Comments: " + h_root.get_comments() + "\n");
+                    file.write("\n");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+            email_p_history(h_root.go_right(), file, p_id, week, today);
+        }catch(ParseException e){
+            e.printStackTrace();
         }
-        email_p_history(h_root.go_right(), file, p_id, week,today);
     }
 
     //Wrapper
     public int email_m_history(int m_id){
         try{
-            FileWriter writer = new FileWriter("MemberHistory.txt");
+            MemberList person = new MemberList();
+            person.read_from_file();
+            String name = person.find_member(m_id);
+            name.concat(".txt");
+            FileWriter writer = new FileWriter(name);
+
             email_m_history(this.h_root, m_id, writer);
             writer.close();
         }
@@ -329,38 +351,129 @@ public class SHistoryTree extends Utility {
     public int email_summary_report() {
         if(this.h_root == null)
             return 1;
-        SimpleDateFormat mdyhms = new SimpleDateFormat("MM-dd-YYYY hh:mm:ss");
-        long DAY = 1000 * 60 * 60 * 24;
-        String week = mdyhms.format(new Date(System.currentTimeMillis() - (7 * DAY)));
-        String today = mdyhms.format(new Date());
+
         try{
-            FileWriter writer = new FileWriter("SummaryReport.txt");
-            writer.write("~~~~Summary Report (" + week + " to " + today + ")~~~~\n\n");
-            email_summary_report(this.h_root, writer, week, today);
-            writer.write("Total number of providers who provided services: " + "\n");
-            writer.write("Overall fee total: " + "\n");
-            writer.write("\n~END~\n");
-            writer.close();
-        } catch (IOException e) {
+            SimpleDateFormat mdy = new SimpleDateFormat("MM-dd-yyyy");
+            long DAY = 1000 * 60 * 60 * 24;
+            String begin = mdy.format(new Date(System.currentTimeMillis() - (7 * DAY)));
+            String end = mdy.format(new Date());
+            Date week = mdy.parse(begin);
+            Date today = mdy.parse(end);
+
+            try{
+                FileWriter writer = new FileWriter("SummaryReport.txt");
+                writer.write("~~~~Summary Report (" + begin + " to " + end + ")~~~~\n\n");
+
+                float fee[] = new float[1];
+                fee[0] = 0;
+                int consultations[] = new int[1];
+                consultations[0] = 0;
+
+                int size = 100;
+                int plist[] = new int[size];
+                ProviderList providers = new ProviderList();
+                providers.read_from_file();
+                providers.get_ids(plist, 0);
+
+                email_summary_report(this.h_root, writer, week, today, fee, consultations, plist);
+                writer.write("\nTotal number of consultations with members: " + consultations[0] + "\n");
+                writer.write("Overall fee total: " + fee[0] + "\n");
+                writer.write("\n~END~\n");
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }catch(ParseException e){
             e.printStackTrace();
         }
         return 1;
     }
-    public int email_summary_report(Node h_root,FileWriter writer, String week, String today){
+    public int email_summary_report(Node h_root,FileWriter writer, Date week, Date today, float [] tfee, int [] tcons, int [] plist){
         if(h_root == null)
             return 1;
-        email_summary_report(h_root.go_left(), writer,week, today);
-        if(h_root.get_sdate() == week/*h_root.get_sdate() >= week && h_root.get_sdate() >= today*/) {
-            try{
-                writer.write("Provider: " + h_root.get_pname() + "\n");
-                writer.write("Provider ID: " + h_root.get_pnum() + "\n");
-                writer.write("Total number of consultations: " + h_root.get_num_consultations() + "\n");
-                writer.write("Total fee for the week: " + h_root.get_week_fee() + "\n");
-            }catch(IOException e){
-                e.printStackTrace();
+
+        try{
+            SimpleDateFormat mdy = new SimpleDateFormat("MM-dd-yyyy");
+            Date sdate = mdy.parse(h_root.get_sdate());
+
+            email_summary_report(h_root.go_left(), writer,week, today, tfee, tcons, plist);
+            if(sdate.compareTo(week) >= 0 && sdate.compareTo(today) <= 0) {
+                try{
+                    if(!visited(h_root.get_pnum(), plist)) {
+                        writer.write("Provider: " + h_root.get_pname() + "\n");
+                        writer.write("Provider ID: " + h_root.get_pnum() + "\n");
+
+                        float fee[] = new float[1];
+                        fee[0] = 0;
+                        int consultations[] = new int[1];
+                        consultations[0] = 0;
+                        get_p_info(fee, consultations, h_root.get_pnum());
+
+                        writer.write("Total number of consultations: " + fee[0] + "\n");
+                        writer.write("Total fee for the week: " + consultations[0] + "\n\n");
+
+                        tfee[0] = tfee[0] + fee[0];
+                        tcons[0] = tcons[0] + consultations[0];
+                        visit(h_root.get_pnum(), plist);
+                    }
+
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
             }
+            email_summary_report(h_root.go_right(), writer, week, today, tfee, tcons, plist);
+        }catch(ParseException e){
+            e.printStackTrace();
         }
-        email_summary_report(h_root.go_right(), writer, week, today);
         return 1;
+    }
+
+    public void get_p_info(float [] fee, int [] consultations, int pid){
+        if(this.h_root == null)
+            return;
+        try {
+            SimpleDateFormat mdy = new SimpleDateFormat("MM-dd-yyyy");
+            long DAY = 1000 * 60 * 60 * 24;
+            String begin = mdy.format(new Date(System.currentTimeMillis() - (7 * DAY)));
+            String end = mdy.format(new Date());
+            Date week = mdy.parse(begin);
+            Date today = mdy.parse(end);
+
+            get_p_info(this.h_root, fee, consultations, pid, week, today);
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+    }
+    protected void get_p_info(Node h_root, float [] fee, int [] consultations, int pid, Date week, Date today){
+        if(h_root == null)
+            return;
+        try {
+            SimpleDateFormat mdy = new SimpleDateFormat("MM-dd-yyyy");
+            Date sdate = mdy.parse(h_root.get_sdate());
+
+            if (h_root.get_pnum() == pid && sdate.compareTo(week) >= 0 && sdate.compareTo(today) <= 0) {
+                fee[0] = fee[0] + h_root.get_service_fee();
+                ++consultations[0];
+            }
+            get_p_info(h_root.go_left(), fee, consultations, pid, week, today);
+            get_p_info(h_root.go_right(), fee, consultations, pid, week, today);
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+    }
+    public boolean visited(int pid, int [] plist){
+        int size = plist.length;
+        for(int i = 0; i < size; ++i){
+            if(pid == plist[i])
+                return false;
+        }
+        return true;
+    }
+    public void visit(int pid, int [] plist){
+        int size = plist.length;
+        for(int i = 0; i < size; ++i){
+            if(pid == plist[i])
+                plist[i] = 0;
+        }
     }
 }
