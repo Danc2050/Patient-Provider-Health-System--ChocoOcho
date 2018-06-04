@@ -173,6 +173,10 @@ public class SHistoryTree extends Utility {
             ProviderList person = new ProviderList();
             person.read_from_file();
             String name = person.find_provider(p_id);
+            if(name == null){
+                System.out.println("\nInvalid ID.\n");
+                return 0;
+            }
             name.concat(".txt");
 
             FileWriter writer = new FileWriter(name);
@@ -266,6 +270,10 @@ public class SHistoryTree extends Utility {
             MemberList person = new MemberList();
             person.read_from_file();
             String name = person.find_member(m_id);
+            if(name == null){
+                System.out.println("\nInvalid ID.\n");
+                return 0;
+            }
             name.concat(".txt");
             FileWriter writer = new FileWriter(name);
 
