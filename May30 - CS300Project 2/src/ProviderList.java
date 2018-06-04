@@ -165,6 +165,7 @@ public class ProviderList extends Utility {
         }
         return p_root.get_pname();
     }
+
     //Verifies if a manger is in the system using the ManagerList.txt file.
     public Boolean manager_Verification(){
     System.out.println("\nEnter manager I.D. # to be verified: ");
@@ -191,6 +192,43 @@ public class ProviderList extends Utility {
     } catch (IOException ex) {
         System.out.println("Error managerlist reading file.");
     }
+        return stop;
+    }
+
+    //Verifies if a provider is in the system using the ProviderID.txt file.
+    public boolean provider_Verification()
+    {
+        int provider_id, temp_id;
+        boolean stop = false;
+
+        System.out.println("\nEnter Provider ID to be verified: ");
+        provider_id = input.nextInt();
+        input.nextLine();
+
+        try
+        {
+            String filename = "May30 - CS300Project 2/ProviderID.txt";
+            String working_directory = System.getProperty("user.dir");
+            File file = new File (working_directory, filename);
+            BufferedReader in = new BufferedReader(new FileReader(file));
+            String line = in.readLine();
+
+            while (!stop && line != null)
+            {
+                temp_id = Integer.parseInt(line);
+                if (temp_id == provider_id)
+                    stop = true;
+                line = in.readLine();
+            }
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("\nProvider ID file not found.");
+        }
+        catch (IOException ex)
+        {
+            System.out.println("\nError reading Provider ID file.");
+        }
         return stop;
     }
    
