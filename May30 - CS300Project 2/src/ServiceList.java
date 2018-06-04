@@ -13,7 +13,10 @@ public class ServiceList extends Utility{
 
       try {
 
-         BufferedReader in = new BufferedReader(new FileReader("/Users/Angelic/IdeaProjects/June2Night/May30 - CS300Project 2/ServiceList.txt"));
+         String filename = "May30 - CS300Project 2/ServiceList.txt";
+         String working_directory = System.getProperty("user.dir");
+         File file = new File(working_directory, filename);
+         BufferedReader in = new BufferedReader(new FileReader(file));
          String line = in.readLine();
 
          while (line != null) {

@@ -233,13 +233,12 @@ public class MemberList extends Utility {
 
 
     public int read_from_file() {
-        String file_name = "/Users/Angelic/IdeaProjects/June2Night/May30 - CS300Project 2/MemberList.txt";
         int temp_id = 0;
         try {
-
-            FileReader file = new FileReader(file_name);
-            BufferedReader in = new BufferedReader(file);
-
+            String filename = "May30 - CS300Project 2/MemberList.txt";
+            String working_directory = System.getProperty("user.dir");
+            File file = new File(working_directory, filename);
+            BufferedReader in = new BufferedReader(new FileReader(file));
             String line = in.readLine();
 
             while (line != null) {

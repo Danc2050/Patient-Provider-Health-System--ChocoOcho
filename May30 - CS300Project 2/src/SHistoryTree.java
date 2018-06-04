@@ -21,7 +21,6 @@ public class SHistoryTree extends Utility {
             String working_directory = System.getProperty("user.dir");
             File file = new File(working_directory, filename);
             BufferedReader in = new BufferedReader(new FileReader(file));
-            System.out.println(file.getAbsolutePath());
             String line = in.readLine();
 
             while (line != null) {
