@@ -29,6 +29,18 @@ public class Menu extends Utility {
         }
         return response;
     }
+    
+    //Writes all data from Member, Provider, and Service trees to file
+    public void write_data(MemberList list_of_members, ProviderList list_of_providers, SHistoryTree tree_of_services, ServiceList list_of_all_services){
+        if (list_of_members.write_to_file() == -1)
+            System.out.println("\nCould not write to Member List file.");
+        if (list_of_providers.write_to_file() == -1)
+            System.out.println("\nCould not write to Provider List file.");
+        if (tree_of_services.write_to_file() == -1)
+            System.out.println("\nCould not write to Service History file.");
+        if (list_of_all_services.write_to_file() == -1)
+            System.out.println("\nCould not write to Service List file.");
+    }
 
     /*********The Manager Menu.**********/
     /*Lets a user choose what they want to do in intMode. Note: the action (add, remove, update) is not used in this prototype*/
