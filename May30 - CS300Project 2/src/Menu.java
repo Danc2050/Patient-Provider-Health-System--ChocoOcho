@@ -199,7 +199,7 @@ public class Menu extends Utility {
         System.out.println("\nWhat would you like to do?");
         System.out.println("[1] - Add Service." + "\n[2] - Remove Service" +
                 "\n[3] - Display Services" + "\n[4] - Update Service" +
-                "\n[5] - Return to Manager Menu.");
+                "\n[5] - Email List of Services" + "\n[6] - Return to Manager Menu.");
 
         while (service_response < 1 || service_response > 5)
         {
@@ -231,6 +231,14 @@ public class Menu extends Utility {
                 System.out.println("\nService updated.");
             else
                 System.out.println("\nCould not update service.");
+        }
+
+        else if(service_response == 5)
+        {
+            if(list_of_all_services.email_service_list() == 1)
+                System.out.println("\nEmail sent.");
+            else
+                System.out.println("\nUnable to send email.");
         }
 
         else
