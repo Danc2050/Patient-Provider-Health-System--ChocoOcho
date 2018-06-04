@@ -62,8 +62,14 @@ public class ChocAn extends Utility{
                     if (intMode_response == 1) //Display list of all services
                         object.providerMenu_directory(list_of_all_services);
 
+                    //Provider wants an email of service list
+                    else if(intMode_response == 2)
+                    {
+                        list_of_all_services.email_service_list();
+                    }
+
                     //Provider wants to add a service he/she just provided
-                    else if (intMode_response == 2)
+                    else if (intMode_response == 3)
                     {
                         // First validate Member's ID. Then add service to service history.
                         if (object.validate_member(list_of_members) == 1)
