@@ -2,6 +2,7 @@ import java.io.*;
 
 public class MemberList extends Utility {
     protected Node m_root;
+    protected int m_id;
 
 
 
@@ -22,7 +23,7 @@ public class MemberList extends Utility {
 
         Node member_to_change = new Member();
         this.m_root = find_member(m_root, to_find, to_replace, member_id, member_to_change);
-        add_member_wrapper(member_to_change.get_member_id(), member_to_change.get_status(),
+        add_member(m_root, member_to_change.get_member_id(), member_to_change.get_status(),
                             to_replace, member_to_change.get_address());
         display_all_wrapper();
         return 0;
@@ -54,7 +55,7 @@ public class MemberList extends Utility {
         return root;
     }
 
-    public int updateMemberId_wrapper()
+    /*public int updateMemberId_wrapper()
     {
         System.out.println("Enter member name to change id: ");
         String to_find = input.nextLine();
@@ -79,6 +80,40 @@ public class MemberList extends Utility {
             System.out.println("New member id is: " + root.get_member_id());
         }
         return root;
+    }*/
+    public void updateMemberInfo() {
+        System.out.println("[1] - Update Member Name." + "\n[2] - Update Member ID" +
+                "\n[3] - Update Member Services" + "\n[4] - Update Member Address.");
+        int response = input.nextInt();
+        input.nextLine();
+        if (response == 1) {
+            updateMemberName();
+        } else if (response == 2) {
+            System.out.println("What is the name of the member you wish to edit?");
+            String nameToFind = input.nextLine();
+            System.out.println("What is their *NEW* ID");
+            int newID = input.nextInt();
+            //updateMemberId(m_root, nameToFind, newID);
+        } else if (response == 3) {
+            System.out.println("What is the name of the member you wish to edit?");
+            String nameToFind = input.nextLine();
+            System.out.println("What are their *NEW* status?");
+            String updatedStatus = input.nextLine();
+            updateMemberStatus(m_root, nameToFind, updatedStatus);
+        } else if (response == 4) {
+            System.out.println("What is the name of the member you wish to edit?");
+            String nameToFind = input.nextLine();
+            System.out.println("\nEnter *NEW* Street Address (25 Characters)");
+            String street = input.nextLine();
+            System.out.println("\nEnter *NEW* city");
+            String city = input.nextLine();
+            System.out.println("\nEnter *NEW* State)");
+            String state = input.nextLine();
+            System.out.println("\nEnter *NEW* zip");
+            int zip = input.nextInt();
+            Address toUpdate = new Address(street, city, state, zip);
+            updateMemberAddress(m_root, nameToFind, toUpdate);
+        }
     }
 
     public int updateMemberStatus_wrapper()
@@ -198,7 +233,8 @@ public class MemberList extends Utility {
 
 
     public int read_from_file() {
-        String file_name = "/Users/sonynguyen/IdeaProjects/CS300 Project/ChocAnMemberList.txt";
+        String file_name = "/Users/Angelic/IdeaProjects/June2Night/May30 - CS300Project 2/MemberList.txt";
+        int temp_id = 0;
         try {
 
             FileReader file = new FileReader(file_name);
@@ -208,7 +244,7 @@ public class MemberList extends Utility {
 
             while (line != null) {
                 String[] columns = line.split(";");
-                int temp_id = Integer.parseInt(columns[0]);
+                temp_id = Integer.parseInt(columns[0]);
                 String temp_status = columns[1];
                 String temp_name = columns[2];
                 String temp_street = columns[3];
@@ -224,15 +260,22 @@ public class MemberList extends Utility {
             }
         in.close();
         } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
+            System.out.println("Member file not found.");
         } catch (IOException ex) {
-            System.out.println("Error reading file.");
+            System.out.println("Error reading memberlist file.");
         }
+        m_id = --temp_id;
         return 0;
     }
 
-    public int add_member_wrapper(int id, String status, String name, Address address) {
-
+    public int add_member_wrapper() {
+        System.out.println("\nEnter a name: ");
+        String name = input.nextLine();
+        System.out.println("\nMember ID generated.");
+        int id = this.m_id--;
+        String status = "Active";
+        Address address = new Address();
+        address = address.set_address();
         this.m_root = add_member(m_root, id, status, name, address);
         return 1;
     }
@@ -438,6 +481,33 @@ public class MemberList extends Utility {
             }
             return root;
         }
+
+    public Node get_member(){
+        System.out.print("What is the member ID: ");
+        int mnum = input.nextInt();
+        return get_member(this.m_root, mnum);
+    }
+
+    //Returns a provider so that we can write their information to file when a client is being processed.
+    public Node get_member(Node root, int member_id) {
+        if (root == null)
+            return root;
+        if (root.get_member_id() > member_id) {
+            return get_member(root.go_left(), member_id);
+        }
+        else if(root.get_member_id() < member_id) {
+            return get_member(root.go_right(), member_id);
+        }
+        else {
+            if (root.get_member_id() == member_id) {
+                return root;
+            } else if (root.get_member_id() != member_id) {
+                System.out.print("Person not found.\n");
+            }
+        }
+        return root;
+    }
+
     
         public String find_member(int mid){
         return find_member(this.m_root, mid);

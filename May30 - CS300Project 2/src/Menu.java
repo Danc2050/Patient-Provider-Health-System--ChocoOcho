@@ -68,27 +68,7 @@ public class Menu extends Utility {
 
         if (member_response == 1) //Add Member
         {
-            System.out.println("\nEnter a name: ");
-            String name = input.nextLine();
-
-            System.out.println("\nEnter an id: ");
-            int id = input.nextInt();
-
-            System.out.println("\nEnter a status: ");
-            String m_status = input.nextLine();
-
-            System.out.println("\nEnter a street: ");
-            String street = input.nextLine();
-            System.out.println("\nEnter a city: ");
-            String city = input.nextLine();
-            System.out.println("\nEnter a state: ");
-            String state = input.nextLine();
-            System.out.println("\nEnter a zip: ");
-            int zip = input.nextInt();
-            Address m_address = new Address(street, city, state, zip);
-            
-            
-            if (list_of_members.add_member_wrapper(id, m_status, name, m_address) == 1)
+            if (list_of_members.add_member_wrapper() == 1)
                 System.out.println("\nMember added successfully.");
             else
                 System.out.println("\nCould not add member.");
@@ -97,23 +77,19 @@ public class Menu extends Utility {
         else if (member_response == 2) {//Remove Member
             System.out.println("\nEnter a name: ");
             String name = input.nextLine();
-
             System.out.println("\nEnter an id: ");
             int id = input.nextInt();
-
             list_of_members.remove_member_wrapper(name, id);
+            System.out.println("\nMember removed.");
         }
 
         //TODO Update Member.
-/*
+
         else if (member_response == 3) //Update Member
         {
-            if (list_of_members.update_member())
-            {
-                //Success/Fail
-            }
+            list_of_members.updateMemberInfo();
         }
-*/
+
 
         else if (member_response == 4)
             list_of_members.display_all_wrapper();
@@ -150,12 +126,12 @@ public class Menu extends Utility {
             list_of_providers.delete();
 
         //TODO Update Provider.
-/*
+
         else if (provider_response == 3)
         {
-            if (list_of_providers.update_provider())
+            list_of_providers.updateProviderInfo();
         }
-*/
+
 
         else if (provider_response == 4)
             list_of_providers.display_all();
@@ -173,7 +149,7 @@ public class Menu extends Utility {
 
         System.out.println("\n\nWhat would you like to do?");
         System.out.println("\n[1] Print Provider Report." + "\n[2] Print Patient Report." +
-                "\n[3] - Print Summary Report." + "\n[4] Return to Manager Menu.");
+                "\n[3] Print Summary Report." + "\n[4] Return to Manager Menu.");
 
         while (report_response < 1 || report_response > 4) {
             System.out.println("\nEnter response:");
@@ -305,18 +281,22 @@ public class Menu extends Utility {
 
         while (catcher == -1)
         {
-            System.out.println("\nInvalid Member ID.");
-            System.out.println("\n[1] - Try again." + "\n[2] - Return to Provider Menu.");
+            do{
+                System.out.println("\nInvalid Member ID.");
+                System.out.println("\n[1] - Try again." + "\n[2] - Return to Provider Menu.");
 
-            while (response < 1 || response > 2)
-            {
                 System.out.println("\nEnter response: ");
                 response = input.nextInt();
                 input.nextLine();
-            }
 
-            if (response == 1)
+            }while (response < 1 || response > 2);
+
+            if (response == 1) {
+                System.out.println("Enter the patient's ID:");
+                mem_num = input.nextInt();
+                input.nextLine();
                 catcher = list_of_members.validate_member_wrapper(mem_num);
+            }
             else
                 return 0;
         }

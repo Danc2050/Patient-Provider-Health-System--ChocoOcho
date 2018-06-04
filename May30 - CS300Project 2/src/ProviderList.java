@@ -10,7 +10,7 @@ public class ProviderList extends Utility {
 
 
     public int read_from_file() {
-        String file_name = "ProviderList.txt";
+        String file_name = "/Users/Angelic/IdeaProjects/June2Night/May30 - CS300Project 2/ProviderList.txt";
         int temp_id = 0;
         try {
 
@@ -37,7 +37,7 @@ public class ProviderList extends Utility {
         } catch (FileNotFoundException e) {
             System.out.println("Provider file not found.");
         } catch (IOException ex) {
-            System.out.println("Error reading file.");
+            System.out.println("Error reading provider file.");
         }
         tId = temp_id++;
         return 1;
@@ -166,7 +166,7 @@ public class ProviderList extends Utility {
     }
     //Verifies if a manger is in the system using the ManagerList.txt file.
     public Boolean manager_Verification(){
-    String file_name = "ManagerList.txt";
+    String file_name = "/Users/Angelic/IdeaProjects/June2Night/May30 - CS300Project 2/ManagerList.txt";
     System.out.println("\nEnter manager I.D. # to be verified: ");
     int manager_ID = input.nextInt();
     input.nextLine();
@@ -183,9 +183,9 @@ public class ProviderList extends Utility {
                 line = in.readLine();
         }
     } catch (FileNotFoundException e) {
-        System.out.println("Provider file not found.");
+        System.out.println("Managerlist file not found.");
     } catch (IOException ex) {
-        System.out.println("Error reading file.");
+        System.out.println("Error managerlist reading file.");
     }
         return stop;
     }
@@ -307,26 +307,16 @@ public class ProviderList extends Utility {
         if (root == null)
             return root;
         if (root.get_pname().compareToIgnoreCase(provider_name_to_find) > 0) {
-            //System.out.println("Comparing " + root.get_pname() + " to " + provider_name_to_find);
             root.connect_left(find_provider(root.go_left(), provider_name_to_find, new_provider_name, provider_id, provider_to_find));
         }
         else if(root.get_pname().compareToIgnoreCase(provider_name_to_find) < 0) {
-            //System.out.println("Comparing " + root.get_pname() + " to " + provider_name_to_find);
             root.connect_right(find_provider(root.go_right(), provider_name_to_find, new_provider_name, provider_id, provider_to_find));
         }
         else {
-            //System.out.println"===================================");
-            //System.out.println(root.get_pname());
-            //System.out.println(root.get_provider_id());
             if (root.get_provider_id() == provider_id) {
-                //System.out.println("Old provider name is " + root.get_pname() + " and current id is " + root.get_provider_id());
-                //root.set_provider_name(new_provider_name);
-                //root = remove_provider(root, new_provider_name, provider_id);
-                //provider_to_find.set_provider_name(root.get_pname());
                 provider_to_find.set_provider_id(root.get_provider_id());
                 provider_to_find.set_provider_services(root.get_provider_services());
                 provider_to_find.set_provider_address(root.get_paddress());
-                //provider_to_find.set_provider_history(root.get_serviceHistory());
                 root.set_p_name(new_provider_name);
                 root = delete(root, new_provider_name);
                 return root;
@@ -338,7 +328,7 @@ public class ProviderList extends Utility {
         return root;
     }
     
-    
+   //Checks to see if a provider is in the system (error checking).
     public String find_provider(int pid){
         return find_provider(this.p_root, pid);
     }
@@ -357,8 +347,42 @@ public class ProviderList extends Utility {
         }
         return name;
     }
-    
-    
+
+    public Provider get_provider(){
+        System.out.print("What is the provider ID: ");
+        int pnum = input.nextInt();
+        return get_provider(this.p_root, pnum);
+    }
+
+    //Returns a provider so that we can write their information to file when a client is being processed.
+    public Provider get_provider(Node root, int provider_id) {
+        if (root == null) {
+            return null;
+        }
+        if (root.get_pnum() == provider_id) {
+            Provider obj = new Provider();
+            obj.Name = root.get_pname();
+            obj.p_address = root.get_paddress();
+            obj.id = root.get_pnum();
+            obj.Service = root.get_service_name();
+            return obj;
+        }
+        else if (root.get_pnum() > provider_id) {
+            return get_provider(root.go_left(), provider_id);
+        }
+        else if(root.get_pnum() < provider_id) {
+            return get_provider(root.go_right(), provider_id);
+        }
+        /*else {
+            if (root.get_provider_id() == provider_id) {
+                return root;
+            } else if (root.get_pnum() != provider_id) {
+                System.out.print("Person not found.\n");
+            }
+        }*/
+        return null;
+    }
+
     public void get_ids(int [] plist, int i){
         if(p_root == null)
             return;

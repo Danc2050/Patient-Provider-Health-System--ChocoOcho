@@ -31,9 +31,9 @@ public class Address extends Utility{
         String street = input.nextLine();
         System.out.println("\nEnter city");
         String city = input.nextLine();
-        System.out.println("\nEnter State)");
+        System.out.println("\nEnter State");
         String state = input.nextLine();
-        System.out.println("\nEnter zip)");
+        System.out.println("\nEnter zip");
         int zip = input.nextInt();
         input.nextLine();
         Address ad = new Address(street, city, state, zip);

@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.io.*;
 
 public class SHistoryTree extends Utility {
     protected Node h_root;
@@ -14,18 +15,13 @@ public class SHistoryTree extends Utility {
 
     public int read_from_file()
     {
-      /*File directory = new File("./");
-      System.out.println(directory.getAbsolutePath());
 
-      File resource_file = new File("../ServiceList.txt");*/
-
-        //String file_name = "ServiceList.txt";
         try {
-
-            //FileReader file = new FileReader(file_name);
-            //BufferedReader in = new BufferedReader(file);
-            BufferedReader in = new BufferedReader(new FileReader("ServiceHistory.txt"));
-
+            String filename = "May30 - CS300Project 2/ServiceHistory.txt";
+            String working_directory = System.getProperty("user.dir");
+            File file = new File(working_directory, filename);
+            BufferedReader in = new BufferedReader(new FileReader(file));
+            System.out.println(file.getAbsolutePath());
             String line = in.readLine();
 
             while (line != null) {
@@ -71,7 +67,7 @@ public class SHistoryTree extends Utility {
         } catch (FileNotFoundException e) {
             System.out.println("Service History not found.");
         } catch (IOException ex) {
-            System.out.println("Error reading file.");
+            System.out.println("Error Service History reading file.");
         }
         return 1;
     }
@@ -132,37 +128,42 @@ public class SHistoryTree extends Utility {
     //Wrapper. Phuong added code to pass in to make sure service code is valid.
     public int add_history(int service_code)
     {
-        System.out.print("What is the provider name: ");
-        String pname = input.next();
-        System.out.print("What is the provider ID: ");
-        int pnum = input.nextInt();
-        //Get provider address
-        Address pad = new Address();
-        pad.set_address();
-        Provider p = new Provider(pname,pnum,pad, null);
-        System.out.print("What is the member name: ");
-        String mname = input.next();
-        System.out.print("What is the member ID: ");
-        int mnum = input.nextInt();
-        //Get member address
-        Address mad = new Address();
-        mad.set_address();
-        Member m = new Member(mnum,null,mname,mad);
-        System.out.print("What is the service date: ");
-        String sdate = input.next();
-        System.out.print("What is the service name: ");
-        String sname = input.next();
-        //System.out.print("\nWhat is the service code: ");
-        //int scode = input.nextInt();
-        int scode = service_code;
-        System.out.print("\nWhat is the service fee: ");
-        float sfee = input.nextFloat();
-        Service s = new Service(sname,scode,sfee);
+        //Get provider node
+        ProviderList provider = new ProviderList();
+        provider.read_from_file();
+        //Provider pNode = new Provider();
+        //pNode = provider.get_provider();
+        Provider pobj = provider.get_provider();
+        /*pobj.Name = pNode.get_pname();
+        pobj.id = pNode.get_pnum();
+        pobj.Service = null;
+        pobj.p_address = pNode.get_paddress();*/
+        //Get member node.
+        MemberList member = new MemberList();
+        member.read_from_file();
+        Node mNode = member.get_member();
+        Member mobj = new Member();
+        mobj.Name = mNode.get_pname();
+        mobj.id = mNode.get_pnum();
+        mobj.m_status = null;
+        mobj.m_address = mNode.get_paddress();
+        //Assign a service.
+        System.out.print("What is the service date (MM-dd-YYYY HH:mm:ss): ");
+        input.nextLine();
+        String sdate = input.nextLine();
+        ServiceList service = new ServiceList();
+        service.read_from_file();
+        Node sNode = service.get_service();
+        Service sobj = new Service();
+        sobj.s_name = sNode.get_service_name();
+        sobj.s_code = sNode.get_service_code();
+        sobj.s_fee = sNode.get_service_fee();
         System.out.print("Comments:");
-        String comments = input.next();
+        input.nextLine();
+        String comments = input.nextLine();
         SimpleDateFormat mdyhms = new SimpleDateFormat("MM-dd-YYYY HH:mm:ss");
         String ldate = mdyhms.format(new Date());
-        h_root = add_history(h_root,p,m,s,sdate,ldate,comments);
+        h_root = add_history(h_root,pobj,mobj,sobj,sdate,ldate,comments);
         return 1;
     }
 
@@ -179,6 +180,7 @@ public class SHistoryTree extends Utility {
         }
         return h_root;
     }
+
 
     //Wrapper
     public int email_p_history(int p_id){
@@ -409,8 +411,8 @@ public class SHistoryTree extends Utility {
                         consultations[0] = 0;
                         get_p_info(fee, consultations, h_root.get_pnum());
 
-                        writer.write("Total number of consultations: " + fee[0] + "\n");
-                        writer.write("Total fee for the week: " + consultations[0] + "\n\n");
+                        writer.write("Total number of consultations: " + consultations[0] + "\n");
+                        writer.write("Total fee for the week: " + fee[0] + "\n\n");
 
                         tfee[0] = tfee[0] + fee[0];
                         tcons[0] = tcons[0] + consultations[0];

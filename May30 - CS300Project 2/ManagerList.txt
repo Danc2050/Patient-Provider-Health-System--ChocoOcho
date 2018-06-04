@@ -1,4 +1,3 @@
-//Manager IDs that work (9-digit number that starts with a 0)
 034567889
 034567890
 034567891
