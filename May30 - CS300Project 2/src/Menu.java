@@ -116,40 +116,45 @@ public class Menu extends Utility {
 
     public int intMode_Provider(ProviderList list_of_providers) {
         int provider_response = 0;
+        int provider_menu = 0;
         Scanner input = new Scanner(System.in);
 
-        System.out.println("\n\nWhat would you like to do?");
-        System.out.println("[1] - Add Provider." + "\n[2] - Remove Provider." +
-                "\n[3] - Update Provider" + "\n[4] - Display All Providers." +
-                "\n[5] - Return to Manager Menu.");
+        while (provider_menu == 0) {
+            System.out.println("\n\nWhat would you like to do?");
 
-        while (provider_response < 1 || provider_response > 5) {
-            System.out.println("\nEnter response: ");
-            provider_response = input.nextInt();
-            input.nextLine();
-        }
+            System.out.println("[1] - Add Provider." + "\n[2] - Remove Provider." +
+                    "\n[3] - Update Provider." + "\n[4] - Display All Providers." +
+                    "\n[5] - Return to Manager Menu.");
 
-        if (provider_response == 1) //Add Provider
-        {
-            if (list_of_providers.add_provider() == 1)
-                System.out.println("\nProvider added successfully.");
+            do {
+                System.out.println("\nEnter response: ");
+                provider_response = input.nextInt();
+                input.nextLine();
+            } while (provider_response < 1 || provider_response > 5);
+
+            if (provider_response == 1) //Add Provider
+            {
+                if (list_of_providers.add_provider() == 1)
+                    System.out.println("\nProvider added successfully.");
+                else
+                    System.out.println("\nCould not add provider.");
+            }
+
+            else if (provider_response == 2) //Remove Provider
+            {
+                list_of_providers.delete();
+                System.out.println("\nProvider removed.");
+            }
+
+            else if (provider_response == 3) {
+                list_of_providers.updateProviderInfo();
+            } else if (provider_response == 4)
+                list_of_providers.display_all();
+
             else
-                System.out.println("\nCould not add provider.");
+                return 0;
         }
 
-        else if (provider_response == 2) //Remove Provider
-            list_of_providers.delete();
-
-        else if (provider_response == 3)
-        {
-            list_of_providers.updateProviderInfo();
-        }
-
-        else if (provider_response == 4)
-            list_of_providers.display_all();
-
-        else
-            return 0;
         return 0;
     }
 
@@ -160,8 +165,8 @@ public class Menu extends Utility {
         Scanner input = new Scanner(System.in);
 
         System.out.println("\n\nWhat would you like to do?");
-        System.out.println("\n[1] Print Provider Report." + "\n[2] Print Patient Report." +
-                "\n[3] Print Summary Report." + "\n[4] Return to Manager Menu.");
+        System.out.println("\n[1] - Print Provider Report." + "\n[2] - Print Patient Report." +
+                "\n[3] - Print Summary Report." + "\n[4] - Return to Manager Menu.");
 
         while (report_response < 1 || report_response > 4) {
             System.out.println("\nEnter response:");
