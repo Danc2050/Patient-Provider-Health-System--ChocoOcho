@@ -62,15 +62,17 @@ public class MemberList extends Utility {
     {
         System.out.println("Enter member name to change id: ");
         String to_find = input.nextLine();
+        System.out.println("Enter current id: ");
+        int current_id = input.nextInt();
         System.out.println("Enter new member ID: ");
         int new_id = input.nextInt();
 
-        this.m_root = updateMemberId(m_root, to_find, new_id);
+        this.m_root = updateMemberId(m_root, to_find, new_id, current_id);
         display_all_wrapper();
         return 0;
     }
 
-    protected Node updateMemberId(Node root, String member_name_to_find, int new_id) {
+    protected Node updateMemberId(Node root, String member_name_to_find, int new_id, int current_id) {
         if (root == null)
             return root;
         if (root.get_member_name().compareToIgnoreCase(member_name_to_find) > 0)
