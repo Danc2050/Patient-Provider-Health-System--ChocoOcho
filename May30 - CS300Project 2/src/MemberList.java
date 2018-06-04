@@ -47,7 +47,10 @@ public class MemberList extends Utility {
                 root.set_member_name(new_member_name);
                 root = remove_member(root, new_member_name, member_id);
                 return root;
-            } else if (root.get_member_id() != member_id) {
+            } else if (root.get_member_id() != member_id){
+                root.connect_left(find_member(root.go_left(), member_name_to_find, new_member_name, member_id, member_to_find));
+                root.connect_right(find_member(root.go_right(), member_name_to_find, new_member_name, member_id, member_to_find));
+            } else {
                 System.out.print("Name found but id does not match.\n");
                 System.out.print("No change has been made.\n");
             }
