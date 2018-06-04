@@ -1,6 +1,6 @@
 public class Provider extends Node {
 
-    protected Address p_address;//TODO Implement
+    protected Address p_address;
     protected String Name;
     protected String Service;
     protected int id;
