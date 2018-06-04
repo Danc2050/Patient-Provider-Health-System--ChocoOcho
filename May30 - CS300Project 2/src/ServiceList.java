@@ -39,18 +39,64 @@ public class ServiceList extends Utility{
       s_id = temp_code;
       return 1;
    }
-   public int write_to_file() {//todo implement.
-
-   return 1;
+   
+   //Wrapper to write list of services to file
+   public int write_to_file()
+   {
+      try {
+         FileWriter writer = new FileWriter("ServiceList.txt");
+         this.write_to_file(s_root, writer);
+         writer.close();
+      }
+      catch (IOException e)
+      {
+         e.printStackTrace();
+      }
+      return 1;
    }
 
+   //Writes list of services to file
+   public int write_to_file(Node s_root, FileWriter file)
+   {
+      if (s_root == null)
+         return 1;
+
+      write_to_file(s_root.go_left(), file);
+      try {
+         file.write(s_root.get_service_code() + ";");
+         file.write(s_root.get_service_name() + ";");
+         file.write(s_root.get_service_fee() + ";");
+         file.write("\n");
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+      write_to_file(s_root.go_right(), file);
+      return 1;
+   }
+
+   //Wrapper to email list of service to a provider upon request
    public int email_service_list()
    {
-  /* try {//todo -- write alphabetical service list to file.
-      ProviderList person = new ProviderList();
-      person.read_from_file();
-      String name = person.find_provider(p_id);
-      name.concat(".txt");*/
+      try {
+         System.out.println("Please enter your ID: ");
+         Integer p_id = input.nextInt();
+         ProviderList person = new ProviderList();
+         person.read_from_file();
+         String name = person.find_provider(p_id);
+         if(name == null){
+            System.out.println("\nInvalid ID.\n");
+            return 0;
+         }
+         name.concat(".txt");
+         FileWriter writer = new FileWriter(name);
+
+         this.write_to_file(s_root, writer);
+         writer.close();
+      }
+      catch (IOException e)
+      {
+         e.printStackTrace();
+      }
       return 1;
    }
 
