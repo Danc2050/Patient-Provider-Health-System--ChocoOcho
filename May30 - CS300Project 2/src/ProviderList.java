@@ -64,9 +64,10 @@ public class ProviderList extends Utility {
 
         write_to_file(s_root.go_left(), file);
         try {
-            file.write(s_root.get_service_code() + ";");
-            file.write(s_root.get_service_name() + ";");
-            file.write(s_root.get_service_fee() + ";");
+            file.write(s_root.get_pnum() + ";");
+            file.write(s_root.get_pname() + ";");
+            file.write(s_root.get_paddress() + ";");
+            file.write(s_root.get_provider_services() + ";");
             file.write("\n");
         } catch (IOException e) {
             e.printStackTrace();
