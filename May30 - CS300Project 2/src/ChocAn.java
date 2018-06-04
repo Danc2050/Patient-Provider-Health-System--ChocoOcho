@@ -25,7 +25,7 @@ public class ChocAn extends Utility{
             if (response == 1)
             {
                 if(list_of_providers.manager_Verification()){//Verify a manager does exist.
-                    System.out.println("\nManager I.D. verification succesful."); manager_menu = 0;}
+                    System.out.println("\nManager I.D. verification successful."); manager_menu = 0;}
                 else{
                     System.out.println("\nManager I.D. verification unsuccessful."); manager_menu = 1;}
                 while (manager_menu != 1)
@@ -71,8 +71,9 @@ public class ChocAn extends Utility{
                     }
 
                     else
-                        provider_menu = 1;
+                        provider_menu = 1;//Break out of loop...
                 }
+                provider_menu = 0;//Reset provider_menu back to its default value.
             }
 
             else

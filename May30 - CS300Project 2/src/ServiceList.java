@@ -2,6 +2,7 @@ import java.io.*;
 
 public class ServiceList extends Utility{
    protected Node s_root;
+   protected int s_id;
 
    public ServiceList()
    {
@@ -10,9 +11,8 @@ public class ServiceList extends Utility{
 
    public int read_from_file()
    {
-
+      int temp_code = 0;
       try {
-
          String filename = "May30 - CS300Project 2/ServiceList.txt";
          String working_directory = System.getProperty("user.dir");
          File file = new File(working_directory, filename);
@@ -21,7 +21,7 @@ public class ServiceList extends Utility{
 
          while (line != null) {
             String[] columns = line.split(";");
-            int temp_code = Integer.parseInt(columns[0]);
+            temp_code = Integer.parseInt(columns[0]);
             String temp_name = columns[1];
             float temp_fee = Float.parseFloat(columns[2]);
 
@@ -36,6 +36,7 @@ public class ServiceList extends Utility{
       } catch (IOException ex) {
          System.out.println("Error reading servicelist file.");
       }
+      s_id = temp_code;
       return 1;
    }
    public int write_to_file() {//todo implement.
@@ -56,11 +57,11 @@ public class ServiceList extends Utility{
    //Wrapper
    public int add_service()
    {
-      System.out.print("What is the service name: ");
+      System.out.print("What is the service name? : ");
       String t_name = input.nextLine();
-      System.out.print("\nWhat is the service code: ");
-      int t_code = input.nextInt();
-      System.out.print("\nWhat is the service fee: ");
+      System.out.print("Generating service code...");
+      int t_code = ++s_id;
+      System.out.print("\nWhat is the service fee? : ");
       float t_fee = input.nextFloat();
       this.s_root = add_service(s_root, t_code, t_name, t_fee);
       return 1;
@@ -281,16 +282,14 @@ public class ServiceList extends Utility{
       return s_root;
    }
 
-   public Node get_service(){
-      System.out.print("What is the service ID? : ");
-      int scode = input.nextInt();
-      return get_service(this.s_root, scode);
+   public Service get_service(int service_code){
+      return get_service(this.s_root, service_code);
    }
 
    //Returns a service node.
-   public Node get_service(Node root, int service_id) {
+   public Service get_service(Node root, int service_id) {
       if (root == null)
-         return root;
+         return null;
       if (root.get_service_code() > service_id) {
          return get_service(root.go_left(), service_id);
       }
@@ -299,11 +298,15 @@ public class ServiceList extends Utility{
       }
       else {
          if (root.get_service_code() == service_id) {
-            return root;
+            Service obj = new Service();
+            obj.s_name = root.get_service_name();
+            obj.s_code = root.get_service_code();
+            obj.s_fee = root.get_service_fee();
+            return obj;
          } else if (root.get_service_code() != service_id) {
             System.out.print("Service not found.\n");
          }
       }
-      return root;
+      return null;
    }
 }

@@ -60,7 +60,7 @@ public class Member extends Node{
     public String get_member_name() {return this.Name;}
     public String get_mname() {return Name;}
     public String get_status() {return m_status;}
-    public Address get_maddress(){return null;}
+    public Address get_maddress(){return m_address;}
 
     /* Dynamically bound display function for member class */
     public void DisplayAll(){

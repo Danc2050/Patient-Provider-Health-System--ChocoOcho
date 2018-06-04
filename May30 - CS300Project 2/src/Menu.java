@@ -18,8 +18,6 @@ public class Menu extends Utility {
     /*Lets a terminal user choose between Interactive Mode and a Provider/Manager mode.*/
     public int mainMode() {
         int response = 0;
-        Scanner input = new Scanner(System.in);
-
         System.out.println("\n\nChoose a mode.");
         System.out.println("\n[1] - Interactive/Manager Mode" +
                 "\n[2] - Provider Mode." + "\n[3] - Exit");
@@ -374,7 +372,7 @@ public class Menu extends Utility {
                 return;
         }
 
-        System.out.println("\nService is in directory.");
+        System.out.println("\nService is in directory.\n");
 
         if (tree_of_services.add_history(service) == 1)
             System.out.println("\nService added to service history.");

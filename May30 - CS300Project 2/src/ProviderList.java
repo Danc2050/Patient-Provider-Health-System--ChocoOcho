@@ -166,15 +166,18 @@ public class ProviderList extends Utility {
     }
     //Verifies if a manger is in the system using the ManagerList.txt file.
     public Boolean manager_Verification(){
-    String file_name = "/Users/Angelic/IdeaProjects/June2Night/May30 - CS300Project 2/ManagerList.txt";
     System.out.println("\nEnter manager I.D. # to be verified: ");
     int manager_ID = input.nextInt();
     input.nextLine();
     int temp_id = 0;//Parsed int.
     Boolean stop = false;
         try {
-        FileReader file = new FileReader(file_name);
-        BufferedReader in = new BufferedReader(file);
+        String filename = "May30 - CS300Project 2/ManagerList.txt";
+        String working_directory = System.getProperty("user.dir");
+        File file = new File(working_directory, filename);
+        BufferedReader in = new BufferedReader(new FileReader(file));
+        /*FileReader file = new FileReader(file_name);
+        BufferedReader in = new BufferedReader(file);*/
         String line = in.readLine();
         while (stop == false && line != null) {
                 temp_id = Integer.parseInt(line);
@@ -351,7 +354,10 @@ public class ProviderList extends Utility {
     public Provider get_provider(){
         System.out.print("What is the provider ID: ");
         int pnum = input.nextInt();
-        return get_provider(this.p_root, pnum);
+        Provider obj = get_provider(this.p_root, pnum);
+        if(obj == null)
+            System.out.println("\nObject is null...");
+        return obj;
     }
 
     //Returns a provider so that we can write their information to file when a client is being processed.

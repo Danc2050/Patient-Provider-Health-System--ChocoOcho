@@ -130,36 +130,20 @@ public class SHistoryTree extends Utility {
         //Get provider node
         ProviderList provider = new ProviderList();
         provider.read_from_file();
-        //Provider pNode = new Provider();
-        //pNode = provider.get_provider();
         Provider pobj = provider.get_provider();
-        /*pobj.Name = pNode.get_pname();
-        pobj.id = pNode.get_pnum();
-        pobj.Service = null;
-        pobj.p_address = pNode.get_paddress();*/
         //Get member node.
         MemberList member = new MemberList();
         member.read_from_file();
-        Node mNode = member.get_member();
-        Member mobj = new Member();
-        mobj.Name = mNode.get_pname();
-        mobj.id = mNode.get_pnum();
-        mobj.m_status = null;
-        mobj.m_address = mNode.get_paddress();
-        //Assign a service.
-        System.out.print("What is the service date (MM-dd-YYYY HH:mm:ss): ");
-        input.nextLine();
+        Member mobj = member.get_member();
+        //Enter service date and then a node of service to write to our history tree.
+        System.out.print("What is the service date (Enter in format - MM-dd-YYYY HH:mm:ss)? : ");
         String sdate = input.nextLine();
         ServiceList service = new ServiceList();
         service.read_from_file();
-        Node sNode = service.get_service();
-        Service sobj = new Service();
-        sobj.s_name = sNode.get_service_name();
-        sobj.s_code = sNode.get_service_code();
-        sobj.s_fee = sNode.get_service_fee();
+        Service sobj = service.get_service(service_code);
         System.out.print("Comments:");
-        input.nextLine();
         String comments = input.nextLine();
+        //input.nextLine();
         SimpleDateFormat mdyhms = new SimpleDateFormat("MM-dd-YYYY HH:mm:ss");
         String ldate = mdyhms.format(new Date());
         h_root = add_history(h_root,pobj,mobj,sobj,sdate,ldate,comments);
@@ -172,10 +156,12 @@ public class SHistoryTree extends Utility {
             return h_root;
         }
         else {
+            if(h_root != null) {
             if (h_root.get_pname().compareToIgnoreCase(p.get_pname()) > 0)
-                h_root.connect_left(add_history(h_root.go_left(), p,m,s,temp_sdate,temp_ldate,temp_comments));
+                    h_root.connect_left(add_history(h_root.go_left(), p, m, s, temp_sdate, temp_ldate, temp_comments));
             else
                 h_root.connect_right(add_history(h_root.go_right(), p,m,s,temp_sdate,temp_ldate,temp_comments));
+            }
         }
         return h_root;
     }

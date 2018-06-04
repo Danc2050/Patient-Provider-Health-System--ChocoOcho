@@ -481,30 +481,35 @@ public class MemberList extends Utility {
             return root;
         }
 
-    public Node get_member(){
-        System.out.print("What is the member ID: ");
+    public Member get_member(){
+        System.out.print("Enter the member ID?: ");
         int mnum = input.nextInt();
         return get_member(this.m_root, mnum);
     }
 
     //Returns a provider so that we can write their information to file when a client is being processed.
-    public Node get_member(Node root, int member_id) {
+    public Member get_member(Node root, int member_id) {
         if (root == null)
-            return root;
-        if (root.get_member_id() > member_id) {
+            return null;
+        if (root.get_member_id() < member_id) {
             return get_member(root.go_left(), member_id);
         }
-        else if(root.get_member_id() < member_id) {
+        else if(root.get_member_id() > member_id) {
             return get_member(root.go_right(), member_id);
         }
         else {
             if (root.get_member_id() == member_id) {
-                return root;
+                Member obj = new Member();
+                obj.Name = root.get_member_name();
+                obj.m_address = root.get_maddress();
+                obj.id = root.get_member_id();
+                obj.m_status = root.get_status();
+                return obj;
             } else if (root.get_member_id() != member_id) {
                 System.out.print("Person not found.\n");
             }
         }
-        return root;
+        return null;
     }
 
     
