@@ -78,7 +78,7 @@ public class ServiceList extends Utility{
    public int email_service_list()
    {
       try {
-         System.out.println("Please enter your ID: ");
+         System.out.println("Please enter the provider ID: ");
          Integer p_id = input.nextInt();
          ProviderList person = new ProviderList();
          person.read_from_file();
