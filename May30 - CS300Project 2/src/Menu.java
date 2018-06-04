@@ -42,7 +42,9 @@ public class Menu extends Utility {
             System.out.println("\nCould not write to Service List file.");
     }
 
-    /*********The Manager Menu.**********/
+
+
+    /*********Start The Manager Menu Functions Section.**********/
     /*Lets a user choose what they want to do in intMode. Note: the action (add, remove, update) is not used in this prototype*/
     public int intMode() {
         //Implement a use... Example: call an add function with string "member" or "provider". Or create Member or Provider object and pass in to use Dynamic binding.
@@ -258,9 +260,11 @@ public class Menu extends Utility {
 
         return 0;
     }
+    /*********Ends The Manager Menu Functions Section.**********/
 
 
-    /**********The Provider Menu.**********/
+
+    /**********Starts The Provider Menu Functions Section.**********/
     public int providerMenu() {
         int response = 0;
         Scanner input = new Scanner(System.in);
@@ -399,4 +403,5 @@ public class Menu extends Utility {
         else
             System.out.println("\nCould not add service.");
     }
+    /**********Ends The Provider Menu Functions Section.**********/
 }
