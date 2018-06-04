@@ -47,7 +47,10 @@ public class MemberList extends Utility {
                 root.set_member_name(new_member_name);
                 root = remove_member(root, new_member_name, member_id);
                 return root;
-            } else if (root.get_member_id() != member_id) {
+            } else if (root.get_member_id() != member_id){
+                root.connect_left(find_member(root.go_left(), member_name_to_find, new_member_name, member_id, member_to_find));
+                root.connect_right(find_member(root.go_right(), member_name_to_find, new_member_name, member_id, member_to_find));
+            } else {
                 System.out.print("Name found but id does not match.\n");
                 System.out.print("No change has been made.\n");
             }
@@ -55,7 +58,7 @@ public class MemberList extends Utility {
         return root;
     }
 
-    /*public int updateMemberId_wrapper()
+    public int updateMemberId_wrapper()
     {
         System.out.println("Enter member name to change id: ");
         String to_find = input.nextLine();
@@ -71,16 +74,27 @@ public class MemberList extends Utility {
         if (root == null)
             return root;
         if (root.get_member_name().compareToIgnoreCase(member_name_to_find) > 0)
-            root.connect_left(updateMemberId(root.go_left(), member_name_to_find, new_id));
+            root.connect_left(updateMemberId(root.go_left(), member_name_to_find, new_id, current_id));
         else if (root.get_member_name().compareToIgnoreCase(member_name_to_find) < 0)
-            root.connect_right(updateMemberId(root.go_right(), member_name_to_find, new_id));
+            root.connect_right(updateMemberId(root.go_right(), member_name_to_find, new_id, current_id));
         else {
-            System.out.println("Old member id was: " + root.get_member_id());
-            root.set_member_id(new_id);
-            System.out.println("New member id is: " + root.get_member_id());
+            if(root.get_member_id() == current_id) {
+                System.out.println("Old member id was: " + root.get_member_id());
+                root.set_member_id(new_id);
+                System.out.println("New member id is: " + root.get_member_id());
+            }
+            else if(root.get_member_id() != current_id) {
+                root.connect_left(updateMemberId(root.go_left(), member_name_to_find, new_id, current_id));
+                root.connect_right(updateMemberId(root.go_right(), member_name_to_find, new_id, current_id));
+            }
+            else {
+                System.out.println("No members have been found");
+                System.out.println("No changes have been made");
+            }
         }
         return root;
-    }*/
+    }
+    
     public void updateMemberInfo() {
         System.out.println("[1] - Update Member Name." + "\n[2] - Update Member ID" +
                 "\n[3] - Update Member Services" + "\n[4] - Update Member Address.");
@@ -89,19 +103,20 @@ public class MemberList extends Utility {
         if (response == 1) {
             updateMemberName();
         } else if (response == 2) {
-            System.out.println("What is the name of the member you wish to edit?");
+            /*System.out.println("What is the name of the member you wish to edit?");
             String nameToFind = input.nextLine();
             System.out.println("What is their *NEW* ID");
-            int newID = input.nextInt();
-            //updateMemberId(m_root, nameToFind, newID);
+            int newID = input.nextInt();*/
+            updateMemberId_wrapper();
         } else if (response == 3) {
-            System.out.println("What is the name of the member you wish to edit?");
+            /*System.out.println("What is the name of the member you wish to edit?");
             String nameToFind = input.nextLine();
             System.out.println("What are their *NEW* status?");
             String updatedStatus = input.nextLine();
-            updateMemberStatus(m_root, nameToFind, updatedStatus);
+            updateMemberStatus(m_root, nameToFind, updatedStatus);*/
+            updateMemberStatus_wrapper();
         } else if (response == 4) {
-            System.out.println("What is the name of the member you wish to edit?");
+            /*System.out.println("What is the name of the member you wish to edit?");
             String nameToFind = input.nextLine();
             System.out.println("\nEnter *NEW* Street Address (25 Characters)");
             String street = input.nextLine();
@@ -112,7 +127,8 @@ public class MemberList extends Utility {
             System.out.println("\nEnter *NEW* zip");
             int zip = input.nextInt();
             Address toUpdate = new Address(street, city, state, zip);
-            updateMemberAddress(m_root, nameToFind, toUpdate);
+            updateMemberAddress(m_root, nameToFind, toUpdate);*/
+            updateMemberAddress_wrapper();
         }
     }
 
@@ -204,6 +220,10 @@ public class MemberList extends Utility {
             input.nextLine();
             System.out.println("Enter new zip: ");
             int new_zip = input.nextInt();
+            new_address.street = new_street;
+            new_address.city = new_city;
+            new_address.state = new_state;
+            new_address.zip = new_zip;
             this.m_root = updateMemberAddress(m_root, to_find, new_address);
             display_all_wrapper();
         }
