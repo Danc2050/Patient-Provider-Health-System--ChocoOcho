@@ -65,46 +65,52 @@ public class Menu extends Utility {
 
     public int intMode_Member(MemberList list_of_members) {
         int member_response = 0;
+        int member_menu = 0;
         Scanner input = new Scanner(System.in);
 
-        System.out.println("\n\nWhat would you like to do?");
-        System.out.println("[1] - Add Member." + "\n[2] - Remove Member." +
-                "\n[3] - Update Member" + "\n[4] - Display All Members." +
-                "\n[5] - Return to Manager Menu.");
-
-        while (member_response < 1 || member_response > 5) {
-            System.out.println("\nEnter response: ");
-            member_response = input.nextInt();
-            input.nextLine();
-        }
-
-        if (member_response == 1) //Add Member
+        while (member_menu == 0)
         {
-            if (list_of_members.add_member_wrapper() == 1)
-                System.out.println("\nMember added successfully.");
+            System.out.println("\n\nWhat would you like to do?");
+            System.out.println("[1] - Add Member." + "\n[2] - Remove Member." +
+                    "\n[3] - Update Member" + "\n[4] - Display All Members." +
+                    "\n[5] - Return to Manager Menu.");
+
+            do {
+                System.out.println("\nEnter response: ");
+                member_response = input.nextInt();
+                input.nextLine();
+            } while (member_response < 1 || member_response > 5);
+
+            if (member_response == 1) //Add Member
+            {
+                if (list_of_members.add_member_wrapper() == 1)
+                    System.out.println("\nMember added successfully.");
+                else
+                    System.out.println("\nCould not add member.");
+            }
+
+            else if (member_response == 2) //Remove Member
+            {
+                System.out.println("\nEnter a name: ");
+                String name = input.nextLine();
+                System.out.println("\nEnter an id: ");
+                int id = input.nextInt();
+                list_of_members.remove_member_wrapper(name, id);
+                System.out.println("\nMember removed.");
+            }
+
+            else if (member_response == 3) //Update Member
+            {
+                list_of_members.updateMemberInfo();
+            }
+
+            else if (member_response == 4)
+                list_of_members.display_all_wrapper();
+
             else
-                System.out.println("\nCould not add member.");
+                return 0;
         }
 
-        else if (member_response == 2) {//Remove Member
-            System.out.println("\nEnter a name: ");
-            String name = input.nextLine();
-            System.out.println("\nEnter an id: ");
-            int id = input.nextInt();
-            list_of_members.remove_member_wrapper(name, id);
-            System.out.println("\nMember removed.");
-        }
-
-        else if (member_response == 3) //Update Member
-        {
-            list_of_members.updateMemberInfo();
-        }
-
-        else if (member_response == 4)
-            list_of_members.display_all_wrapper();
-
-        else
-            return 0;
         return 0;
     }
 
@@ -112,7 +118,7 @@ public class Menu extends Utility {
         int provider_response = 0;
         Scanner input = new Scanner(System.in);
 
-        System.out.println("What would you like to do?");
+        System.out.println("\n\nWhat would you like to do?");
         System.out.println("[1] - Add Provider." + "\n[2] - Remove Provider." +
                 "\n[3] - Update Provider" + "\n[4] - Display All Providers." +
                 "\n[5] - Return to Manager Menu.");
