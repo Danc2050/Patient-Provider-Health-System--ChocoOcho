@@ -95,13 +95,10 @@ public class Menu extends Utility {
             System.out.println("\nMember removed.");
         }
 
-        //TODO Update Member. Do we need to update their id?
-
         else if (member_response == 3) //Update Member
         {
             list_of_members.updateMemberInfo();
         }
-
 
         else if (member_response == 4)
             list_of_members.display_all_wrapper();
@@ -137,13 +134,10 @@ public class Menu extends Utility {
         else if (provider_response == 2) //Remove Provider
             list_of_providers.delete();
 
-        //TODO Update Provider. Do we need to update their id?
-
         else if (provider_response == 3)
         {
             list_of_providers.updateProviderInfo();
         }
-
 
         else if (provider_response == 4)
             list_of_providers.display_all();
