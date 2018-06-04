@@ -64,8 +64,13 @@ public class Member extends Node{
 
     /* Dynamically bound display function for member class */
     public void DisplayAll(){
-        System.out.print(this.id + " " + this.m_status + " " + this.Name + " ");
+        System.out.println("=======================================");
+        System.out.println("Member's Name: " + this.Name);
+        System.out.println("Member's ID: " + this.id);
+        System.out.println("Member's Status: " + this.m_status);
+        System.out.print("Member's Address ");
         m_address.display_address();
+        System.out.println("=======================================");
     }
 
     /* Functions to get dates, comments and address of current object */

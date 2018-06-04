@@ -44,7 +44,11 @@ public class Service extends Node {
 
     public void DisplayAll()
     {
-        System.out.println(this.s_name + " " + this.s_code + " " + this.s_fee);
+        System.out.println("==================================");
+        System.out.println("Service Name: " + this.s_name);
+        System.out.println("Service Code: " + this.s_code);
+        System.out.println("Service Fee: " + this.s_fee);
+        System.out.println("==================================");
     }
 
     public String get_status(){return null;};
