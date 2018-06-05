@@ -209,7 +209,7 @@ public class SHistoryTree extends Utility {
                 writer.write(ad.city + ", ");
                 writer.write(ad.state + ", ");
                 writer.write(ad.zip + "\n");
-                writer.write("\n~~~~Provider History (" + begin + " to " + end + ")~~~~\n\n");
+                writer.write("\n~~~~Provider History for the week (" + begin + " to " + end + ")~~~~\n\n");
                 email_p_history(h_root, writer, p_id, week, today);
                 writer.write("\n~END~\n");
             }
@@ -357,7 +357,7 @@ public class SHistoryTree extends Utility {
 
             try{
                 FileWriter writer = new FileWriter("SummaryReport.txt");
-                writer.write("~~~~Summary Report (" + begin + " to " + end + ")~~~~\n\n");
+                writer.write("~~~~Summary Report for the week (" + begin + " to " + end + ")~~~~\n\n");
 
                 float fee[] = new float[1];
                 fee[0] = 0;
