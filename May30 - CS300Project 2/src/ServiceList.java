@@ -134,23 +134,42 @@ public class ServiceList extends Utility{
    }
 
    //Phuong's Service ID's Verification
-   public boolean check_service_wrapper(int to_check)
+   public boolean check_service_wrapper(String to_check)
    {
        return check_service(this.s_root, to_check);
    }
 
-   protected boolean check_service(Node s_root, int to_check)
+   protected boolean check_service(Node s_root, String to_check)
    {
       boolean ret = false;
       if (s_root == null)
          return false;
-      if (s_root.get_service_code() == to_check)
+      if (s_root.get_service_name().compareTo(to_check) == 0)
          return true;
       ret = check_service(s_root.go_left(), to_check);
-      if(ret == false)
+      if(!ret)
          ret = check_service(s_root.go_right(), to_check);
       return ret;
    }
+
+   public int get_service_id_from_name_wrapper(String service_name)
+   {
+      return get_service_id_from_name(this.s_root, service_name);
+   }
+
+   protected int get_service_id_from_name(Node s_root, String service_name)
+   {
+      int ret = 0;
+      if (s_root == null)
+         return 0;
+      if (s_root.get_service_name().compareTo(service_name) == 0)
+         return s_root.get_service_code();
+      ret = get_service_id_from_name(s_root.go_left(), service_name);
+      if (ret == 0)
+         ret = get_service_id_from_name(s_root.go_right(), service_name);
+      return ret;
+   }
+
 
 
    //Wrapper

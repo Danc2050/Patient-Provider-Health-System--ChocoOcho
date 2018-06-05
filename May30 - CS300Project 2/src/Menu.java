@@ -363,15 +363,15 @@ public class Menu extends Utility {
 
     public void create_service(SHistoryTree tree_of_services, ServiceList list_of_all_services)
     {
-        int service = 0;
+        String service;
         int response = 0;
+        int service_code = 0;
         boolean catcher;
 
         System.out.println("\nLet's check if the service you're about to provide" +
                 "is in our directory.");
-        System.out.println("\nWhat is the service ID you'd like to enter into patient's history?");
-        service = input.nextInt();
-        input.nextLine();
+        System.out.println("\nWhat is the name of the service you'd like to enter into patient's history?");
+        service = input.nextLine();
 
         catcher = list_of_all_services.check_service_wrapper(service);
 
@@ -391,8 +391,8 @@ public class Menu extends Utility {
 
             if (response == 1)
             {
-                System.out.println("\nPlease enter the service ID again: ");
-                service = input.nextInt();
+                System.out.println("\nPlease enter the service name again: ");
+                service = input.nextLine();
                 input.nextLine();
                 catcher = list_of_all_services.check_service_wrapper(service);
             }
@@ -403,7 +403,9 @@ public class Menu extends Utility {
 
         System.out.println("\nService is in directory.\n");
 
-        if (tree_of_services.add_history(service) == 1)
+        service_code = list_of_all_services.get_service_id_from_name_wrapper(service);
+
+        if (tree_of_services.add_history(service_code) == 1)
             System.out.println("\nService added to service history.");
         else
             System.out.println("\nCould not add service.");
