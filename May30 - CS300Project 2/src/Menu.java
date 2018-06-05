@@ -366,7 +366,7 @@ public class Menu extends Utility {
         int service_code = 0;
         boolean catcher;
 
-        System.out.println("\nLet's check if the service you're about to provide" +
+        System.out.println("\nLet's check if the service you're about to provide " +
                 "is in our directory.");
         System.out.println("\nWhat is the name of the service you'd like to enter into patient's history?");
         service = input.nextLine();
@@ -391,7 +391,6 @@ public class Menu extends Utility {
             {
                 System.out.println("\nPlease enter the service name again: ");
                 service = input.nextLine();
-                input.nextLine();
                 catcher = list_of_all_services.check_service_wrapper(service);
             }
 
