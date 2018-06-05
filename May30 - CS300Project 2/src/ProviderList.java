@@ -1,24 +1,26 @@
 import java.io.*;
 
 public class ProviderList extends Utility {
-    protected Node p_root;
-    protected int tId;
 
-    public ProviderList() {
-        this.p_root = null;
-    }
+    protected Node p_root; /* Root of Provider Tree */
+    protected int tId; /* Stores ID number of next available ID */
+
+    /* Copy Constructor initializes the root to null */
+    public ProviderList() { this.p_root = null; }
 
 
+    /* Reads all the contents of the ProviderList text file into the BST structure */
     public int read_from_file() {
         int temp_id = 0;
         try {
-
+            /* Creates the file path for the ProviderList text file */
             String filename = "May30 - CS300Project 2/ProviderList.txt";
             String working_directory = System.getProperty("user.dir");
             File file = new File(working_directory, filename);
             BufferedReader in = new BufferedReader(new FileReader(file));
             String line = in.readLine();
 
+            /* Reads up until the end of the file has been reached */
             while (line != null) {
                 String[] columns = line.split(";");
                 temp_id = Integer.parseInt(columns[0]);
@@ -28,8 +30,9 @@ public class ProviderList extends Utility {
                 String temp_state = columns[4];
                 int temp_zip = Integer.parseInt(columns[5]);
                 String temp_service = columns[6];
-
                 Address ad = new Address(temp_street, temp_city, temp_state, temp_zip);
+
+                /* Calls the insert function on each provider read in */
                 this.p_root = add_provider(this.p_root, temp_name, temp_id, ad, temp_service);
                 line = in.readLine();
             }
@@ -43,10 +46,17 @@ public class ProviderList extends Utility {
         return 1;
     }
 
+    /* Attempts to open the text file and if opened
+       writes out all the information in the BST of providers
+       out to the text file in alphabetical order.
+     */
     public int write_to_file()
     {
         try {
-            FileWriter writer = new FileWriter("ProviderList.txt");
+            String filename = "May30 - CS300Project 2/ProviderList.txt";
+            String working_directory = System.getProperty("user.dir");
+            File file = new File(working_directory, filename);
+            FileWriter writer = new FileWriter(file);
             this.write_to_file(p_root, writer);
             writer.close();
         }
@@ -57,12 +67,18 @@ public class ProviderList extends Utility {
         return 1;
     }
 
+    /* Traverses the tree of providers writing out their information
+       to the text file delimited by the ';' character.
+     */
     public int write_to_file(Node s_root, FileWriter file)
     {
         if (s_root == null)
             return 1;
 
+        /* Traverses Left */
         write_to_file(s_root.go_left(), file);
+
+        /* Writes provider information onto a single line */
         try {
             file.write(s_root.get_pnum() + ";");
             file.write(s_root.get_pname() + ";");
@@ -72,10 +88,15 @@ public class ProviderList extends Utility {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        /* Traverses Right */
         write_to_file(s_root.go_right(), file);
         return 1;
     }
 
+    /* Prompts the user for information required to add a new
+       provider and calls the insert function.
+     */
     public int add_provider() // wrapper
     {
         System.out.println("\nEnter name.");
@@ -99,6 +120,9 @@ public class ProviderList extends Utility {
         return 1;
     }
 
+    /* Traverses the tree until finding the correct position to add
+       the new provider based on alphabetical ordering.
+     */
     protected Node add_provider(Node p_root, String t_name, int t_id, Address ad, String t_service){
         if(p_root == null) {
             p_root = new Provider(t_name, t_id, ad, t_service);
@@ -112,6 +136,10 @@ public class ProviderList extends Utility {
         }
         return p_root;
     }
+
+    /* Prompts the user what the name of the provider that
+       is to be deleted and calls the delete function.
+     */
     public void delete()
     {
         System.out.println("What is the name of the Provider you wish to remove from the system?");
@@ -120,17 +148,28 @@ public class ProviderList extends Utility {
         this.p_root = delete(this.p_root, to_delete);
     }
 
+    /* Deletes a provider based on the name passed in and considers
+       the 4 cases of deletion:
+           1) Leaf
+           2) Left Child
+           3) Right Child
+           4) Find IOS
+     */
     public Node delete(Node p_root, String name)
     {
+        /* Deleted Node is a leaf */
         if (p_root == null)
         {
             return p_root;
         }
 
+        /* Deleted Node has only left child */
         if (p_root.get_pname().compareTo(name) > 0)
             p_root.connect_left(delete(p_root.go_left(), name));
+        /* Deleted Node has only right child */
         else if (p_root.get_pname().compareTo(name) < 0)
             p_root.connect_right(delete(p_root.go_right(), name));
+        /* Deleted Node requires IOS to be found */
         else
         {
             if (p_root.go_left() == null && p_root.go_right() == null)
@@ -148,25 +187,29 @@ public class ProviderList extends Utility {
             }
             else
             {
-                String minValue = minValue(p_root.go_right());
-                p_root.set_p_name(minValue);
-                p_root.connect_right(delete(p_root.go_right(), minValue));
+                String findIOS = findIOS(p_root.go_right());
+                p_root.set_p_name(findIOS);
+                p_root.connect_right(delete(p_root.go_right(), findIOS));
                 System.out.println("Deleting " + name);
             }
         }
         return p_root;
     }
 
-    protected String minValue(Node p_root)
+    /* Finds the location of the IOS and returns the name of that node */
+    protected String findIOS(Node p_root)
     {
         if (p_root.go_left() != null)
         {
-            return minValue(p_root.go_left());
+            return findIOS(p_root.go_left());
         }
         return p_root.get_pname();
     }
 
-    //Verifies if a manger is in the system using the ManagerList.txt file.
+    /* Searches the text file with the value passed in performing a
+       check to see that the manger's ID is in fact a valid one.
+       Function will return true if the value is found and false if not.
+     */
     public Boolean manager_Verification(){
     System.out.println("\nEnter manager I.D. # to be verified: ");
     int manager_ID = input.nextInt();
@@ -195,7 +238,11 @@ public class ProviderList extends Utility {
         return stop;
     }
 
-    //Verifies if a provider is in the system using the ProviderID.txt file.
+    /* Searches the text file of providers looking for an ID
+       matching the one that is passed in. If the value is found
+       the function will return true and if not it will return false
+       prompting the user to either try again or exit.
+     */
     public boolean provider_Verification()
     {
         int provider_id, temp_id;
@@ -205,6 +252,9 @@ public class ProviderList extends Utility {
         provider_id = input.nextInt();
         input.nextLine();
 
+        /* Opens the file and reads the provider IDs into a temporary
+           and then checks to see if the ID matches one that is read in.
+         */
         try
         {
             String filename = "May30 - CS300Project 2/ProviderID.txt";
@@ -231,10 +281,13 @@ public class ProviderList extends Utility {
         }
         return stop;
     }
-   
+
+    /* Wrapper function for display all */
     public void display_all(){
         display_all(this.p_root);
     }
+
+    /* Displays list of providers in alphabetical order */
     protected void display_all(Node p_root){
         if(p_root == null)
             return;
@@ -249,8 +302,10 @@ public class ProviderList extends Utility {
                 "\n[3] - Update Provider Services" + "\n[4] - Update Provider Address.");
         int response = input.nextInt();
         input.nextLine();
+        /* Updates the name of a provider */
         if (response == 1) {
             updateProviderName();
+        /* Updates the ID of the provider */
         } else if (response == 2) {
             System.out.println("What is the name of the provider you wish to edit?");
             String nameToFind = input.nextLine();
@@ -279,6 +334,10 @@ public class ProviderList extends Utility {
         }
     }
 
+    /* Searches the tree of providers until finding a name matching the
+       one that is passed in and once finding it, it will set the ID
+       of that provider to the new one passed in.
+     */
     public Node updateProviderId(Node root, String provider_name_to_find, int new_id) {
         if (root == null)
             return root;
@@ -294,6 +353,10 @@ public class ProviderList extends Utility {
         return root;
     }
 
+    /* Searches the tree of providers until finding a name matching
+       the one passed in and once the name has been found it sets
+       the provider's services equal to the one passed in.
+     */
     public Node updateProviderServices(Node root, String provider_name_to_find, String new_services) {
         if (root == null)
             return root;
@@ -310,6 +373,10 @@ public class ProviderList extends Utility {
         return root;
     }
 
+    /* Searches the tree of providers until finding a name matching
+       the one passed in and once the name has been found it sets
+       the address of the provider equal to the new one passed in.
+     */
     public Node updateProviderAddress(Node root, String provider_name_to_find, Address new_address){
         if(root == null)
             return root;
@@ -325,8 +392,13 @@ public class ProviderList extends Utility {
         return root;
     }
 
+    /* Prompts the user for the name of the provider they wish to update
+       then prompts for their id along with the name they wish to replace
+       the current on with. The function then calls the find provider
+       function to find the IOS, copy the data, delete the node and
+       re-insert the provider with the updated name.
+     */
     public int updateProviderName() {
-        //display_all_wrapper();
         System.out.println("Enter the name of provider you wish to update: ");
         String to_find = input.nextLine();
 
@@ -338,13 +410,14 @@ public class ProviderList extends Utility {
 
         Node provider_to_change = new Provider();
         this.p_root = find_provider(p_root, to_find, to_replace, provider_id, provider_to_change);
-        //System.out.println(m_root.get_pname() + " " + m_root.get_provider_id());
-        //remove_provider_wrapper(to_find, provider_id);
         this.p_root = add_provider(p_root, to_replace, provider_to_change.get_provider_id(), provider_to_change.get_paddress(), provider_to_change.get_provider_services());
         display_all();
         return 0;
     }
 
+    /* Finds the IOS and calls setters to update the data fields
+       of the node that we need to preserve before deletion.
+     */
     public Node find_provider(Node root, String provider_name_to_find, String new_provider_name, int provider_id, Node provider_to_find) {
         if (root == null)
             return root;
@@ -355,6 +428,7 @@ public class ProviderList extends Utility {
             root.connect_right(find_provider(root.go_right(), provider_name_to_find, new_provider_name, provider_id, provider_to_find));
         }
         else {
+            /* Sets all the data fields before deleting to save the values */
             if (root.get_provider_id() == provider_id) {
                 provider_to_find.set_provider_id(root.get_provider_id());
                 provider_to_find.set_provider_services(root.get_provider_services());
@@ -369,11 +443,15 @@ public class ProviderList extends Utility {
         }
         return root;
     }
-    
-   //Checks to see if a provider is in the system (error checking).
+
+    /* Wrapper for checking to see if a provider is in the system */
     public String find_provider(int pid){
         return find_provider(this.p_root, pid);
     }
+
+    /* Searches the tree of providers given their ID and once
+       they have been found, it returns that provider's name.
+     */
     protected String find_provider(Node p_root, int pid){
         if(p_root == null)
             return null;
@@ -390,6 +468,10 @@ public class ProviderList extends Utility {
         return name;
     }
 
+    /* Prompts the user for the ID of a provider and
+       calls the function to find that provider, ultimately
+       returns the object of that provider.
+     */
     public Provider get_provider(){
         System.out.print("What is the provider ID: ");
         int pnum = input.nextInt();
@@ -399,7 +481,9 @@ public class ProviderList extends Utility {
         return obj;
     }
 
-    //Returns a provider so that we can write their information to file when a client is being processed.
+    /* Returns a Provider object so that their information can be
+       written to a text file and stored for future reports.
+     */
     public Provider get_provider(Node root, int provider_id) {
         if (root == null) {
             return null;
@@ -415,24 +499,22 @@ public class ProviderList extends Utility {
         else if (root.get_pnum() > provider_id) {
             return get_provider(root.go_left(), provider_id);
         }
-        else if(root.get_pnum() < provider_id) {
+        else if (root.get_pnum() < provider_id) {
             return get_provider(root.go_right(), provider_id);
         }
-        /*else {
-            if (root.get_provider_id() == provider_id) {
-                return root;
-            } else if (root.get_pnum() != provider_id) {
-                System.out.print("Person not found.\n");
-            }
-        }*/
         return null;
     }
 
+    /* Wrapper function for getting a provider ID number */
     public void get_ids(int [] plist, int i){
         if(p_root == null)
             return;
         get_ids(this.p_root, plist, i);
     }
+
+    /* Searches the tree of providers, filling an array of intergers with
+       all the IDs of providers in the current tree.
+     */
     public int get_ids(Node p_root, int [] plist, int i){
         if(p_root == null)
             return i;
@@ -441,5 +523,4 @@ public class ProviderList extends Utility {
         i = get_ids(p_root.go_right(), plist, i);
         return i;
     }
-
 }
