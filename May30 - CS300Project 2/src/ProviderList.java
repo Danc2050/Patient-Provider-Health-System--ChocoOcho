@@ -474,11 +474,14 @@ public class ProviderList extends Utility {
        returns the object of that provider.
      */
     public Provider get_provider(){
-        System.out.print("Enter the provider name: ");
-        String pnum = input.nextLine();
-        Provider obj = get_provider(this.p_root, pnum);
-        if(obj == null)
-            System.out.println("\nNo provider in system...");
+        Provider obj = null;
+        do {
+            System.out.print("Enter the provider name: ");
+            String pname = input.nextLine();
+            obj = get_provider(this.p_root, pname);
+            if (obj == null)
+                System.out.println("\nNo provider in system...");
+        }while(obj == null);
         return obj;
     }
 
