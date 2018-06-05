@@ -236,10 +236,8 @@ public class Menu extends Utility {
         }
 
         else if (service_response == 2)
-        {
             list_of_all_services.delete();
-            System.out.println("\nService removed.");
-        }
+
 
         else if (service_response == 3)
             list_of_all_services.display_all();

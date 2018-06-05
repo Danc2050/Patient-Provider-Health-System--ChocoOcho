@@ -258,38 +258,69 @@ public class ServiceList extends Utility{
          System.out.println("Type the name of the service you wish to update:");
          String to_update = input.nextLine();
 
-         System.out.println("Enter the new 6-digit service code to replace " + to_update);
-         int new_sCode = input.nextInt();
-         this.s_root = updateServiceCode(s_root, to_update, new_sCode);
-         display_all();
-         return true;
+         if (check_service_wrapper(to_update)) //Service exists in directory.
+         {
+            System.out.println("\nEnter the new 6-digit service code to replace " + to_update);
+
+            int new_sCode = input.nextInt();
+            this.s_root = updateServiceCode(s_root, to_update, new_sCode);
+            display_all();
+            return true;
+         }
+
+         else
+         {
+            System.out.println("\nService entered is not in directory to be updated.");
+            return false;
+         }
       }
-      if (response == 2)
+
+      else if (response == 2)
       {
          display_all();
          System.out.println("Type the name of the service you wish to update:");
          String to_update = input.nextLine();
 
-         System.out.println("Enter the new service name to replace " + to_update);
-         String new_sName = input.nextLine();
-         this.s_root = updateServiceName(s_root, to_update, new_sName);
-         add_service(s_root.get_service_code(), new_sName, s_root.get_service_fee());
-         display_all();
-         return true;
+         if (check_service_wrapper(to_update))
+         {
+            System.out.println("Enter the new service name to replace " + to_update);
+
+            String new_sName = input.nextLine();
+            this.s_root = updateServiceName(s_root, to_update, new_sName);
+            add_service(s_root.get_service_code(), new_sName, s_root.get_service_fee());
+            display_all();
+            return true;
+         }
+
+         else
+         {
+            System.out.println("\nService entered is not in directory to be updated.");
+            return false;
+         }
       }
-      if (response == 3)
+
+      else
       {
          display_all();
          System.out.println("Type the name of the service you wish to update:");
          String to_update = input.nextLine();
 
-         System.out.println("Enter the new service fee to replace " + to_update);
-         float new_sFee = input.nextFloat();
-         this.s_root = updateServiceFee(s_root, to_update, new_sFee);
-         display_all();
-         return true;
+         if (check_service_wrapper(to_update))
+         {
+            System.out.println("Enter the new service fee to replace " + to_update);
+
+            float new_sFee = input.nextFloat();
+            this.s_root = updateServiceFee(s_root, to_update, new_sFee);
+            display_all();
+            return true;
+         }
+
+         else
+         {
+            System.out.println("\nService entered is not in directory to be updated.");
+            return false;
+         }
       }
-      return false;
    }
 
    public Node updateServiceName(Node s_root, String oldServiceName, String newServiceName)
