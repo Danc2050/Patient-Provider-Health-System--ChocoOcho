@@ -99,6 +99,7 @@ public class ProviderList extends Utility {
      */
     public int add_provider() // wrapper
     {
+        //TODO for Phuong. Verify type of service with Service List before adding.
         System.out.println("\nEnter name.");
         String name = input.nextLine();
         System.out.println("\nI.D. number being generated.");
