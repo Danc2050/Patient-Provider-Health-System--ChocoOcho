@@ -569,36 +569,39 @@ public class MemberList extends Utility {
 
     /* Wrapper function for get_member() */
     public Member get_member(){
-        System.out.print("Enter the member being put into the system: ");
-        String mname = input.nextLine();
-        if(mname == null)
-            System.out.print("Member not found.\n");
-        return get_member(this.m_root, mname);
+        Member obj = null;
+        do {
+            System.out.print("Enter the member name: ");
+            String mnum = input.nextLine();
+            obj = get_member(this.m_root, mnum);
+            if (obj == null)
+                System.out.println("\nMember not found.");
+        }while(obj == null);
+        return obj;
     }
 
     /* Returns a member so that we can write their information to file when a client is being processed. */
     public Member get_member(Node root, String mname) {
-        if (root == null)
+        if (root == null) {
             return null;
-        if (mname.compareToIgnoreCase(root.get_member_name()) < 0) {
+        }
+        if (mname.compareToIgnoreCase(root.get_member_name()) == 0) {
+            Member obj = new Member();
+            obj.Name = root.get_member_name();
+            obj.m_address = root.get_maddress();
+            obj.id = root.get_member_id();
+            obj.m_status = root.get_status();
+            return obj;
+
+        }
+        else if (mname.compareToIgnoreCase(root.get_member_name()) < 0) {
             return get_member(root.go_left(), mname);
         }
-        else if(mname.compareToIgnoreCase(root.get_member_name()) > 0) {
+        else if (mname.compareToIgnoreCase(root.get_member_name()) > 0) {
             return get_member(root.go_right(), mname);
         }
-        else {
-            /* Creates a temporary member object, stores the data and returns it */
-            if (mname.compareToIgnoreCase(root.get_member_name()) == 0) {
-                Member obj = new Member();
-                obj.Name = root.get_member_name();
-                obj.m_address = root.get_maddress();
-                obj.id = root.get_member_id();
-                obj.m_status = root.get_status();
-                return obj;
-            }
-            }
-            return null;
-        }
+        return null;
+    }
 
     /* Wrapper function for find_member() */
     public String find_member(int mid){
