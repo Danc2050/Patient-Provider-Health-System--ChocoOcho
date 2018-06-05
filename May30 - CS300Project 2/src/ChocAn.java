@@ -24,10 +24,18 @@ public class ChocAn extends Utility{
             //Manager Mode
             if (response == 1)
             {
-                if(list_of_providers.manager_Verification()){//Verify a manager does exist.
-                    System.out.println("\nManager I.D. verification successful."); manager_menu = 0;}
-                else{
-                    System.out.println("\nManager I.D. verification unsuccessful."); manager_menu = 1;}
+                if(list_of_providers.manager_Verification())
+                {
+                    //Verify a manager does exist.
+                    System.out.println("\nManager I.D. verification successful.");
+                    manager_menu = 0;
+                }
+
+                else {
+                    System.out.println("\nManager I.D. verification unsuccessful.");
+                    manager_menu = 1;
+                }
+
                 while (manager_menu != 1)
                 {
                     intMode_response = object.intMode(); //Ask Manager what to do
@@ -55,6 +63,18 @@ public class ChocAn extends Utility{
             //Provider mode.
             else if (response == 2)
             {
+                if(list_of_providers.provider_Verification())
+                {
+                    //Verify a provider does exist.
+                    System.out.println("\nProvider I.D. verification successful.");
+                    provider_menu = 0;
+                }
+
+                else {
+                    System.out.println("\nProvider I.D. verification unsuccessful.");
+                    provider_menu = 1;
+                }
+
                 while (provider_menu != 1)
                 {
                     intMode_response = object.providerMenu(); //Ask Provider what to do
