@@ -480,7 +480,7 @@ public class ProviderList extends Utility {
             String pname = input.nextLine();
             obj = get_provider(this.p_root, pname);
             if (obj == null)
-                System.out.println("\nNo provider in system...");
+                System.out.println("\nProvider not found.");
         }while(obj == null);
         return obj;
     }
