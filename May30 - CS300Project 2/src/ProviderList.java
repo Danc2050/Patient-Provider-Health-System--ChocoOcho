@@ -474,22 +474,22 @@ public class ProviderList extends Utility {
        returns the object of that provider.
      */
     public Provider get_provider(){
-        System.out.print("What is the provider ID: ");
-        int pnum = input.nextInt();
+        System.out.print("Enter the provider name: ");
+        String pnum = input.nextLine();
         Provider obj = get_provider(this.p_root, pnum);
         if(obj == null)
-            System.out.println("\nObject is null...");
+            System.out.println("\nNo provider in system...");
         return obj;
     }
 
     /* Returns a Provider object so that their information can be
        written to a text file and stored for future reports.
      */
-    public Provider get_provider(Node root, int provider_id) {
+    public Provider get_provider(Node root, String pname) {
         if (root == null) {
             return null;
         }
-        if (root.get_pnum() == provider_id) {
+        if (pname.compareToIgnoreCase(root.get_pname()) == 0) {
             Provider obj = new Provider();
             obj.Name = root.get_pname();
             obj.p_address = root.get_paddress();
@@ -497,11 +497,11 @@ public class ProviderList extends Utility {
             obj.Service = root.get_service_name();
             return obj;
         }
-        else if (root.get_pnum() > provider_id) {
-            return get_provider(root.go_left(), provider_id);
+        else if (pname.compareToIgnoreCase(root.get_pname()) < 0) {
+            return get_provider(root.go_left(), pname);
         }
-        else if (root.get_pnum() < provider_id) {
-            return get_provider(root.go_right(), provider_id);
+        else if (pname.compareToIgnoreCase(root.get_pname()) > 0) {
+            return get_provider(root.go_right(), pname);
         }
         return null;
     }

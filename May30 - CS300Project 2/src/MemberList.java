@@ -569,36 +569,36 @@ public class MemberList extends Utility {
 
     /* Wrapper function for get_member() */
     public Member get_member(){
-        System.out.print("Enter the member ID?: ");
-        int mnum = input.nextInt();
-        return get_member(this.m_root, mnum);
+        System.out.print("Enter the member being put into the system: ");
+        String mname = input.nextLine();
+        if(mname == null)
+            System.out.print("Member not found.\n");
+        return get_member(this.m_root, mname);
     }
 
-    /* Returns a provider so that we can write their information to file when a client is being processed. */
-    public Member get_member(Node root, int member_id) {
+    /* Returns a member so that we can write their information to file when a client is being processed. */
+    public Member get_member(Node root, String mname) {
         if (root == null)
             return null;
-        if (root.get_member_id() < member_id) {
-            return get_member(root.go_left(), member_id);
+        if (mname.compareToIgnoreCase(root.get_member_name()) < 0) {
+            return get_member(root.go_left(), mname);
         }
-        else if(root.get_member_id() > member_id) {
-            return get_member(root.go_right(), member_id);
+        else if(mname.compareToIgnoreCase(root.get_member_name()) > 0) {
+            return get_member(root.go_right(), mname);
         }
         else {
             /* Creates a temporary member object, stores the data and returns it */
-            if (root.get_member_id() == member_id) {
+            if (mname.compareToIgnoreCase(root.get_member_name()) == 0) {
                 Member obj = new Member();
                 obj.Name = root.get_member_name();
                 obj.m_address = root.get_maddress();
                 obj.id = root.get_member_id();
                 obj.m_status = root.get_status();
                 return obj;
-            } else if (root.get_member_id() != member_id) {
-                System.out.print("Person not found.\n");
             }
+            }
+            return null;
         }
-        return null;
-    }
 
     /* Wrapper function for find_member() */
     public String find_member(int mid){
