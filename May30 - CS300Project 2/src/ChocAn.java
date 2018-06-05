@@ -5,9 +5,9 @@ public class ChocAn extends Utility{
         //Main.java is designed to allow providers to interact with the ChocAn data processing software system.
         int main_menu = 0;//Controls the exit from our main terminal.
         int manager_menu = 0;//Controls the entrance or exit from our manager terminal.
-        int response = 0; //Catch user's response in main mode
-        int intMode_response = 0; //Catch user's response in manager's mode
-        int provider_menu = 0; //Catch user's response in provider's mode
+        int response; //Catch user's response in main mode
+        int intMode_response; //Catch user's response in manager's mode
+        int provider_menu; //Catch user's response in provider's mode
         int catcher = 0; //Catch return value in provider's menu.
 
         Menu object = new Menu(); //Object for the Main Menu (Provider/Manager Mode)
@@ -53,7 +53,7 @@ public class ChocAn extends Utility{
                         catcher = object.intMode_Service(list_of_all_services); //Mess with services in list of all services
 
                     else
-                        manager_menu = 1;
+                        manager_menu = 1; //Break out of loop.
 
                     if (catcher == -1)
                         System.out.println("Error.");
