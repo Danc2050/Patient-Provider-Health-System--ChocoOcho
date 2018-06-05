@@ -185,12 +185,16 @@ public class ServiceList extends Utility{
       display_all(s_root.go_right());
    }
 
+   //Phuong added service verification.
    public void delete()
    {
-      System.out.println("What is the name of the service you wish to delete?");
+      System.out.println("\nWhat is the name of the service you wish to delete?");
       String to_delete = input.nextLine();
 
-      this.s_root = delete(this.s_root, to_delete);
+      if (check_service_wrapper(to_delete))
+         this.s_root = delete(this.s_root, to_delete);
+      else
+         System.out.println("\nService entered is not in directory to be deleted.");
    }
 
    public Node delete(Node s_root, String name)
