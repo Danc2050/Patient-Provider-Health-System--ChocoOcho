@@ -95,30 +95,37 @@ public class ProviderList extends Utility {
     }
 
     /* Prompts the user for information required to add a new
-       provider and calls the insert function.
-     */
-    public int add_provider() // wrapper
+       provider and calls the insert function.*/
+     //Phuong adding verify service
+    public int add_provider(ServiceList list_of_all_services) // wrapper
     {
-        //TODO for Phuong. Verify type of service with Service List before adding.
-        System.out.println("\nEnter name.");
+        System.out.println("\nEnter name:");
         String name = input.nextLine();
-        System.out.println("\nI.D. number being generated.");
+        System.out.println("\nI.D. number generated.");
         int id = ++this.tId;
         System.out.println("\nEnter Street Address (25 Characters)");
         String street = input.nextLine();
-        System.out.println("\nEnter city");
+        System.out.println("\nEnter city:");
         String city = input.nextLine();
-        System.out.println("\nEnter State)");
+        System.out.println("\nEnter State:");
         String state = input.nextLine();
-        System.out.println("\nEnter zip");
+        System.out.println("\nEnter Zip:");
         int zip = input.nextInt();
         input.nextLine();
-        System.out.println("\nAdd a single service in order to be added to the system.)");
+        System.out.println("\nAdd a single service in order to be added to the system.");
         String service = input.nextLine();
+
         Address ad = new Address(street, city, state, zip);
 
-        this.p_root = add_provider(p_root, name, id, ad, service);
-        return 1;
+        if (list_of_all_services.check_service_wrapper(service))
+        {
+            this.p_root = add_provider(p_root, name, id, ad, service);
+            return 1;
+        }
+
+        else
+            System.out.println("\nService entered is not provided by ChocAn.");
+        return 0;
     }
 
     /* Traverses the tree until finding the correct position to add

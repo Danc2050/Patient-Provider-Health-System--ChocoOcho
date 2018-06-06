@@ -44,7 +44,7 @@ public class ChocAn extends Utility{
                         catcher = object.intMode_Member(list_of_members); //Mess with members
                     }
                     else if (intMode_response == 2)
-                        catcher = object.intMode_Provider(list_of_providers); //Mess with providers
+                        catcher = object.intMode_Provider(list_of_providers, list_of_all_services); //Mess with providers
 
                     else if (intMode_response == 3)
                         catcher = object.intMode_Report(tree_of_services); //Do reports

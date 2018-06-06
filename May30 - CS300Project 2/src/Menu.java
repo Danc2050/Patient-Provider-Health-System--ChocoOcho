@@ -114,7 +114,10 @@ public class Menu extends Utility {
         return 0;
     }
 
-    public int intMode_Provider(ProviderList list_of_providers) {
+    //This function also takes in the object of ServiceList so that if a provider is added,
+    //The type of service that he/she provides can be check against ChocAn's database to ensure
+    //that ChocAn provides that type of service.
+    public int intMode_Provider(ProviderList list_of_providers, ServiceList list_of_all_services) {
         int provider_response = 0;
         int provider_menu = 0;
         Scanner input = new Scanner(System.in);
@@ -134,7 +137,7 @@ public class Menu extends Utility {
 
             if (provider_response == 1) //Add Provider
             {
-                if (list_of_providers.add_provider() == 1)
+                if (list_of_providers.add_provider(list_of_all_services) == 1)
                     System.out.println("\nProvider added successfully.");
                 else
                     System.out.println("\nCould not add provider.");
