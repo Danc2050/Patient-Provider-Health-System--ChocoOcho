@@ -128,7 +128,7 @@ public class MemberList extends Utility {
      */
     public void updateMemberInfo() {
         System.out.println("[1] - Update Member Name." + "\n[2] - Update Member ID" +
-                "\n[3] - Update Member Services" + "\n[4] - Update Member Address.");
+                "\n[3] - Update Member Status" + "\n[4] - Update Member Address.");
         int response = input.nextInt();
         input.nextLine();
         if (response == 1) {
