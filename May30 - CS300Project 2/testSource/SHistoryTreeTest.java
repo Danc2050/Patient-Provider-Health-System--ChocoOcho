@@ -39,7 +39,11 @@ class SHistoryTreeTest {
     @org.junit.jupiter.api.Test
     void add_history1() {
         SHistoryTree obj = new SHistoryTree();
+        Provider prov = new Provider();
+        Member mem = new Member();
+        Service service = new Service();
 
+        Assertions.assertNotNull(obj.add_history(obj.h_root, prov, mem, service, "06-01-2018 03:30:30", "06-04-2018 05:25:50", "good health"));
     }
 
     @org.junit.jupiter.api.Test
