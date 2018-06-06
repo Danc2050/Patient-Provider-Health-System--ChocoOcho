@@ -77,9 +77,13 @@ public class MemberList extends Utility {
         String to_find = input.nextLine();
         System.out.println("Enter current id: ");
         int current_id = input.nextInt();
-        System.out.println("Enter new member ID: ");
-        int new_id = input.nextInt();
-
+        int new_id = 0;
+        do{
+            System.out.println("Enter new member ID: ");
+            new_id = input.nextInt();
+            if(new_id <= 123456799 || new_id >= m_id)
+                System.out.println("Member ID entered is or has already existed in the system! Choose a different ID.");
+        } while(new_id <= 123456799 && new_id >= m_id);
         this.m_root = updateMemberId(m_root, to_find, new_id, current_id);
         display_all_wrapper();
         return 0;
@@ -143,18 +147,11 @@ public class MemberList extends Utility {
     {
         System.out.println("Enter member name to change status: ");
         String to_find = input.nextLine();
-        String new_status = null;
-        int int_status = 0;
-        do{
-            System.out.println("Enter new member status: ");
-            new_status = input.nextLine();
-            int_status = Integer.parseInt(new_status);
-            if(int_status <= 123456799 || int_status >= m_id)
-                System.out.println("Member ID is or has already existed in the system!");
-        } while(int_status <= 123456799 && int_status >= m_id);
+        System.out.println("Enter new member status: ");
+        String new_status = input.nextLine();
         this.m_root = updateMemberStatus(m_root, to_find, new_status);
         display_all_wrapper();
-        return 0;
+        return 1;
     }
 
     /* Searches the tree of members until finding the name that matches
