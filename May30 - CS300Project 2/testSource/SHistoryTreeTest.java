@@ -1,76 +1,92 @@
-/*import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
+import java.io.*;
 
-public class SHistoryTreeTest extends TestCase {
-    SHistoryTree SHTT = new SHistoryTree();
+class SHistoryTreeTest {
 
-    public SHistoryTree (String name)
-    {
-        super(name);
+    @org.junit.jupiter.api.Test
+    void read_from_file() {
+        SHistoryTree obj = new SHistoryTree();
+        Assertions.assertEquals(obj.read_from_file(), 1);
     }
 
-    public void testWrite_to_file() {
+    @org.junit.jupiter.api.Test
+    void write_to_file() {
+        SHistoryTree obj = new SHistoryTree();
+        Assertions.assertEquals(obj.write_to_file(), 1);
     }
 
-    public void testWrite_to_file1() {
+    @org.junit.jupiter.api.Test
+    void write_to_file1() {
+        try
+        {
+            SHistoryTree obj = new SHistoryTree();
+            FileWriter file = new FileWriter ("ServiceHistory.txt");
+            Assertions.assertEquals(obj.write_to_file(obj.h_root, file), 1);
+        }
+        catch (IOException e)
+        {
+            System.out.println("\nIO exception");
+        }
     }
 
-    public void testAdd_history() {
-        testAdd_history1();
+    @org.junit.jupiter.api.Test
+    void add_history() {
+        SHistoryTree obj = new SHistoryTree();
     }
 
-    public void testAdd_history1() {
-        System.out.println("Adding new history.");
-        ServiceHistory root = new ServiceHistory("")
+    @org.junit.jupiter.api.Test
+    void add_history1() {
+        SHistoryTree obj = new SHistoryTree();
+
     }
 
-    public void testEmail_p_history() {
+    @org.junit.jupiter.api.Test
+    void email_p_history() {
     }
 
-    public void testEmail_p_history1() {
+    @org.junit.jupiter.api.Test
+    void email_p_history1() {
     }
 
-    public void testEmail_m_history() {
+    @org.junit.jupiter.api.Test
+    void email_p_history2() {
     }
 
-    public void testEmail_m_history1() {
+    @org.junit.jupiter.api.Test
+    void email_m_history() {
     }
 
-    public void testEmail_summary_report() {
+    @org.junit.jupiter.api.Test
+    void email_m_history1() {
     }
 
-    public void testEmail_summary_report1() {
+    @org.junit.jupiter.api.Test
+    void email_m_history2() {
     }
 
-    public void testRead_from_file1() {
+    @org.junit.jupiter.api.Test
+    void email_summary_report() {
     }
 
-    public void testWrite_to_file2() {
+    @org.junit.jupiter.api.Test
+    void email_summary_report1() {
     }
 
-    public void testWrite_to_file3() {
+    @org.junit.jupiter.api.Test
+    void get_p_info() {
     }
 
-    public void testAdd_history2() {
+    @org.junit.jupiter.api.Test
+    void get_p_info1() {
     }
 
-    public void testAdd_history3() {
+    @org.junit.jupiter.api.Test
+    void visited() {
     }
 
-    public void testEmail_p_history2() {
+    @org.junit.jupiter.api.Test
+    void visit() {
     }
-
-    public void testEmail_p_history3() {
-    }
-
-    public void testEmail_m_history2() {
-    }
-
-    public void testEmail_m_history3() {
-    }
-
-    public void testEmail_summary_report2() {
-    }
-
-    public void testEmail_summary_report3() {
-    }
-}*/
+}
