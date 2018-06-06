@@ -8,11 +8,15 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.io.*;
 
+//This class is a tree that contains all the service history 
+//of providers and their patients
 public class SHistoryTree extends Utility {
     protected Node h_root;
 
+    //Constructor
     public SHistoryTree(){this.h_root = null;}
 
+    //Read service history from a text file and insert into a tree
     public int read_from_file()
     {
 
@@ -71,6 +75,7 @@ public class SHistoryTree extends Utility {
         return 1;
     }
 
+    //Wrapper function for write out a text file
     public int write_to_file()
     {
         try{
@@ -84,6 +89,7 @@ public class SHistoryTree extends Utility {
         return 1;
     }
 
+    //Write the information of member and provider and the service each member got to a file
     protected int write_to_file(Node h_root, FileWriter file){
         if(h_root == null)
             return 1;
@@ -124,7 +130,8 @@ public class SHistoryTree extends Utility {
 
 
 
-    //Wrapper. Phuong added code to pass in to make sure service code is valid.
+    //Wrapper function for the insert function
+    //Added code to pass in to make sure service code is valid.
     public int add_history(int service_code)
     {
         //Get provider node
@@ -150,6 +157,7 @@ public class SHistoryTree extends Utility {
         return 1;
     }
 
+    //Insert function to insert a node with the provider and member information to the binary tree
     protected Node add_history(Node h_root,Provider p, Member m, Service s,String temp_sdate,String temp_ldate,String temp_comments){
         if(h_root == null) {
             h_root = new ServiceHistory(p,m,s,temp_sdate,temp_ldate,temp_comments);
@@ -167,9 +175,10 @@ public class SHistoryTree extends Utility {
     }
 
 
-    //Wrapper
+    //Wrapper function to email the provider the history of the services they provided
     public int email_p_history(int p_id){
         try {
+            //Prompt user to enter id of specific provider they want to email the history list to
             ProviderList person = new ProviderList();
             person.read_from_file();
             String name = person.find_provider(p_id);
@@ -188,6 +197,8 @@ public class SHistoryTree extends Utility {
         }
         return 1;
     }
+    
+    //Email a provider a list of services and ChocAn members that they have provided in the last 7 days
     public int email_p_history(Node h_root, int p_id, FileWriter writer){
         if(h_root == null) {
             return 1;
@@ -227,6 +238,7 @@ public class SHistoryTree extends Utility {
         return 1;
     }
 
+    //This function finds the services that a specific provider provided in the past
     protected void email_p_history(Node h_root,FileWriter file, int p_id, Date week, Date today){
         if(h_root == null)
             return;
@@ -264,7 +276,8 @@ public class SHistoryTree extends Utility {
         }
     }
 
-    //Wrapper
+    //Wrapper to email members the list of services they got in the last 7 days
+    //Prompt user to enter a member id
     public int email_m_history(int m_id){
         try{
             MemberList person = new MemberList();
@@ -285,6 +298,8 @@ public class SHistoryTree extends Utility {
         }
         return 1;
     }
+    
+    //Find a member based on member id and write their information to a file
     public int email_m_history(Node h_root, int m_id,FileWriter writer){
         if(h_root == null)
             return 1;
@@ -311,6 +326,8 @@ public class SHistoryTree extends Utility {
         }
         return 1;
     }
+    
+    //Find the services of a specific member based on their id
     protected void email_m_history(Node h_root, FileWriter file, int m_id){
         if(h_root == null)
             return;
@@ -342,7 +359,8 @@ public class SHistoryTree extends Utility {
         }
         email_m_history(h_root.go_right(), file, m_id);
     }
-
+    
+    //Write out a summary report with total number of consultations of a specific provider
     public int email_summary_report() {
         if(this.h_root == null)
             return 1;
@@ -383,6 +401,7 @@ public class SHistoryTree extends Utility {
         }
         return 1;
     }
+  
     public int email_summary_report(Node h_root,FileWriter writer, Date week, Date today, float [] tfee, int [] tcons, int [] plist){
         if(h_root == null)
             return 1;
@@ -423,6 +442,8 @@ public class SHistoryTree extends Utility {
         return 1;
     }
 
+    //Wrapper function that calculate the last 7 days
+    //Also call another function to calculate the number of consultations and fee of each provider
     public void get_p_info(float [] fee, int [] consultations, int pid){
         if(this.h_root == null)
             return;
@@ -439,6 +460,8 @@ public class SHistoryTree extends Utility {
             e.printStackTrace();
         }
     }
+    
+    //Get the total number of consultations and fee of the last 7 days from a specific provider
     protected void get_p_info(Node h_root, float [] fee, int [] consultations, int pid, Date week, Date today){
         if(h_root == null)
             return;
@@ -456,6 +479,8 @@ public class SHistoryTree extends Utility {
             e.printStackTrace();
         }
     }
+    
+    //Check to see if we have visited the same provider in the tree when traverse
     public boolean visited(int pid, int [] plist){
         int size = plist.length;
         for(int i = 0; i < size; ++i){
