@@ -143,9 +143,15 @@ public class MemberList extends Utility {
     {
         System.out.println("Enter member name to change status: ");
         String to_find = input.nextLine();
-        System.out.println("Enter new member status: ");
-        String new_status = input.nextLine();
-
+        String new_status = null;
+        int int_status = 0;
+        do{
+            System.out.println("Enter new member status: ");
+            new_status = input.nextLine();
+            int_status = Integer.parseInt(new_status);
+            if(int_status <= 123456799 || int_status >= m_id)
+                System.out.println("Member ID is or has already existed in the system!");
+        } while(int_status <= 123456799 && int_status >= m_id);
         this.m_root = updateMemberStatus(m_root, to_find, new_status);
         display_all_wrapper();
         return 0;
