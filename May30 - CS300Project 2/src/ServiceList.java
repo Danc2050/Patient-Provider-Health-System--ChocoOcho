@@ -4,11 +4,13 @@ public class ServiceList extends Utility{
    protected Node s_root;
    protected int s_id;
 
+   //Constructor
    public ServiceList()
    {
       this.s_root = null;
    }
 
+   //Read service list from a text file using a relative path
    public int read_from_file()
    {
       int temp_code = 0;
@@ -100,7 +102,8 @@ public class ServiceList extends Utility{
       return 1;
    }
 
-   //Wrapper
+   //Wrapper for adding service
+   //Also prompt user to enter a service information to add
    public int add_service()
    {
       System.out.print("What is the service name? : ");
@@ -133,12 +136,13 @@ public class ServiceList extends Utility{
       return s_root;
    }
 
-   //Phuong's Service ID's Verification
+   //Service ID's Verification Wrapper
    public boolean check_service_wrapper(String to_check)
    {
        return check_service(this.s_root, to_check);
    }
 
+   //Check for service ID, return true if service exists in list, return false if service doesn't exist
    protected boolean check_service(Node s_root, String to_check)
    {
       boolean ret = false;
@@ -152,11 +156,13 @@ public class ServiceList extends Utility{
       return ret;
    }
 
+   //Return a service ID based on a service name (Wrapper function)
    public int get_service_id_from_name_wrapper(String service_name)
    {
       return get_service_id_from_name(this.s_root, service_name);
    }
 
+   //Return a service ID based on a service name
    protected int get_service_id_from_name(Node s_root, String service_name)
    {
       int ret = 0;
@@ -172,11 +178,12 @@ public class ServiceList extends Utility{
 
 
 
-   //Wrapper
+   //Wrapper for display function
    public void display_all(){
       display_all(this.s_root);
    }
 
+   //Display all the service in the tree
    protected void display_all(Node s_root){
       if(s_root == null)
          return;
@@ -185,7 +192,8 @@ public class ServiceList extends Utility{
       display_all(s_root.go_right());
    }
 
-   //Phuong added service verification.
+   //Wrapper function for remove a service. Prompt user to enter a service name they want to remove
+   //Added service verification.
    public void delete()
    {
       System.out.println("\nWhat is the name of the service you wish to delete?");
@@ -197,6 +205,7 @@ public class ServiceList extends Utility{
          System.out.println("\nService entered is not in directory to be deleted.");
    }
 
+   //Function to remove a service from the tree
    public Node delete(Node s_root, String name)
    {
       if (s_root == null)
@@ -234,6 +243,7 @@ public class ServiceList extends Utility{
       return s_root;
    }
 
+   //Find the inorder successor of the node you want to remove
    protected String minValue(Node s_root)
    {
       if (s_root.go_left() != null)
@@ -243,6 +253,7 @@ public class ServiceList extends Utility{
       return s_root.get_service_name();
    }
 
+   //Wrapper function that prompt users to enter choices
    public boolean updateService()
    {
       System.out.println("Press '1' to update the service code");
@@ -323,6 +334,7 @@ public class ServiceList extends Utility{
       }
    }
 
+   //Update the service name
    public Node updateServiceName(Node s_root, String oldServiceName, String newServiceName)
    {
       if (s_root == null)
@@ -343,6 +355,7 @@ public class ServiceList extends Utility{
       return s_root;
    }
 
+   //Update service ID
    public Node updateServiceCode(Node s_root, String oldServiceName, int new_sCode)
    {
       if (s_root == null)
@@ -362,7 +375,7 @@ public class ServiceList extends Utility{
       return s_root;
    }
 
-
+   //Update service fee
    public Node updateServiceFee(Node s_root, String oldServiceName, float new_sFee)
    {
       if (s_root == null)
@@ -382,6 +395,7 @@ public class ServiceList extends Utility{
       return s_root;
    }
 
+   //Wrapper for getting a service based on service id
    public Service get_service(int service_code){
       return get_service(this.s_root, service_code);
    }
