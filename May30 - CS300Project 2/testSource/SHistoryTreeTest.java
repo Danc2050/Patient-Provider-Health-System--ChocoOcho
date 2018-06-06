@@ -48,6 +48,8 @@ class SHistoryTreeTest {
 
     @org.junit.jupiter.api.Test
     void email_p_history() {
+        SHistoryTree obj = new SHistoryTree();
+        Assertions.assertEquals(obj.email_p_history(), 1);
     }
 
     @org.junit.jupiter.api.Test
