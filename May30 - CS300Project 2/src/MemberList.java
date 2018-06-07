@@ -423,7 +423,6 @@ public class MemberList extends Utility {
     {
         if(root == null)
             return 1;
-        write_to_file(root.go_left(), file); /* Traverses Left */
 
         /* Writes all the information into a single line */
         try{
@@ -441,6 +440,7 @@ public class MemberList extends Utility {
         catch (IOException exception){
             exception.printStackTrace();
         }
+        write_to_file(root.go_left(), file); /* Traverses Left */
         write_to_file(root.go_right(), file); /* Traverses Right */
         return 1;
     }
