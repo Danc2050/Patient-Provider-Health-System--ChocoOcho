@@ -75,9 +75,6 @@ public class ProviderList extends Utility {
         if (p_root == null)
             return 1;
 
-        /* Traverses Left */
-        write_to_file(p_root.go_left(), file);
-
         /* Writes provider information onto a single line */
         try {
             file.write(p_root.get_pnum() + ";");
@@ -93,7 +90,8 @@ public class ProviderList extends Utility {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        /* Traverses Left */
+        write_to_file(p_root.go_left(), file);
         /* Traverses Right */
         write_to_file(p_root.go_right(), file);
         return 1;
