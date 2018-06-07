@@ -96,7 +96,7 @@ public class SHistoryTree extends Utility {
     protected int write_to_file(Node h_root, FileWriter file){
         if(h_root == null)
             return 1;
-        write_to_file(h_root.go_left(),file);
+
         try{
             file.write(h_root.get_pname() + ";");
             file.write(h_root.get_pnum() + ";");
@@ -127,6 +127,7 @@ public class SHistoryTree extends Utility {
         }catch(IOException e){
             e.printStackTrace();
         }
+        write_to_file(h_root.go_left(),file);
         write_to_file(h_root.go_right(),file);
         return 1;
     }
