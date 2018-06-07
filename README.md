@@ -19,3 +19,14 @@ THE ENVIRONMENT WE ARE WORKING ON:
 
 THE STEPS YOU NEED TO RUN THE PROGRAM LOCALLY:
 - Compile and run the java class "ChocAn." It is our main.
+- Once the program is running, in order to access the Interactive/Manger mode, you will
+  be prompted for a manger's ID. Please use the ManagerList.txt file to copy any of the valid
+  manger IDs into the input. Similarly, in order to access the Provider mode, you will need to
+  refer to the ProviderList.txt file to copy a valid provider ID.
+  
+OTHER THINGS TO KNOW:
+- When requesting reports (i.e. Summary Reports, Provider History, Member History),
+  they will only appear on the side bar where all the .txt files are after the program has ended.
+- The Member/Provider service history reports will appear titled as the respective Member/Provider name.
+- Provider and Summary Reports will only show services of the week. Therefore, when testing, please refer
+  to the ServiceHistory.txt files for appropriate dates. The first date a line is the service date.
