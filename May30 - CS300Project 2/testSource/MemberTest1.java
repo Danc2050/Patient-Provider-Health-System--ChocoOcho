@@ -25,14 +25,23 @@ class MemberTest1 {
 
     @Test
     void set_service_name() {
+        Service test = new Service();
+        test.set_service_name(null);
+        Assertions.assertEquals(test.s_name, null);
     }
 
     @Test
     void set_service_code() {
+        Service test = new Service();
+        test.set_service_code(0);
+        Assertions.assertEquals(test.s_code, 0);
     }
 
     @Test
     void set_service_fee() {
+        Service test = new Service();
+        test.set_service_fee(0);
+        Assertions.assertEquals(test.s_fee, 0);
     }
 
     @Test
@@ -132,5 +141,52 @@ class MemberTest1 {
     void get_maddress() {
         Member obj = new Member();
         assertNull(obj.get_maddress(), "String is null");
+    }
+
+    @Test
+    void set_member_status()
+    {
+        int id = 12345;
+        String status = "Active";
+        String Name = "Michael Jordan";
+        Address ad = new Address("Barney", "Portland", "OR", 97236);
+        Member test = new Member(id, status, Name, ad);
+        test.set_member_status("Suspended");
+        Assertions.assertEquals(test.m_status, "Suspended");
+    }
+
+    @Test
+    void set_member_id()
+    {
+        int id = 12345;
+        String status = "Active";
+        String Name = "Michael Jordan";
+        Address ad = new Address("Barney", "Portland", "OR", 97236);
+        Member test = new Member(id, status, Name, ad);
+        test.set_member_id(101010);
+        Assertions.assertEquals(test.id, 101010);
+    }
+
+    @Test
+    void set_member_name()
+    {
+        int id = 12345;
+        String status = "Active";
+        String Name = "Michael Jordan";
+        Address ad = new Address("Barney", "Portland", "OR", 97236);
+        Member test = new Member(id, status, Name, ad);
+        test.set_member_name("foo");
+        Assertions.assertEquals(test.Name, "foo");
+    }
+    @Test
+    void set_member_address()
+    {
+        int id = 12345;
+        String status = "Active";
+        String Name = "Michael Jordan";
+        Address ad = new Address("Barney", "Portland", "OR", 97236);
+        Member test = new Member(id, status, Name, ad);
+        test.set_member_address(ad);
+        Assertions.assertEquals(test.m_address, ad);
     }
 }
