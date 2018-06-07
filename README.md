@@ -24,7 +24,7 @@ THE STEPS YOU NEED TO RUN THE PROGRAM LOCALLY:
 - Once the program is running, in order to access the Interactive/Manger mode, you will
   be prompted for a manger's ID. Please use the ManagerList.txt file to copy any of the valid
   manager IDs into the input. Similarly, in order to access the Provider mode, you will need to
-  refer to the ProviderList.txt file to copy a valid provider ID. Finally, in order to a;ter a member's information, you will need to       consult the MemberList.txt file.
+  refer to the ProviderList.txt file to copy a valid provider ID. Finally, in order to alter a member's information, you will need to       consult the MemberList.txt file.
   
 OTHER THINGS TO KNOW:
 - When requesting reports (i.e. Summary Reports, Provider History, Member History),
