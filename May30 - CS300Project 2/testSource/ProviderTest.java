@@ -10,15 +10,20 @@ class ProviderTest {
 
     @Test
     void toCopy() {
-        Address ad = new Address("1234 Maple Lane", "Maple City", "Maple", 97045);
-        Provider newP = new Provider();
-        obj.set_provider_address(ad);
-        newP.toCopy(obj);
-        Address newA = newP.get_address();
-        Assertions.assertEquals(newA.street, "1234 Maple Lane");
-        Assertions.assertEquals(newA.city, "Maple City");
-        Assertions.assertEquals(newA.state, "Maple");
-        Assertions.assertEquals(newA.zip, 97045);
+        Address a = new Address("123 Main St.", "Springfield", "OR", 97209);
+        Provider p = new Provider("Joe", 12345, a, "stuff");
+
+        Provider p2 = new Provider();
+        p2.toCopy(p);
+
+        assertEquals("Joe", p2.Name);
+        assertEquals(12345, p2.id);
+        Address ad = p.get_address();
+        assertEquals(a.street, ad.street);
+        assertEquals(a.state, ad.state);
+        assertEquals(a.city, ad.city);
+        assertEquals(a.zip, ad.zip);
+        assertEquals("stuff", p2.Service);
 
     }
     @Test
