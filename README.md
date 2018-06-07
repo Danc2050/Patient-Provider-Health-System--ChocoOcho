@@ -23,7 +23,7 @@ THE STEPS YOU NEED TO RUN THE PROGRAM LOCALLY:
 - Compile and run the java class "ChocAn." It is our main.
 - Once the program is running, in order to access the Interactive/Manger mode, you will
   be prompted for a manger's ID. Please use the ManagerList.txt file to copy any of the valid
-  manger IDs into the input. Similarly, in order to access the Provider mode, you will need to
+  manager IDs into the input. Similarly, in order to access the Provider mode, you will need to
   refer to the ProviderList.txt file to copy a valid provider ID.
   
 OTHER THINGS TO KNOW:
