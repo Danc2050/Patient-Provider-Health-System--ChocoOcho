@@ -13,9 +13,9 @@ THE ENVIRONMENT WE ARE WORKING ON:
 - We implemented our program in Java using Intellij IDE CE (Version 2018.1.2).
 - We utilized Junit 5 for our unit tests. You may be prompted to import Junit 5 into your system if you see that the test
   classes are highlighted in red indicating an error. 
-- Our program works best on Macs I believe. One member who was not a Mac user couldn't get the .txt files from our write
-  to file functions to show up.  All Mac users had no issues. However, another member tested it on another non-Mac system
-  and it was working fine. It might just be issues with the particular computer and not with Windows as a whole.
+- Our program works best on Macs I believe. One member who was a Windows user couldn't get the .txt files from our write
+  to file functions to show up.  All Mac users had no issues. However, another member tested it on a separate Windows system
+  and it was working fine. It might just be issues with the particular computer and not with the Windows operatoring system.
 
 THE STEPS YOU NEED TO RUN THE PROGRAM LOCALLY:
 - Keep the project folder name "May 30 - CS300Project2" as is when downloading, as our read from file functions
@@ -24,7 +24,7 @@ THE STEPS YOU NEED TO RUN THE PROGRAM LOCALLY:
 - Once the program is running, in order to access the Interactive/Manger mode, you will
   be prompted for a manger's ID. Please use the ManagerList.txt file to copy any of the valid
   manager IDs into the input. Similarly, in order to access the Provider mode, you will need to
-  refer to the ProviderList.txt file to copy a valid provider ID.
+  refer to the ProviderList.txt file to copy a valid provider ID. Finally, in order to a;ter a member's information, you will need to       consult the MemberList.txt file.
   
 OTHER THINGS TO KNOW:
 - When requesting reports (i.e. Summary Reports, Provider History, Member History),
