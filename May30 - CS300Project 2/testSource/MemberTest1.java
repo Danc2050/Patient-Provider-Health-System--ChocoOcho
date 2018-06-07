@@ -189,4 +189,74 @@ class MemberTest1 {
         test.set_member_address(ad);
         Assertions.assertEquals(test.m_address, ad);
     }
+
+    @Test
+    void get_member_name()
+    {
+        int id = 12345;
+        String status = "Active";
+        String Name = "Michael Jordan";
+        Address ad = new Address("Barney", "Portland", "OR", 97236);
+        Member test = new Member(id, status, Name, ad);
+        Assertions.assertEquals(test.get_member_name(), "Michael Jordan");
+    }
+
+    @Test
+    void set_p_name()
+    {
+        int id = 0;
+        String service = null;
+        String Name = null;
+        Address ad = new Address(null, null, null, 0);
+        Provider test = new Provider(Name, id, ad, service);
+        test.set_p_name(null);
+        Assertions.assertNull(test.Name);
+    }
+
+    @Test
+    void set_provider_id()
+    {
+        int id = 0;
+        String service = null;
+        String Name = null;
+        Address ad = new Address(null, null, null, 0);
+        Provider test = new Provider(Name, id, ad, service);
+        test.set_provider_id(0);
+        Assertions.assertEquals(test.id, 0);
+    }
+
+    @Test
+    void set_provider_services()
+    {
+        int id = 0;
+        String service = null;
+        String Name = null;
+        Address ad = new Address(null, null, null, 0);
+        Provider test = new Provider(Name, id, ad, service);
+        test.set_provider_services(null);
+        Assertions.assertNull(test.Service);
+    }
+
+    @Test
+    void set_provider_address()
+    {
+        int id = 0;
+        String service = null;
+        String Name = null;
+        Address ad = new Address(null, null, null, 0);
+        Provider test = new Provider(Name, id, ad, service);
+        test.set_provider_address(null);
+        Assertions.assertNull(null);
+    }
+
+    @Test
+    void get_provider_id()
+    {
+        int id = 0;
+        String service = null;
+        String Name = null;
+        Address ad = new Address(null, null, null, 0);
+        Provider test = new Provider(Name, id, ad, service);
+        Assertions.assertEquals(test.get_provider_id(), 0);
+    }
 }
