@@ -65,7 +65,6 @@ public class ServiceList extends Utility{
       if (s_root == null)
          return 1;
 
-      write_to_file(s_root.go_left(), file);
       try {
          file.write(s_root.get_service_code() + ";");
          file.write(s_root.get_service_name() + ";");
@@ -74,6 +73,7 @@ public class ServiceList extends Utility{
       } catch (IOException e) {
          e.printStackTrace();
       }
+      write_to_file(s_root.go_left(), file);
       write_to_file(s_root.go_right(), file);
       return 1;
    }
