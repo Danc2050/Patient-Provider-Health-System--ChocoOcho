@@ -31,7 +31,7 @@ class AddressTest {
         InputStream inputStream = new ByteArrayInputStream(data);
         System.setIn(inputStream);
 
-        myAddress.set_address();
+        myAddress = myAddress.set_address();
 
         assertEquals("124 Main St.", myAddress.street);
         assertEquals("Springfield", myAddress.city);
