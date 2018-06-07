@@ -265,15 +265,15 @@ public class ProviderList extends Utility {
          */
         try
         {
-            String filename = "May30 - CS300Project 2/ProviderID.txt";
+            String filename = "May30 - CS300Project 2/ProviderList.txt";
             String working_directory = System.getProperty("user.dir");
             File file = new File (working_directory, filename);
             BufferedReader in = new BufferedReader(new FileReader(file));
             String line = in.readLine();
-
             while (!stop && line != null)
             {
-                temp_id = Integer.parseInt(line);
+                String[] columns = line.split(";");
+                temp_id = Integer.parseInt(columns[0]);
                 if (temp_id == provider_id)
                     stop = true;
                 line = in.readLine();
