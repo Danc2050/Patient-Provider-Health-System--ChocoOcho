@@ -37,6 +37,13 @@ class MemberTest1 {
 
     @Test
     void set_m_name() {
+        int id = 12345;
+        String status = "Active";
+        String Name = "Michael Jordan";
+        Address ad = new Address("Barney", "Portland", "OR", 97236);
+        Member test = new Member(id, status, Name, ad);
+        test.set_m_name("foo");
+        Assertions.assertEquals(test.Name, "foo");
     }
 
     @Test
