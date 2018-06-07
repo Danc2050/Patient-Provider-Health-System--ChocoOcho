@@ -14,7 +14,8 @@ class ServiceListTest {
 
     @Test
     void write_to_file() {
-        write_to_file1();
+        //write_to_file1();
+        assertEquals(SL.write_to_file(), 1);
     }
 
     @Test
@@ -32,12 +33,14 @@ class ServiceListTest {
 
     @Test
     void add_service() {
-        add_service1();
+        //add_service1();
+        assertEquals(SL.add_service(), 1);
     }
 
     @Test
     void add_service1() {
         add_service2();
+        //assertEquals(SL.add_service(12345, "Pharmacist", 600), 1);
     }
 
     @Test
@@ -57,7 +60,15 @@ class ServiceListTest {
 
     @Test
     void check_service_wrapper() {
-        check_service();
+        //check_service();
+        ServiceList instance = new ServiceList();
+        Service root = new Service();
+        root = null;
+        boolean ret = instance.check_service_wrapper("Yoga Trainer");
+        assertFalse(ret);
+        /*root = (Service) instance.add_service(root, 12344, "Yoga Trainer", 600);
+        ret = instance.check_service_wrapper("Yoga Trainer");
+        assertTrue(ret);*/
     }
 
     @Test
@@ -73,7 +84,16 @@ class ServiceListTest {
 
     @Test
     void get_service_id_from_name_wrapper() {
-        get_service_id_from_name();
+        //get_service_id_from_name();
+        ServiceList instance = new ServiceList();
+        Service root = new Service();
+        root = null;
+        int ret = instance.get_service_id_from_name_wrapper("Yoga Trainer");
+        assertEquals(0, ret);
+        /*root = (Service) instance.add_service(root,12344, "Yoga Trainer", 600);
+        ret = instance.get_service_id_from_name_wrapper("Yoga Trainer");
+        assertEquals(12344, ret);*/
+
     }
 
     @Test
@@ -101,7 +121,7 @@ class ServiceListTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         String ret = new String(output.toByteArray());
         assertEquals("", ret);
-       // String output = systemOut().getHistory();
+        // String output = systemOut().getHistory();
 
         root = (Service) instance.add_service(root,12344, "Yoga Trainer", 600);
         root = (Service) instance.add_service(root, 12345, "Pharmacist", 600);
@@ -198,7 +218,12 @@ class ServiceListTest {
 
     @Test
     void get_service() {
-        get_service1();
+        //get_service1();
+        ServiceList instance = new ServiceList();
+        Service root = new Service();
+        root = null;
+        Service ret = instance.get_service(12344);
+        assertNull(ret);
     }
 
     @Test
