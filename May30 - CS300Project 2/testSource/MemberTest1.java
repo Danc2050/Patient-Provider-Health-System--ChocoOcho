@@ -6,8 +6,21 @@ import static org.junit.jupiter.api.Assertions.*;
 class MemberTest1 {
 
     @Test
-    void toCopy() {//Can I test this?
+    void toCopy() {
+        Address a = new Address("123 Main St.", "Springfield", "OR", 97209);
+        Member m = new Member(12345, "Active", "Joe", a);
 
+        Member m2 = new Member();
+        m2.toCopy(m);
+
+        assertEquals(12345, m2.id);
+        assertEquals("Joe", m2.Name);
+        assertEquals("Active", m2.m_status);
+        Address ad = m.get_maddress();
+        assertEquals(a.street, ad.street);
+        assertEquals(a.state, ad.state);
+        assertEquals(a.city, ad.city);
+        assertEquals(a.zip, ad.zip);
     }
 
     @Test
