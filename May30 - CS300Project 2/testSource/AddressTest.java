@@ -22,7 +22,7 @@ class AddressTest {
         assertEquals(97209, b.zip);
     }
 
-    @Test
+    /*@Test
     void set_address() {
         Address myAddress = new Address();
 
@@ -39,7 +39,7 @@ class AddressTest {
         assertEquals("97209", myAddress.zip);
 
         System.setIn(System.in);
-    }
+    }*/
 
     @Test
     void get_address() {
