@@ -1,6 +1,14 @@
 # ChocoOcho
 Team # 8 Repository
 
+MEMBERS:
+- David Bartges
+- Marko Bozic
+- Daniel Connelly
+- Thong Nguyen
+- Phuong Pham
+- Angelic Phan
+
 THE ENVIRONMENT WE ARE WORKING ON:
 - We implemented our program in Java using Intellij IDE CE (Version 2018.1.2).
 - We utilized Junit 5 for our unit tests. You may be prompted to import Junit 5 into your system if you see that the test
