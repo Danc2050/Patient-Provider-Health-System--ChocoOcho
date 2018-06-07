@@ -45,14 +45,16 @@ public class ServiceList extends Utility{
    //Wrapper to write list of services to file
    public int write_to_file()
    {
-      try {
-         FileWriter writer = new FileWriter("ServiceList.txt");
+      try{
+         String filename = "May30 - CS300Project 2/ServiceList.txt";
+         String working_directory = System.getProperty("user.dir");
+         File file = new File(working_directory, filename);
+         FileWriter writer = new FileWriter(file);
          this.write_to_file(s_root, writer);
          writer.close();
       }
-      catch (IOException e)
-      {
-         e.printStackTrace();
+      catch(IOException exception){
+         exception.printStackTrace();
       }
       return 1;
    }
