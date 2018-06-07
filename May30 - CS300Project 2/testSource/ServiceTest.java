@@ -5,6 +5,14 @@ class ServiceTest {
 
     @Test
     void toCopy() {
+        Service s = new Service("Yoga Trainer", 12345, 600);
+
+        Service s2 = new Service();
+        s2.toCopy(s);
+
+        Assertions.assertEquals("Yoga Trainer", s2.s_name);
+        Assertions.assertEquals(12345, s2.s_code);
+        Assertions.assertEquals(600, s2.s_fee);
     }
 
     @Test
