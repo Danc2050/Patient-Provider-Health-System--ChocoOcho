@@ -106,8 +106,7 @@ public class ChocAn extends Utility{
                 main_menu = 1;
         }
         
-        //TODO: uncomment to make this work
-        //object.write_data(list_of_members, list_of_providers, tree_of_services, list_of_all_services);//Write updated data from trees to file
+        object.write_data(list_of_members, list_of_providers, tree_of_services, list_of_all_services);//Write updated data from trees to file
 
     }
 }
