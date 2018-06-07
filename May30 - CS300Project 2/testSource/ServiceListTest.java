@@ -33,8 +33,8 @@ class ServiceListTest {
 
     @Test
     void add_service() {
-        //add_service1();
-        assertEquals(SL.add_service(), 1);
+        add_service1();
+        //assertEquals(SL.add_service(), 1);
     }
 
     @Test
