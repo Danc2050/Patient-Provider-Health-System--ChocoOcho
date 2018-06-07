@@ -70,27 +70,27 @@ public class ProviderList extends Utility {
     /* Traverses the tree of providers writing out their information
        to the text file delimited by the ';' character.
      */
-    public int write_to_file(Node s_root, FileWriter file)
+    public int write_to_file(Node p_root, FileWriter file)
     {
-        if (s_root == null)
+        if (p_root == null)
             return 1;
 
         /* Traverses Left */
-        write_to_file(s_root.go_left(), file);
+        write_to_file(p_root.go_left(), file);
 
         /* Writes provider information onto a single line */
         try {
-            file.write(s_root.get_pnum() + ";");
-            file.write(s_root.get_pname() + ";");
-            file.write(s_root.get_paddress() + ";");
-            file.write(s_root.get_provider_services() + ";");
+            file.write(p_root.get_pnum() + ";");
+            file.write(p_root.get_pname() + ";");
+            file.write(p_root.get_paddress() + ";");
+            file.write(p_root.get_provider_services() + ";");
             file.write("\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         /* Traverses Right */
-        write_to_file(s_root.go_right(), file);
+        write_to_file(p_root.go_right(), file);
         return 1;
     }
 
