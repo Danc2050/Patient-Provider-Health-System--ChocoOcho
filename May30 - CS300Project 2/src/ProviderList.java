@@ -82,7 +82,12 @@ public class ProviderList extends Utility {
         try {
             file.write(p_root.get_pnum() + ";");
             file.write(p_root.get_pname() + ";");
-            file.write(p_root.get_paddress() + ";");
+            Address temp_address = new Address();
+            temp_address = p_root.get_paddress();
+            file.write(temp_address.street + ";");
+            file.write(temp_address.city + ";");
+            file.write(temp_address.state + ";");
+            file.write(temp_address.zip + ";");
             file.write(p_root.get_provider_services() + ";");
             file.write("\n");
         } catch (IOException e) {
