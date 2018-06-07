@@ -17,14 +17,32 @@ class ServiceTest {
 
     @Test
     void set_service_name() {
+        int id = 12345;
+        String name = "foo";
+        float fee = 500;
+        Service test = new Service(name, id, fee);
+        test.set_service_name("bar");
+        Assertions.assertEquals(test.s_name, "bar");
     }
 
     @Test
     void set_service_code() {
+        int id = 12345;
+        String name = "foo";
+        float fee = 500;
+        Service test = new Service(name, id, fee);
+        test.set_service_code(54321);
+        Assertions.assertEquals(test.s_code, 54321);
     }
 
     @Test
     void set_service_fee() {
+        int id = 12345;
+        String name = "foo";
+        float fee = 500;
+        Service test = new Service(name, id, fee);
+        test.set_service_fee(1000);
+        Assertions.assertEquals(test.s_fee, 1000);
     }
 
     @Test
