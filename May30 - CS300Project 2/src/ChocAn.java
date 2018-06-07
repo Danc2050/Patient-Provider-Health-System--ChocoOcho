@@ -24,7 +24,10 @@ public class ChocAn extends Utility{
             //Manager Mode
             if (response == 1)
             {
-                if(list_of_providers.manager_Verification())
+                System.out.println("\nEnter manager I.D. # to be verified: ");
+                int manager_ID = input.nextInt();
+                input.nextLine();
+                if(list_of_providers.manager_Verification(manager_ID))
                 {
                     //Verify a manager does exist.
                     System.out.println("\nManager I.D. verification successful.");

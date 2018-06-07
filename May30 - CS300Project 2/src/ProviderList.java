@@ -221,12 +221,9 @@ public class ProviderList extends Utility {
        check to see that the manger's ID is in fact a valid one.
        Function will return true if the value is found and false if not.
      */
-    public Boolean manager_Verification(){
-    System.out.println("\nEnter manager I.D. # to be verified: ");
-    int manager_ID = input.nextInt();
-    input.nextLine();
+    public boolean manager_Verification(int manager_ID){
     int temp_id = 0;//Parsed int.
-    Boolean stop = false;
+    boolean stop = false;
         try {
         String filename = "May30 - CS300Project 2/ManagerList.txt";
         String working_directory = System.getProperty("user.dir");
