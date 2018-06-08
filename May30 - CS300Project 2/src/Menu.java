@@ -223,7 +223,7 @@ public class Menu extends Utility {
                 "\n[3] - Display Services" + "\n[4] - Update Service" +
                 "\n[5] - Email List of Services" + "\n[6] - Return to Manager Menu.");
 
-        while (service_response < 1 || service_response > 5)
+        while (service_response < 1 || service_response > 6)
         {
             System.out.println("\nEnter response.");
             service_response = input.nextInt();
