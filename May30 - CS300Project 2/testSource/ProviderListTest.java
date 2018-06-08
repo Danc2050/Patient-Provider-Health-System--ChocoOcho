@@ -23,12 +23,7 @@ class ProviderListTest {
 
     @Test
     void write_to_file1() {
-        try {
-            FileWriter file = new FileWriter("ProviderList.txt");
-            Assertions.assertEquals(obj.write_to_file(obj.p_root, file), 1);
-        } catch (IOException e) {
-            System.out.println("\nIO exception.");
-        }
+        Assertions.assertEquals(obj.write_to_file(), 1);
     }
 
     @Test
