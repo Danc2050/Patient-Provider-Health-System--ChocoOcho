@@ -52,6 +52,6 @@ public class Address extends Utility{
 
     /* Displays the contents of an address for the object being called on */
     public void display_address() {
-        System.out.print(this.street + " " + this.state + " " + this.city + " " + this.zip + "\n");
+        System.out.print(this.street + "\n\t\t\t\t  " + this.city + ", " + this.state + " " + this.zip + "\n");
     }
 }
