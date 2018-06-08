@@ -1,46 +1,38 @@
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class SHistoryTreeTest {
     SHistoryTree obj = new SHistoryTree();
 
-    @org.junit.jupiter.api.Test
+    @Test
     void read_from_file() {
-        Assertions.assertEquals(obj.read_from_file(), 1);
+        assertEquals(obj.read_from_file(), 1);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void write_to_file() {
-        Assertions.assertEquals(obj.write_to_file(), 1);
+        assertEquals(obj.write_to_file(), 1);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void write_to_file1() {
-        try
-        {
-            FileWriter file = new FileWriter ("ServiceHistory.txt");
-            Assertions.assertEquals(obj.write_to_file(obj.h_root, file), 1);
-        }
-        catch (IOException e)
-        {
-            System.out.println("\nIO exception");
-        }
+        assertEquals(obj.write_to_file(), 1);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void add_history() {
+        add_history1();
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void add_history1() {
-        //SHistoryTree obj = new SHistoryTree();
         Provider prov = new Provider();
         Member mem = new Member();
         Service service = new Service();
 
-        Assertions.assertNotNull(obj.add_history(obj.h_root, prov, mem, service, "06-01-2018 03:30:30", "06-04-2018 05:25:50", "good health"));
+        assertNotNull(obj.add_history(obj.h_root, prov, mem, service, "06-01-2018 03:30:30", "06-04-2018 05:25:50", "good health"));
     }
 /*
     @org.junit.jupiter.api.Test
