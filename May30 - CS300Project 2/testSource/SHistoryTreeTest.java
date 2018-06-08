@@ -34,15 +34,16 @@ class SHistoryTreeTest {
 
         assertNotNull(obj.add_history(obj.h_root, prov, mem, service, "06-01-2018 03:30:30", "06-04-2018 05:25:50", "good health"));
     }
-/*
+
+    /*
     @org.junit.jupiter.api.Test
     void email_p_history() {
-        SHistoryTree obj = new SHistoryTree();
-        Assertions.assertEquals(obj.email_p_history(), 1);
+        email_p_history1();
     }
 
     @org.junit.jupiter.api.Test
     void email_p_history1() {
+        email_p_history2();
     }
 
     @org.junit.jupiter.api.Test

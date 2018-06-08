@@ -1,3 +1,4 @@
+//Class to store the address of providers and members
 public class Address extends Utility{
     /* Data members composing an address */
     protected String street;
@@ -27,7 +28,6 @@ public class Address extends Utility{
         this.state = ad.state;
         this.city = ad.city;
         this.zip = ad.zip;
-        return;
     }
 
     /* Setter function to set the address for the object being called on */

@@ -1,8 +1,9 @@
+//Main
 public class ChocAn extends Utility{
 
     public static void main(String[] args) {
 
-        //Main.java is designed to allow providers to interact with the ChocAn data processing software system.
+        //Main is designed to allow ChocAn managers and providers to interact with the ChocAn data processing software system.
         int main_menu = 0;//Controls the exit from our main terminal.
         int manager_menu = 0;//Controls the entrance or exit from our manager terminal.
         int response; //Catch user's response in main mode
@@ -13,7 +14,7 @@ public class ChocAn extends Utility{
         Menu object = new Menu(); //Object for the Main Menu (Provider/Manager Mode)
         MemberList list_of_members = new MemberList(); //Object for MemberList
         ProviderList list_of_providers = new ProviderList(); //Object for ProviderList
-        SHistoryTree tree_of_services = new SHistoryTree(); //Object of tree of services
+        SHistoryTree tree_of_services = new SHistoryTree(); //Object of tree of services (services that have been provided)
         ServiceList list_of_all_services = new ServiceList(); //Object of all the services in the Provider's Directory
 
         object.load_data(list_of_members, list_of_providers, tree_of_services, list_of_all_services); //Load data from files into tree data structures.

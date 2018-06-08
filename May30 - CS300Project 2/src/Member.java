@@ -1,9 +1,10 @@
+//Class to store member's data in nodes in the tree structure.
 public class Member extends Node{
     /* Data fields that a member has */
     protected String Name;
     protected int id;
     protected Address m_address;
-    protected String m_status;
+    protected String m_status; //Suspended or active
 
     /* Default constructor to initialize data fields to their null equivalent */
     public Member() {
