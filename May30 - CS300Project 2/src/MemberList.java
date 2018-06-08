@@ -17,13 +17,20 @@ public class MemberList extends Utility {
 
         System.out.println("Enter the name of member you wish to update: ");
         String to_find = input.nextLine();
-
+        if(check_name_wrapper(to_find) == 0)
+        {
+            System.out.println("\nMember name does not match any in the system.");
+            return 0;
+        }
         System.out.println("Enter new member's name to replace: ");
         String to_replace = input.nextLine();
 
         System.out.println("Enter the member's id you wish to update: ");
         int member_id = input.nextInt();
-
+        if(check_id_wrapper(member_id) == 0){
+            System.out.println("\nMember ID does not match any in the system.");
+            return 0;
+        }
         Node member_to_change = new Member();
         this.m_root = find_member(m_root, to_find, to_replace, member_id, member_to_change);
         add_member(m_root, member_to_change.get_member_id(), member_to_change.get_status(),
@@ -75,8 +82,17 @@ public class MemberList extends Utility {
     {
         System.out.println("Enter member name to change id: ");
         String to_find = input.nextLine();
+        if(check_name_wrapper(to_find) == 0)
+        {
+            System.out.println("\nMember name does not match any in the system.");
+            return 0;
+        }
         System.out.println("Enter current id: ");
         int current_id = input.nextInt();
+        if(check_id_wrapper(current_id) == 0){
+            System.out.println("\nMember ID does not match any in the system.");
+            return 0;
+        }
         int new_id = 0;
         do{
             System.out.println("Enter new member ID: ");
@@ -147,6 +163,11 @@ public class MemberList extends Utility {
     {
         System.out.println("Enter member name to change status: ");
         String to_find = input.nextLine();
+        if(check_name_wrapper(to_find) == 0)
+        {
+            System.out.println("\nMember name does not match any in the system.");
+            return 0;
+        }
         System.out.println("Enter new member status: ");
         String new_status = input.nextLine();
         this.m_root = updateMemberStatus(m_root, to_find, new_status);
@@ -179,6 +200,11 @@ public class MemberList extends Utility {
     {
         System.out.println("Enter member name to change address: ");
         String to_find = input.nextLine();
+        if(check_name_wrapper(to_find) == 0)
+        {
+            System.out.println("\nMember name does not match any in the system.");
+            return 0;
+        }
         System.out.println("Press 1 to update street");
         System.out.println("Press 2 to update city");
         System.out.println("Press 3 to update state");
@@ -363,9 +389,9 @@ public class MemberList extends Utility {
     protected int check_name(Node root, String member_name) {
         if (root == null)
             return 0;
-        if (root.get_member_name().compareToIgnoreCase(member_name) < 0)
+        if (root.get_member_name().compareToIgnoreCase(member_name) > 0)
             return check_name(root.go_left(), member_name);
-        else if (root.get_member_name().compareToIgnoreCase(member_name) > 0)
+        else if (root.get_member_name().compareToIgnoreCase(member_name) < 0)
             return check_name(root.go_right(), member_name);
         else
             return 1;
