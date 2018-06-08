@@ -404,25 +404,23 @@ public class ServiceList extends Utility{
 
    //Returns a service node.
    public Service get_service(Node root, int service_id) {
-      if (root == null)
+      Service ret = null;
+      if (root == null) {
          return null;
-      if (root.get_service_code() > service_id) {
-         return get_service(root.go_left(), service_id);
       }
-      else if(root.get_service_code() < service_id) {
-         return get_service(root.go_right(), service_id);
+      if (root.get_service_code() == service_id) {
+         Service obj = new Service();
+         obj.s_name = root.get_service_name();
+         obj.s_code = root.get_service_code();
+         obj.s_fee = root.get_service_fee();
+         //obj.toCopy((Service) root);
+         return obj;
       }
-      else {
-         if (root.get_service_code() == service_id) {
-            Service obj = new Service();
-            obj.s_name = root.get_service_name();
-            obj.s_code = root.get_service_code();
-            obj.s_fee = root.get_service_fee();
-            return obj;
-         } else if (root.get_service_code() != service_id) {
-            System.out.print("Service not found.\n");
-         }
+      else{
+         ret = get_service(root.go_left(), service_id);
+         if(ret == null)
+            ret = get_service(root.go_right(), service_id);
       }
-      return null;
+      return ret;
    }
 }
