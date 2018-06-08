@@ -19,7 +19,7 @@ THE ENVIRONMENT WE ARE WORKING ON:
 
 THE STEPS YOU NEED TO RUN THE PROGRAM LOCALLY:
 - Keep the project folder name "May 30 - CS300Project2" as is when downloading, as our read from file functions
-  are dependant on the name.
+  are dependant on the name. Download both src and testsrc.
 - Compile and run the java class "ChocAn." It is our main.
 - Once the program is running, in order to access the Interactive/Manger mode, you will
   be prompted for a manger's ID. Please use the ManagerList.txt file to copy any of the valid
