@@ -69,7 +69,7 @@ public class Member extends Node{
         System.out.println("Member's Name: " + this.Name);
         System.out.println("Member's ID: " + this.id);
         System.out.println("Member's Status: " + this.m_status);
-        System.out.print("Member's Address ");
+        System.out.print("Member's Address: ");
         if(m_address != null)
             m_address.display_address();
         System.out.println("=======================================");
